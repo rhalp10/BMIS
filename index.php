@@ -1,36 +1,46 @@
 <?php
 session_start();
+
 if (isset($_SESSION['id'])) {
  		header('location:home.php');
  	}
 ?>
-<html>
+<html style="background: url(Picture/bg.png); background-repeat: no-repeat; background-size:cover;">
 <title>Barangay Management Information System</title>
 <link rel="stylesheet" type="text/css" href="Css/homepage.css">
 <link rel="shortcut icon" href="Icon/indang logo.png">
-<script src="css/ism-2.2.min.js"></script>
-<link rel="stylesheet" href="Css/slider.css"> 
+<!-- <script src="css/ism-2.2.min.js"></script>
+<link rel="stylesheet" href="Css/slider.css">  -->
+<style type="text/css">
+	.nav {
+  background-color: #2e4a62;
+  border: none;
+  width: 100%;
+  position:fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  text-transform: uppercase;
+  font-family: calibri;
+}
+</style>
 <div class="nav">
-<font color = "white" size = "6%"><center>MANAGEMENT INFORMATION SYSTEM OF BALAGBAG MAHABANG KAHOY LEJOS
-</font></center>
 	<a href="index.php">home</a>
 	<a href="about.php">about</a>
 </div>
 
 <body>
-<div class="container">	
-
-	<img src="Picture/indang1.jpg" style="float:left" width="60%" height="73%">
+<div class="container"  >	
+	<!-- <img src="Picture/indang1.jpg" style="float:left" width="60%" height="73%"> -->
 </div>
-
-	<div class="right">
+	<div class="right" >
 	<section class="banner">Sign In</section> </br> </br>
-	<Center><img src="Icon/indang logo.png" height="100" width="100" ></center>
+	<Center><img src="Picture/banaba.png" height="100" width="100" ></center>
 	<form method="POST">
 			<input type="text" name="username" required autofocus placeholder="Enter Username">
 			<input type="password" name="password" required autofocus placeholder="Enter Password">
 			
-			<input type="Submit" name="submit" value="LOGIN">
+			<input type="Submit" name="submit" value="Enter">
 			<script>
 function myFunction() {
     var x = document.getElementById("myInput");
@@ -62,7 +72,8 @@ if (isset($_POST['submit'])) {
 
 		
 		$_SESSION['id'] = $accnt['ID'];
-		$sesID = $_SESSION['id'];//session user id
+
+
 		if($pass==$password && $username==$username){
 				
 		$pos = $accnt['position_id'];
