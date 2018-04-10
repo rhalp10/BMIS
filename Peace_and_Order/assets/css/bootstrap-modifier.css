@@ -1,0 +1,67 @@
+/* card */
+.card {
+  margin-bottom: 15px !important;
+}
+
+.card-header, .card-footer {
+  padding: 15px 20px !important;
+}
+
+.card-body {
+  padding: 20px !important;
+}
+
+/* table */
+.table {
+  margin-bottom: 0px !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+table tbody tr {
+  -webkit-transition: all .5s ease-out;
+  -moz-transition: all .5s ease-out;
+  -o-transition: all .5s ease-out;
+  transition: all .5s ease-out;
+}
+
+table.table-lg td, table.table-lg th {
+  padding-top: 1.1rem !important;
+  padding-bottom: 0.8rem !important;
+}
+
+/* pagination */
+.page-link {
+  border: 0px !important;
+  line-height: 1 !important;
+  -webkit-transition: all .5s ease-out;
+  -moz-transition: all .5s ease-out;
+  -o-transition: all .5s ease-out;
+  transition: all .5s ease-out;
+}
+
+.pagination .page-item {
+  cursor: pointer;
+}
+
+.pagination.pagination-square .active .page-link {
+  border-radius: 2px;
+}
+
+.pagination.pagination-circle .page-link {
+  border-radius: 50%;
+  margin: 0px 2px;
+}
+
+/* button */
+.btn:hover {
+  cursor: pointer;
+  border: 0px !important;
+}
+
+.btn {
+  border: 0px !important;
+}
+/*# sourceMappingURL=bootstrap-modifier.css.map */

@@ -1,0 +1,306 @@
+body {
+	overflow: scroll;
+	color: #444444;
+	font-family: calibri;
+}
+.nav {
+	background-color: #2d2d2d;
+	border: none;
+;
+	width: 100%;
+	position:fixed;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	text-transform: uppercase;
+	font-family: calibri;
+}
+.nav a {
+    	float: left;
+	display: block;
+	color: #f2f2f2;
+    	text-align: center;
+    	padding: 14px 16px;
+    	text-decoration: none;
+}
+.nav a:hover {
+    	background: #14aa6c;
+    	color: white;
+} 
+.nav a:active {
+	background: #99c74b;
+}
+
+.container { 
+	background-color: white;
+	height:auto;
+	width: auto;
+	margin-top: 3%;
+	margin-right: 1%;
+
+}
+.right {
+	width: auto;
+	height: absolute;
+	overflow: hidden;
+	background: white;
+	border-radius: 6px;
+	margin-top: 11%;
+	margin-left: 60%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+	padding-bottom: 1%;
+	box-shadow: 0px 0px 50px rgba(0,0,0,.4);
+
+}
+.right .banner {
+	width: auto;
+  	height: 30px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+    	font-size: 20px;
+    	text-align: center;
+    	color: WHITE;
+    	font-weight: bold;
+    	background: #14aa6c;
+    	border: #14aa6c solid 1px;
+    	border-top-right-radius: 6px;
+    	border-top-left-radius: 6px;
+    	font-family: Arial;
+	padding-bottom: 2%;
+}
+input[type=text]{
+	text-align:center;
+	width: 90%;
+	padding: 12px 6px;
+	color: #444444;
+	border:  #2a992c;
+	background-color: #f7f7f7;
+	margin-top:8%;
+	margin-left:5%;
+	margin-right: 5%;	
+}
+input[type=password]{
+	text-align:center;
+	width: 90%;
+	padding: 12px 6px;
+	color: #444444;
+	border:  #2a992c;
+	background-color: #f7f7f7;
+	margin-top:2%;
+	margin-left:5%;
+	margin-right: 5%;	
+}
+input[type=text]:focus {
+	cursor:pointer;
+	background-color: white;
+	border-color:#14aa6c;
+	border-style: solid;
+}
+input[type=submit]:hover {
+	background-color: #14aa6c;
+	border: none;
+	color: white;
+	-webkit-transition:background 0.5s ease-in-out;
+	-moz-transition:background 0.5s ease-in-out;
+	transition:background-color 0.5s ease-in-out;
+}
+input[type=submit] {
+	background-color: #2d2d2d;
+	border: none;
+	padding: none;
+	color: white;	
+	width: 90%;
+	height: 45px;
+	 margin-top:5%;
+	margin-left:5%;
+	margin-right: 5%;
+	border-radius: 7px;
+}
+input[type=password]:focus {
+	cursor:pointer;
+	background-color: white;
+	border-color:#14aa6c;
+	border-style: solid;
+
+}
+h1 { 
+	text-align: center; 
+}
+.left {
+	font-family: calibri;
+	width: 52%;
+	height: 57%;
+	float: left;
+	overflow: hidden;
+	background: white;
+	border-radius: 6px;
+	margin-left: 4%;
+	margin-right:60%
+	padding-bottom:2%;
+	box-shadow: 0px 0px 50px rgba(0,0,0,.4);
+}
+.center {
+	font-family: calibri;
+	width: 52%;
+	height: 57%;
+	float: left;
+	overflow: hidden;
+	background: white;
+	border-radius: 6px;
+	margin-left: 4%;
+	margin-right:60%
+	padding-bottom:2%;
+	box-shadow: 0px 0px 50px rgba(0,0,0,.4);
+}
+
+
+.card1 {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 200px;
+	top: 8px;
+	margin-left: 10%;
+	margin-top: 7%;
+	text-align: center;
+	font-family: calibri;
+	padding-bottom: 1%;
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-top: 1%;
+	overflow:hidden;
+	float: left;
+}
+.card1:hover {
+	box-shadow: 0px 0px 50px rgba(0,0,0,.4);
+	border: #444444 solid;
+	border-width: 1px;
+}
+.card2 {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	top: 8px;
+	margin-left: 7%;
+	margin-top: 7%;
+	margin-right: 10%
+  	text-align: center;
+	padding-bottom: 1%;
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-top: 1%;
+ 	font-family: calibri;
+	padding-bottom: 1%;
+	overflow:hidden;
+	float: left;
+}
+.card2:hover {
+	box-shadow: 0px 0px 50px rgba(0,0,0,.4);
+	border: #444444 solid;
+	border-width: 1px;
+}
+.card3 {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	top: 8px;
+	margin-top: 7%;
+	margin-left: 2%;
+  	margin-right: 10%;
+	text-align: center;
+	padding-bottom: 1%;
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-top: 1%;
+ 	font-family: calibri;
+	padding-bottom: 1%;
+	overflow:hidden;
+	float:right;
+}
+.card3:hover {
+	box-shadow: 0px 0px 50px rgba(0,0,0,.4);
+	border: #444444 solid;
+	border-width: 1px;
+}
+.title {
+  color: grey;
+  font-size: 18px;
+}
+.button:hover {
+	background-color: #14aa6c;
+	border: none;
+	color: white;
+	-webkit-transition:background 0.5s ease-in-out;
+	-moz-transition:background 0.5s ease-in-out;
+	transition:background-color 0.5s ease-in-out;
+}
+.button {
+	background-color: #444444;
+	border: none;
+	padding: none;
+	font-color: white;	
+	border-radius: 7px;
+    	text-align: center;
+    	padding: 14px 16px;
+    	margin-left:3%;
+	margin-right:3%;
+	width:auto;
+}
+.button a {
+	text-decoration: none;
+}
+.modal-window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.9);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.9s;
+
+}	
+.modal-window:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-window>div {
+  width: 800px;
+  position: relative;
+  margin: 10% auto;
+  padding: 2rem;
+  background: #fff;
+ color: #444;
+border-color: black;
+border-style: solid;
+border-width: 2px;
+ text-align: justify;
+    text-justify: inter-word;
+}
+
+.modal-window header {
+  font-weight: bold;
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+.modal-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+}

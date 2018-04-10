@@ -1,0 +1,10 @@
+dompdf 0.8.2 requires the following:
+
+PHP 5.4 or greater
+MBString
+GD (for image processing)
+allow_url_fopen set to true (for retrieving stylesheets or images via http) or the curl PHP extension
+php-font-lib v0.5.x
+php-svg-lib v0.3.x (if rendering SVG)
+
+

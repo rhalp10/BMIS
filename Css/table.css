@@ -1,0 +1,83 @@
+body
+{	font-family:calibri;
+}
+table{
+	border-collapse: collapse;
+}
+form{
+	margin:15px auto;
+	text-align:center;
+	padding:10px;
+	border: 6px solid black;
+	border-radius:5px;
+	width:856px;
+	margin-left:5%;
+	display:block;
+
+
+}
+
+.tb{
+	width:90%;
+	text-align:inline;
+	margin-left:50px;
+	
+}
+thead{
+	background-color:#2c2d2d;
+	color:white;
+	border:none;
+}
+.input-group{
+	margin:5px 0px 5px 0px;
+	font-family:calibri;
+	
+
+}
+.input-group label{
+	
+	text-align:left;
+	margin:2px;
+	font-size:20px;
+	font-family:calibri;
+	display: block;
+}
+.input-group input{
+
+	height:28px;
+	width:90%;
+	padding:5px 10px ;
+	font-size:14px;
+	border-radius:5px;
+	border:1px solid gray;
+	background-color:;
+	font-family:calibri;
+
+}
+.btn{
+	padding: 10px;
+	font-size:10px;
+	color:white;
+	background:#737676;
+	border:none;
+	border-radius:5px;
+	width:20%;
+	margin-left:70%;
+	margin-top: -10%;
+}
+.btn:hover{
+	background-color:#0092c6;
+}
+
+th, td{
+	border:none;
+	height:8px;
+	padding:10px;
+	font-family:calibri;
+
+}
+tbody{
+	border:none;
+}
+
+

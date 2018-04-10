@@ -1,0 +1,547 @@
+/* navigation*/
+body{
+  margin: 0;
+  padding: 0;
+  font-family: calibri;
+
+}
+
+nav {
+  background-color: #444444;
+  color: white;
+  position: fixed;
+  margin-left:1%;
+	margin-top:1%;
+	margin-right:1%;
+	border: none;
+  width:98%;
+  box-sizing: border-box;
+  transition: .3s;
+  z-index: 1;
+  font-family: calibri;
+}
+.emem{width: 80%;}
+
+
+nav .logo{
+  padding-left: 15px;
+  margin-top: 18px;
+  margin-right: 5px;
+  height: 40px;
+  float: left;
+  font-size: 22px;
+  transition: .3s;
+  overflow: hidden;
+  padding-right: 5px;
+
+}
+
+.warning{
+  background: #ff471a;
+  text-transform: uppercase;
+}
+
+.floatL{
+  float:left;
+}
+
+nav ul{
+
+  list-style: none;
+  float: left;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+
+
+nav ul li > a{
+  line-height: 50px;
+  color: white;
+  padding: 9px 30px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s;
+}
+
+
+
+/*DROPDOWN*/
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    color: #f2f2f2;
+    display: inline-block;
+    text-align: center;
+    padding: 9px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dd:hover .dropbtn {
+  background: #686868;
+  color: white;
+}
+
+li.dd {
+    display: inline-block;
+}
+
+.ddcontent {
+    background: #444444;
+    color: white;
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.ddcontent a {
+
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 15px;
+}
+
+.ddcontent a:hover { background: #141414;}
+
+.dd:hover .ddcontent {
+    display: block;
+}
+/*END OF DROPDOWN*/
+section.sec1{
+  width: auto;
+  background-size: cover;
+  background-position: center;
+}
+
+.content{
+
+}
+
+.content p{
+
+  width: 900px;
+  margin: 30px auto;
+  text-align: justify;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/*footer*/
+
+#footer {
+  width: 100%;
+  color: : #fff;
+  height: 40px;
+  font-size: 16px;
+  margin-bottom: 40px;
+  position: absolute;
+}
+#main-container{
+  width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+.header{
+
+  width: 300px;
+  margin: auto;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.header p{
+    line-height: 1.3;
+}
+.logo-holder{
+  position: relative;
+  margin-left: 80px;
+  margin-top: 35px;
+  float: left;
+  width: 120px;
+  height: 120px;
+}
+.logo-holder1{
+  position: relative;
+  margin-right: 80px;
+  margin-top: 35px;
+  float: right;
+  width: 120px;
+  height: 120px;
+}
+.logo-holder > img{
+  width: 100%;
+
+}
+.pic_holder{
+  margin: 15px auto;
+  border: 1px solid;
+  width: 120px;
+  height: 120px;
+}
+
+.ss{
+  text-align: center;
+  margin: 0 auto;
+}
+
+.pic_holder > img{
+  width: 100%;
+  height: 120px;
+}
+
+.thumb_holder{
+  margin-top: 15px;
+  margin-left: 100px;
+  border: 1px solid;
+  width: 90px;
+  height: 90px;
+  float: left;
+}
+.logo-holder1 > img{
+  width: 100%;
+
+}
+
+.ctrl {
+  width: 200px;
+  margin-left: 250px;
+}
+.tag{
+  margin-top: 15px;
+  width: 300px;
+  padding: 5px;
+  font-weight: bold;
+}
+.tag1 {
+  font-size: 25px;
+  width: 400px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.c-wrapper{
+  position: relative;
+  width: 800px;
+  min-height: 570px;
+}
+.p-holder{
+  margin: 0 auto;
+  width: 750px;
+}
+
+.footer-holder{
+  margin-top: 50px;
+  width: 750px;
+}
+.dual-thumb{
+  float: left;
+  width: 500px;
+  margin-bottom: 70px;
+}
+
+.note{
+  text-align: justify;
+  margin:0 auto;
+  width: 450px;
+}
+.note1{
+  text-align: center;
+  margin:0 auto;
+  width: 450px;
+}
+
+.left_right{
+  margin-left: 123px;
+  float: left;
+  width: 72px;
+}
+
+.input-holder{
+  text-align: justify;
+  width: 500px;
+  margin: 0 auto;
+}
+.left250{
+  width: 250px;
+  float: left;
+}
+.right250{
+  border: 1px solid;
+  width: 250px;
+}
+
+.center{
+  text-align: center;
+}
+.marginl50{
+  margin-left: 90px;
+}
+
+.posi{
+  padding: 0;
+  margin: 0;
+}
+
+.officials {
+  padding top: 3px;
+  border: black 3px double;
+  width: 320px;
+  margin: 0px;
+  float: left;
+
+}
+.content{
+  margin:0 auto;
+  padding: 10px;
+  width: 450px;
+  float: right;
+}
+
+.names{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#name-input{
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-weight: bold;
+}
+#par{
+  text-align: justify;
+}
+
+
+.thumb-container{
+
+  margin-top: 20px;
+  float: right;
+  width: 200px;
+}
+#thumb{
+
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border: 1px solid;
+}
+
+.ccon {
+  margin-top: 70px;
+  width: 450px;
+
+}
+.ccon1 {
+  margin-top: 70px;
+  width: 300px;
+  margin-left: 80px;
+}
+
+.ctc{
+  padding-top: 20px;
+  width: 500px;
+}
+.ctc1{
+  margin-top: 10px;
+  width: 400px;
+}
+.puno{
+  text-align: center;
+  width: 280px;
+  float: right;
+}
+.puno1{
+
+  margin-left: 360px;
+  text-align: center;
+  width: 280px;
+  margin-bottom: 20px;
+}
+.puno2{
+
+  margin-left: 440px;
+  text-align: center;
+  width: 280px;
+  margin-bottom: 20px;
+}
+.secreta{
+
+  text-align: center;
+  width: 280px;
+  float: left;
+}
+.wawa{margin-left: 80px;}
+.nenene{margin-left: 80px; float: left; margin-top: 40px}
+.signature{
+  margin-top: 30px;
+  width: 300px;
+}
+.signature1{
+
+  margin-top: 50px;
+  width: 300px;
+
+}
+.signline{text-decoration: overline;}
+
+.seal{
+  margin-top: 50px;
+  text-align: right;
+  padding-right: 45px;
+}
+
+.margint70 {margin-top: 70px;}
+.margint120 {margin-top: 120px;}
+.margint150 {margin-top: 150px;}
+.margint100 {margin-top: 100px;}
+.margint {margin-top: 170;}
+.margint200 {margin-top: 200;}
+.margint210 {margin-top: 210;}
+
+
+.qwe{width: 90%; margin: 0 auto; padding: 16px;}
+
+.input-container{
+  position: relative;
+  display: inline-block;
+  border: black 5px double;
+  border-radius: 25px;
+  width: 90%;
+  margin:120px 40px 0 40px;
+  padding: 16px;
+}
+.input-container1{
+  position: relative;
+
+
+  border-radius: 25px;
+  width: 90%;
+  margin:150px 40px 0 40px;
+  padding: 16px;
+  background: background:  rgba(31, 11, 33, 0.8);;
+
+}
+.toCenterDiv{
+  margin: 0 auto;
+}
+.input-container > div{float: left;margin-left: 50px;}
+
+
+.perBox{
+  width: 100%;
+  background: #14aa6c;
+}
+.mb_logo3 {width: 80%; background: white; margin: 0 auto;  padding-bottom: 10px; text-align: center;}
+.mb_logo {width: 80%; background: white; margin: 0 auto;  padding-bottom: 50px; text-align: center;}
+.mb_names {width: 80%; background: white;}
+.mb_names_holder {width: 97%; border-top: 1px solid; padding: 6px; margin: 0 auto;}
+.super_holder{ overflow-y: auto; overflow-x: auto;  height: 200px; }
+
+.resu {padding-left: 6px; width: 97%; border-bottom: 1px solid; margin: 0 auto;
+}
+
+
+.uploadform{
+  padding-top: 5px;
+  border-top: 1px solid;
+  width: 60%;
+  margin: 0 auto;
+
+}
+.uploadform1{
+  padding-top: 5px;
+  border-top: 1px solid;
+  width: 70%;
+  margin: 0 auto;
+
+}
+
+form label{
+  padding-top: 10px;
+  display: inline-block;
+  width: 120px;
+  margin-right: 30px;
+  text-align: right;
+  font-weight: bold;
+}
+
+/**end of input-container**/
+
+/**left panel-input**/
+.left {
+
+  width: 50%;
+  float: left;
+
+}
+.left1 {
+
+  width: 30%;
+  float: left;
+
+
+}
+/**end of left panel-input**/
+
+/**right panel-input**/
+.right {
+  width: 50%;
+  float: left;
+
+}
+.right1 {
+  width: 70%;
+  float: left;
+
+
+}
+/**end of right panel-input**/
+
+/**right btn**/
+.btn {text-align: center;}
+.paddingT80 {padding-top: 80px;}
+.paddingT100 {padding-top: 100px;}
+.paddingT150 {padding-top: 150px;}
+.paddingT170 {padding-top: 170px;}
+.paddingT200 {padding-top: 200px}
+.paddingT230 {padding-top: 230px}
+.paddingT260 {padding-top: 260px}
+.paddingT300 {padding-top: 300px;}
+.paddingT350{padding-top: 350px;}
+
+.borderNow {
+  border: 5px double;
+  border-radius: 10px;
+}
+
+
+.labeling{
+    text-align: justify;
+    border: 3px double;
+    padding-bottom: 5px;
+    text-weight: bold;
+}
+.labeling1{
+    padding: 15px;
+    text-align: justify;
+    padding-bottom: 5px;
+    text-weight: bold;
+}
+/**end of btn panel-input**/
+/*TABLE-HOLDER*/
+.table-holder{
+  width: 100%; padding: 16px;
+}
+.table-holder table{
+  width: 100%;
+}
+.table-holder th, td{
+  padding: 10px;
+}

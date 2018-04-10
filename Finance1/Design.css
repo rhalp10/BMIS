@@ -1,0 +1,53 @@
+body{
+	   background-images:("MISFinance/IMAGES/logoindang.png")
+        background-position: center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+}
+
+.title{
+	font-size: 35px;
+	font-family: 'Papyrus';
+	color: white;
+}
+
+.paragraph{
+	font-size: 25px;
+	font-family: 'PT Serif';
+	color: white;
+}
+
+.gallery {
+    margin: 5px;
+    border: 3px solid #ccc;
+    float: left;
+    width: 250px;
+    height: 230px;
+}
+
+.gallery:hover {
+    border: 3px solid #777;
+}
+
+.gallery img {
+    width: 100%;
+    height: 100%;
+}
+
+.desc {
+    padding: 10x;
+    text-align: center;
+    font-size: 20px
+    color: white;
+}
+
+.backtext {
+    background-color: gray;
+    padding: 15px; 
+}
+
+.opac{
+	opacity: 0.7;
+	background-color: black;
+    padding: 15px;
+}

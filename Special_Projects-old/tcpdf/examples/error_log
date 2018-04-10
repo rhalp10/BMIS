@@ -1,0 +1,1 @@
+[23-Aug-2013 04:23:18 UTC] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/syngkitt/public_html/cvsuwebpac/tcpdf/examples/view_all_librarians.php on line 60

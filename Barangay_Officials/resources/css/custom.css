@@ -1,0 +1,51 @@
+.navbar {
+		padding-left: 10%;
+		padding-right: 10%;
+		font-family: Century Gothic;
+		font-size: 15px;	
+		}
+
+	#brand {
+		font-size: 25px;
+	}
+
+	.form-group	 {	
+		font-style: Century Gothic;
+		position: relative;
+	}
+
+	
+	.btn {
+		text-align: center;
+	}
+
+	h1{
+		font-family: Century Gothic;
+
+	}
+
+	body {
+		font-family: Century Gothic;
+	}
+
+	#one {
+		padding-left: 10%;
+		padding-right: 10%;
+		font-family: Century Gothic;s
+		padding-top: 10px;
+
+	}
+
+	.form-control{
+		width: 80%;
+
+	}
+
+	.jumbotron{
+		padding-left: 20%;
+		padding-right: 20%;
+		margin-top: 10px;
+		background-color: white;
+		padding-bottom: 10%;
+	}
+

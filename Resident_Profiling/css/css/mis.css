@@ -1,0 +1,12 @@
+input[type='file']::-webkit-file-upload-button
+{
+	padding: 20 30;
+	color: #fff;
+	background-color: #34495E;
+	border: none;
+	font-family: 'Montserrat', sans-serif;
+font-size: 20;
+border-radius: 5px;
+}
+
+ select:invalid { color: gray; }
