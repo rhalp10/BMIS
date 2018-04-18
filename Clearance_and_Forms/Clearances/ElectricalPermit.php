@@ -427,13 +427,13 @@ $sqlsli = "INSERT INTO form_release (res_ID, form_ID, purpose_ID, release_date)
                 Health and Education<br>
             </div>
             <br>
-            <div class="names">
+            <!-- <div class="names">
                 <span id="name-input"><?php echo $wamfName." ".$wamInitial."."." ".$wamlName;?></span><br>
             </div>
             <div class="posi">
                 Ways and Means<br>
             </div>
-            <br>
+            <br> -->
             <div class="names">
                 <span id="name-input"><?php echo $agrifName." ".$agrimInitial."."." ".$agrilName;?></span><br>
             </div>

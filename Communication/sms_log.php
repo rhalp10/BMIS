@@ -8,7 +8,7 @@
       <meta name="author" content="">
       <title>Announcements</title>
       <!-- Bootstrap Core CSS -->
-      <link rel="stylesheet" type="text/css" href=""css/index.css>
+      <link rel="stylesheet" type="text/css" href="">
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" href="css/bootstrap.min.css"/>
       <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
@@ -35,6 +35,7 @@
                include("button.php");
                ?>
             <h2>SMS LOG</h2>
+           
             <center>
                <table class="table table-bordered" border="2px" width="50%">
                   <tr>
@@ -43,6 +44,8 @@
                      <th>RECEIVER FULL NAME</th>
                      <th>MOBILE NUMBER</th>
                      <th>POSITION</th>
+                     
+                     <th></th>
                   </tr>
                   <?php
                      include("connection.php");

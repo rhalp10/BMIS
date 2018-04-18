@@ -347,7 +347,7 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
 <?php 
             if ($_SESSION['position']=='Barangay Secretary')
             echo'
-            <button type="button" class="btn btn-primary col-lg-offset-10" data-toggle="modal" data-target="#myModal"   >Add resident
+            <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#myModal"   >Add resident
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </button>
             
@@ -967,7 +967,7 @@ $(document).ready(function() {
    var uploadField = document.getElementById("image");
 
 uploadField.onchange = function() {
-    if(this.files[0].size > 307200){
+    if(this.files[0].size > 2307200){
        alert("File is too big!");
        this.value = "";
     };

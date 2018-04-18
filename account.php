@@ -1,9 +1,20 @@
 <?php
 session_start();
 ?>
+<!--  <pre>
+            <?php 
+            // if(){
+
+            // }
+            print_r($_SERVER) ;
+            ?>
+            </pre> -->
 <html>
 <title>Account</title>
-<style>
+<link href="Resident_Profiling/css/bootstrap.min.css" rel="stylesheet">
+<link href="Resident_Profiling/vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
+<!-- <style>
 body {
 	font-family: calibri;
 	margin: 0; padding: 0;
@@ -33,7 +44,7 @@ body {
 	text-transform: uppercase;
 	font-family: calibri; 	
 }
-	.nav a {
+.nav a {
     	float: left;
 	display: block;
 	color: #f2f2f2;
@@ -220,104 +231,39 @@ table tr td {
   border-top: 1px solid #EEE;
 }
 
-</style>
+</style> -->
 
 
 </head>
 
-<body>
+<body style="padding: 25px;">
  	
   
 
 
 <?php
 if($_SESSION['position']=='Barangay Secretary'){
- 
-echo'
-<section class="left">
-			<div class="banner">
-				ADD ACCOUNT
-			</div>
-<form action= "accountinsert.php" method="post">
-
-<center>
-<table>
-
-
-
-<tr>
-		<td>Fullname</td>
-		<td><input type="text" name="fullname" placeholder="Enter Fullname" required /></td>
-	</tr>
-	<tr>
-		<td>Username</td>
-		<td><input type="text" name="username" placeholder="Enter Username" required /></td>
-	</tr>
-	<tr>
-		<td>Email Address</td>
-		<td><input type="text" name="emailaddress" placeholder="Enter Email Address" required /></td>
-	</tr>
-	<tr>
-		<td>Device ID</td>
-		<td><input type="text" name="device_Id" placeholder="Enter Device ID" required /></td>
-	</tr>
-	<tr>
-		<td>Password</td>
-		<td><input type="text" name="password" placeholder="Enter Password" required /></td>
-	</tr>
-	<tr>
-		<td>Position</td>
-		<td><select name="position">
-						<optgroup>
-						<option>Barangay Captain</option>
-						<option>Barangay Councilor</option>
-						<option>Barangay Health Worker</option>
-						<option>Barangay Treasurer</option>
-						<option>SK Chairman</option>
-						
-						</optgroup>
-						</select>
-						</td>
-	
-	</tr>
-	<tr>
-		<td>Committee</td>
-		<td><select name="committee">
-						<optgroup>
-						<option>None</option>
-						<option>Peace and Order</option>
-						<option>Health,Education & Sport</option>
-						<option>Agriculture</option>
-						<option>Infrastructure</option>
-						<option>Budget & Appropriation</option>
-						<option>Ways and Means</option>
-						<option>Clean and Green</option>
-						</optgroup>
-						</select>
-						</td>
-	
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td><input type="submit" name="submit" value="add" /></td>
-	</tr>
-</table></center>';}?>
-</section>
+?>
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Add account</button>
+<?php
+}
+?>
 <?php 
 if ($_SESSION['position']=='Barangay Secretary')
-echo'
-<section class="down">
-	<div class="banner">
-				LIST OF ACCOUNTS
-			</div>';?>
+{
+?>
+
+<h2>LIST OF ACCOUNTS</h2>
 <?php
+}
  if ($_SESSION['position']!='Barangay Secretary')
 {
-	echo '
-<section class="down">
-	<div class="banner">
-				ACCOUNT
-			</div>';
+
+?>
+
+<h2>ACCOUNTS</h2>
+<?php
 }?>
 <center>
 <?php
@@ -340,7 +286,9 @@ if (isset($_POST['submit']))
 	        }
 ?>
 </form>
-<table width="90%" border="2" style="border-collapse:collapse;">
+<br>
+<br>
+<table  class="table table-bordered">
 
 	<thead> <tr>
 			<th> Fullname </th>
@@ -381,10 +329,11 @@ if (isset($_POST['submit']))
 				echo"<td><font color='black'>". $test['Password']. "</font></td>";
 				echo"<td><font color='black'>". $test['Position']. "</font></td>";
 				echo"<td><font color='black'>". $test['Committee']. "</font></td>";	
-				echo"<td> <a href ='accounteditadmin.php?ID=$id' onclick='return myFunction()'>Edit</a>";
-				echo"<td> <a href ='accountdelete.php?ID=$id' onclick='return myFunction()'><center>Delete</center></a>";
-									
-				echo "</tr>";
+				echo"<td> 
+				<div class='btn-group'>
+				<a href ='accounteditadmin.php?ID=$id' onclick='return myFunction()' class='btn btn-primary'>Edit</a>
+				<a href ='accountdelete.php?ID=$id' onclick='return myFunction()' class='btn btn-primary'><center>Delete</center></a>
+				</div></td> ";
 			} //while
 		} //if
 		else {
@@ -401,7 +350,10 @@ if (isset($_POST['submit']))
 				echo"<td><font color='black'>". $test['Password']. "</font></td>";
 				echo"<td><font color='black'>". $test['Position']. "</font></td>";
 				echo"<td><font color='black'>". $test['Committee']. "</font></td>";	
-				echo"<td> <a href ='accountedit.php?ID=$id' onclick='return myFunction()'>Edit</a>";
+				echo"<td> 
+				<div class='btn-group'>
+				<a href ='accountedit.php?ID=$id' onclick='return myFunction()' class='btn btn-primary'>Edit</a>
+				</div></td>";
 									
 				echo "</tr>";
 			} //while
@@ -415,5 +367,111 @@ if (isset($_POST['submit']))
 </down>
 </table>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content ">
+      <div class="modal-header" style=" padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #b1cbbb;
+    color: black;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title ">Add Account</h4>
+      </div>
+      <div class="modal-body">
+       
+       <form class="form-horizontal" action= "accountinsert.php" method="post">
+       	 <div class="form-group">
+		    <label class="col-sm-2 control-label">Fullname</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" id="focusedInput" type="text" placeholder="Enter Fullname" name="fullname" required >
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">Username</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" id="focusedInput" type="text" placeholder="Enter Username" name="username" required >
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">Email Address</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" id="focusedInput" type="text" placeholder="Enter Email Address" name="emailaddress" required >
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">Device ID</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" id="focusedInput" type="text" placeholder="Enter Device ID" name="emailaddress" required >
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">Password</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" id="focusedInput" type="password" placeholder="Enter Password" name="password" required >
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">Position</label>
+		    <div class="col-sm-10">
+		    	<select name="position" class="form-control">
+					<optgroup>
+					<option>Barangay Captain</option>
+					<option>Barangay Councilor</option>
+					<option>Barangay Health Worker</option>
+					<option>Barangay Treasurer</option>
+					<option>SK Chairman</option>
+					</optgroup>
+				</select>
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">Committee</label>
+		    <div class="col-sm-10">
+		    	<select name="committee" class="form-control">
+					<optgroup>
+					<option>None</option>
+					<option>Peace and Order</option>
+					<option>Health,Education & Sport</option>
+					<option>Agriculture</option>
+					<option>Infrastructure</option>
+					<option>Budget & Appropriation</option>
+					<option>Ways and Means</option>
+					<option>Clean and Green</option>
+					</optgroup>
+				</select>
+		    </div>
+		  </div>
+		<div class="form-group"> 
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-success btn-lg" name="submit">Add</button>
+		    </div>
+  		</div>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+ <script src="Resident_Profiling/jquery/jquery-3.3.1.min.js"></script>
+    <script src="Resident_Profiling/js/bootstrap.min.js"></script>
+    <script src="Resident_Profiling/vendor/js/jquery.dataTables.min.js"></script>  
+     <script src="Resident_Profiling/vendor/js/dataTables.bootstrap.min.js"></script>
 </body>
 </html>

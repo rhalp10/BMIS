@@ -46,7 +46,8 @@ function filterTable($query)
 
 <body>
 	<div class="label">
-						<div class="nav">
+						<div class="nav" style="
+    background-color: #e94b3c">
 							<a href="index.php">Home</a>
 							<a href="view.php">Drug Inventory</a>
 							<a href="viewdrugrelease.php">Drug Distribution</a>

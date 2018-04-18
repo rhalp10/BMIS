@@ -10,7 +10,7 @@ $s1="";?>
   </head>
   <body>
     <div ng-app="app" ng-controller="ctrl" class="wrapper">
-      <nav>
+      <nav  style="background-color: #e94b3c;" >
         <div class="logo">Input Logo</div>
         <ul>
 

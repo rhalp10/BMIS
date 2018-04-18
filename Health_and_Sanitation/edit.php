@@ -18,8 +18,8 @@ $row = mysqli_fetch_assoc($result);
 <body>
 <link href="css/design.css" rel="stylesheet" type="text/css"> 
 <body>
-	<div class="label"> Health and Sanitation /Admin Panel
-						<div class="nav">
+	<div class="label">
+						<div class="nav" style="background-color: #e94b3c">
 							<a href="index.php">Home</a>
 							<a href="view.php">Drug Inventory</a>
 							<a href="viewdrugrelease.php">Drug Distribution</a>

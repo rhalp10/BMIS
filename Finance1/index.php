@@ -10,6 +10,7 @@ session_start();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
 	<style>
 		body{
 	margin: 0;
@@ -22,7 +23,7 @@ ul {
 	margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #e94b3c;
 }
 
 		li {
@@ -30,7 +31,7 @@ ul {
 		}
 
 li a, .dropbtn {
-	background-color: #444444;
+	background-color: #e94b3c;
     display: inline-block;
     color: white;
     text-align: center;
@@ -64,7 +65,7 @@ li.dropdown {
      color: lightblue;
 }
 
-.dropdown-content a:hover {background-color: #14aa6c;}
+.dropdown-content a:hover {background-color: #e94b3c;}
 
 .dropdown:hover .dropdown-content {
     display: block;

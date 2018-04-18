@@ -56,7 +56,7 @@ $pdf->SetFont('dejavusans', '', 12);
 
 // add a page
 $pdf->AddPage('L');
- $pdf->Image('alulod.png',68,9,30);
+ $pdf->Image('../Picture/banaba.png',68,9,30);
  $pdf->Image('indang-logo.png',200,9,25); 
 $print=$_POST['print'];
 if($print=="All")

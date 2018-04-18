@@ -90,9 +90,9 @@ $s3="";
     <title>Forms and Clearances</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
   </head>
-  <body>
-    <div ng-app="app" ng-controller="ctrl" class="wrapper">
-      <nav>
+  <body >
+    <div ng-app="app" ng-controller="ctrl" class="wrapper" >
+      <nav  style="background-color: #e94b3c;"  >
         <div class="logo">Forms and Clearances</div>
         <ul>
           <li><a href="inputLogo.php">Input Logo</a></li>
@@ -227,8 +227,8 @@ $s3="";
                                           </select><br><br>
 
 
-                                  <input  type="text" id="or" placeholder="O.R Number" name="or"><br><br>
-                                  <input  type="text" id="crc" placeholder="CTC Number" name="crc"><br><br>
+                                  <input  type="number" id="or" placeholder="O.R Number" name="or"><br><br>
+                                  <input  type="number" id="crc" placeholder="CTC Number" name="crc"><br><br>
                                   <button type="submit" id="labuleh" name="labuleh" >Submit</button>
                               </form>
                             </div>

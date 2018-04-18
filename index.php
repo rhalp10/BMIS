@@ -13,7 +13,7 @@ if (isset($_SESSION['id'])) {
 <link rel="stylesheet" href="Css/slider.css">  -->
 <style type="text/css">
 	.nav {
-  background-color: #2e4a62;
+  background-color: #e94b3c;
   border: none;
   width: 100%;
   position:fixed;

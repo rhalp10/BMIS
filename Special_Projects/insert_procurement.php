@@ -30,10 +30,10 @@ $status = "New Record Inserted Successfully.</br></br><a href='view_procurement.
 <link href="css/design.css" rel="stylesheet" type="text/css">	
 </head>
 <body>
-<div class="label"> Dashboard / Special Project
+<div class="label">
 </div>
 						<body>
-<div class="navbar">
+<div class="navbar" style="background-color: #e94b3c;">
 <a href="view.php">HOME</a>
     <div class="dropdown">
       <button class="dropbtn">Insert New Record

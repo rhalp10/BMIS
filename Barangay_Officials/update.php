@@ -21,7 +21,7 @@
 <link rel="stylesheet" type="text/css" href="resources\css\bootstrap.min.css">
 </head>
 <div class="container-fluid">
-  <nav class="navbar navbar-fixed-top" style="background-color: #141414;">
+  <nav class="navbar navbar-fixed-top" style="background-color: #e94b3c;">
     <div class="navbar-header">
       <a class="navbar-brand" id="brand" style="color: #f2f2f2">BARANGAY OFFICIALS </a>
     </div>

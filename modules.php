@@ -436,6 +436,13 @@ echo
 
 ';
 }
+if($_SESSION['position']=="Barangay Councilor"){
+?>
+<div class="holder"></div>
+<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>
+<?php
+
+}
 ?>
 
 

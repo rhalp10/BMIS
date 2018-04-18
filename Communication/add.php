@@ -117,7 +117,7 @@
                <select name="receiver" class="form-control" required>
                   <option></option>
                   <?php
-                     $sql = mysqli_query($connection, "SELECT * FROM ref_position WHERE position_ID != 1");
+                     $sql = mysqli_query($connection, "SELECT * FROM ref_position");
                      while($row = mysqli_fetch_assoc($sql))
                      {
                      ?>

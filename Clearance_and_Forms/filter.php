@@ -24,7 +24,7 @@ $s1="";?>
   </head>
   <body>
     <div ng-app="app" ng-controller="ctrl" class="wrapper">
-      <nav>
+      <nav  style="background-color: #e94b3c;" >
         <div class="logo">Filter Log to Print</div>
         <ul>
           <li><a href="index.php">Back</a></li>

@@ -39,9 +39,9 @@ $status = "New Record Inserted Successfully.</br></br><a href='view.php'>View In
  <link href="css/design.css" rel="stylesheet" type="text/css"> 
       
    <body>
-<div class="label"> Dashboard / Special Project
+<div class="label">
 </div>
- <div class="navbar">
+ <div class="navbar" style="background-color: #e94b3c;">
 <a href="index.php">HOME</a>
 
     <div class="dropdown">

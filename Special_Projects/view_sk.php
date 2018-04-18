@@ -12,9 +12,9 @@ require('db.php');
     <link href="css/design.css" rel="stylesheet" type="text/css"> 
 
    <body>
-<div class="label"> Dashboard / Special Project
+<div class="label">
 </div>
-<div class="navbar">
+<div class="navbar" style="background-color: #e94b3c;">
 
     <?php 
 if ($_SESSION['position']=='Barangay Secretary' OR $_SESSION['position']=='Barangay Treasurer')

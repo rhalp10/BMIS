@@ -22,7 +22,7 @@ ul {
 	margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #2d2d2d;
+    background-color: #e94b3c;
 }
 
 		li {
@@ -30,7 +30,7 @@ ul {
 		}
 
 li a, .dropbtn {
-	background-color: #2d2d2d;
+	background-color: #e94b3c;
     display: inline-block;
     color: white;
     text-align: center;
