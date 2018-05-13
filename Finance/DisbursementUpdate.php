@@ -13,9 +13,24 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/css/mis.css" rel="stylesheet">
       <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
       </head>
   <body> 
 <link href="Style.css" style="text/css" rel="stylesheet">
+
+ 
+<br>
+
+<div class="head"><font size="5">Disbursement Update</font></div>
+<br><br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'DisbursementView.php';"  >Back
+  <span class="glyphicon glyphicon" aria-hidden="true"></span>
+</button>
+
  
 		<section id="asd" class="asds">
 
@@ -63,22 +78,13 @@ session_start();
 			<tr>
 				<td><div class="form-group col-md-4">
       			<label for="disbursement_amount">Amount</label>
-				<td><input type="number" class="form-control" value="<?php echo $row["disbursement_amount"]; ?>" required name="disbursement_amount"></td>
+				<td><input type="text" maxlength=20 class="form-control input-sm text-left amount" value="<?php echo number_format($row["disbursement_amount"],2); ?>" required name="disbursement_amount"size="50"></td>
 			</tr>
 			<br>
 
 
 				<td></td>
-				<td><input type="submit" value="Update"class="btn btn-success"></td>
-			</tr>
-		</table>	
-	</form>	
-					
-			</center>
-		
-
-            		
-
+				
 		</article>
         </section>
 		
@@ -86,6 +92,11 @@ session_start();
 	</div>
 
 </body>
+	<script type="text/javascript">
+$(function(){
+	$('.amount').mask('#,###,###,###,###.##',{ reverse : true});
+});
+</script>
 </html>
 		
 							

@@ -2,8 +2,8 @@
 session_start();
 
     $id = $_GET['id'];
-
-
+    $year =  $_GET['year'];
+$iid = $_GET['iid'];
  ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +16,21 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/css/mis.css" rel="stylesheet">
       <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+                  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
       </head>
   <body> 
 <link href="Style.css" style="text/css" rel="stylesheet">
-
+<br>
 <div class="head"><font size="5">Non-Office Expenditure Update</font></div>
 <br><br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'NOEFundOperationSetView.php';"  >Back
+  <span class="glyphicon glyphicon" aria-hidden="true"></span>
+</button>
+
 		<section id="asd" class="asds">
 
 	    <article>
@@ -31,8 +40,8 @@ session_start();
 				
 			<?php
 				include('dbcon.php');
-            $query1 = $con->query("SELECT finance_fundoperation_noe.noe_type,finance_fundoperation_noe.noe_code, finance_fundoperation_noeset.noe_amount, finance_fundoperation_noeset.noe_year FROM finance_fundoperation_noe INNER JOIN finance_fundoperation_noeset
-							WHERE finance_fundoperation_noeset.noe_setid='$id'");
+
+			$query1 = $con->query("SELECT finance_fundoperation_noe.noe_type, finance_fundoperation_noe.noe_code, finance_fundoperation_noeset.noe_amount, finance_fundoperation_noeset.noe_year FROM finance_fundoperation_noe INNER JOIN finance_fundoperation_noeset WHERE finance_fundoperation_noeset.noe_id='$iid' AND finance_fundoperation_noe.noe_id='$iid' and finance_fundoperation_noeset.noe_year = '$year'");
 			$row1=mysqli_fetch_assoc($query1);
 
 			?>
@@ -49,16 +58,11 @@ session_start();
 			<tr>	
                 <div class="form-group col-md-4">	
                 <td>   
-					<label for="noe_type">Non-Office Expenditure Type</label>
+					<label for="noe_type">Non-Office Expenditure Particular</label>
                 </td>
 		        <td>
-			
-					
-			<select name="noe_type" class="form-control" readonly value="<?php echo $row2["noe_type"]; ?>" required>
-				<option value="<?php echo $id; ?>"><?php echo $row1["noe_type"]; ?></option>
-				
-			</select>
-		</td>
+				<input type="text" class="form-control" readonly value="<?php echo $row1["noe_type"]; ?>" required name="noe_type" size="50">
+				</td>
                 </div>
 	</tr>
 			<tr>
@@ -71,22 +75,24 @@ session_start();
 			<tr>
 				<td><div class="form-group col-md-4">
       			<label for="noe_amount">Amount</label>
-				<td><input type="number" class="form-control" value="<?php echo $row1["noe_amount"]; ?>" required name="noe_amount" size="50">
+				<td><input type="text" maxlength=20 class="form-control input-sm text-left amount" value="<?php echo number_format($row1["noe_amount"],2); ?>" required name="noe_amount" size="50">
 			</tr>
 
 			<tr>
 				<td><div class="form-group col-md-4">
       			<label for="noe_year">Year</label>
-				<td><input type="number" class="form-control" value="<?php echo $row1["noe_year"]; ?>" required name="noe_year" size="50">
+				<td><input type="number" class="form-control" readonly value="<?php echo $row1["noe_year"]; ?>" required name="noe_year" size="50">
 			</tr>
 
 	
 </table>
-		<button type="submit" value="Submit" class="btn btn-success">Submit</button>
+
+		<button type="submit" value="Submit" class="btn btn-primary">Update</button>
                     <input type="hidden" class="form-control" value="<?php echo $id; ?>" required name="id">
                 </form>
 
 			</center>
+
 		
 
             		
@@ -98,6 +104,12 @@ session_start();
 	</div>
 
 </body>
+	<script type="text/javascript">
+$(function(){
+	$('.amount').mask('#,###,###,###,###.##',{ reverse : true});
+});
+</script>
+
 </html>
 		
 							

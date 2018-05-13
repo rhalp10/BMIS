@@ -4,7 +4,8 @@ session_start();
 	
     $id= $_POST['income_id'];
 	$mc = $_POST['income_code'];
-	$mt = $_POST['income_type'];
+	$mt = mysqli_real_escape_string($con, $_POST['income_type']);
+$mt = ucwords(strtolower($mt));
 
 
 

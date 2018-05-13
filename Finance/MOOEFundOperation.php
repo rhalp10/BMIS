@@ -16,28 +16,29 @@
 
 </head>
 <body>	
-<div class="head"><font size="5">Add Maintenance and Other Operating Expenses Type</font></div>
+
+<div class="head"><font size="5">Add Maintenance and Other Operating Expenses Particular</font></div>
 <br><br>
 	<br>
 <center>
 	
 	<form action="MOOEFundOperationInsert.php" method="POST">
-		<td><div class="form-group col-lg-offset-4 col-md-4 ">
-			<label for="mooe_code">MOOE Code</label>
-	<input type="number" class="form-control" name="mooe_code" placeholder="Enter Account Code" required >
+		<td><div class="form-group col-md-6 "><div class="clearfix"></div>
+			<label for="mooe_code">Maintenance Code</label>
+	<input type="number" min=1 class="form-control" name="mooe_code" placeholder="Enter Account Code" required >
 </div>
 
-    <td><div class="form-group col-lg-offset-4 col-md-4 ">
-      <label for="mooe_type">MOOE Type</label>
-  <input type="text" class="form-control" name="mooe_type" placeholder="Enter Maintenance Type" required >
+    <td><div class="form-group col-md-6 "><div class="clearfix"></div>
+      <label for="mooe_type">Maintenance Particular</label>
+  <input type="text" class="form-control" name="mooe_type" placeholder="Enter Maintenance Particular" required >
 </div>
 
-	<td><div class="clearfix"></div><input type="submit" value="Submit" class="btn btn-success"></td>
+	<td><div class="clearfix"></div><input type="submit" value="Submit" class="btn btn-primary"></td>
 </form>
 <br><br>
 
 <form action="MOOEFundOperationView.php" method="POST">
-	<td><input type="submit" value="View List of Maintenance" class="btn btn-success"></td>
+	<td><input type="submit" value="View List of Maintenance" class="btn btn-primary"></td>
 </form>
 </center>
 

@@ -24,7 +24,7 @@ function Header()
     $b9 = $_POST['barangaychairman9'];
     $b10 = $_POST['barangaychairman10'];
     $sec = $_POST['sec'];
-    $cap = $_POST['cap'];
+    $cap = $_POST['capt'];
     // Logo
     $this->Ln(0);
     // Arial bold 15
@@ -128,7 +128,7 @@ function Header()
     $this->Ln(20);
     $this->SetFont('Arial','BU',13);
     $this->Cell(100,5,"$sec",5,0,'C');//name of kalihim
-    $this->Cell(225,5,"$cap",5,0,'C');//name of chairman
+    $this->Cell(225,5,"$capt",5,0,'C');//name of chairman
     $this->Ln(5);
     $this->SetFont('Arial','',12);
     $this->Cell(100,5,"Barangay Secretary/ Lupon Secretary",5,0,'C');

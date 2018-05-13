@@ -40,7 +40,7 @@
 <?php
         session_start();
         $id=$_GET['id'];
-        $pID= $_SESSION['positionID'];
+        $pID= $_SESSION['position_ID'];
         $dbh = new PDO("mysql:host=localhost;dbname=bmis_db","root", "");
         if(isset($_POST['btn'])){
             $title = $_POST['title'];
@@ -58,7 +58,7 @@
 <center>
    <form method="post" enctype="multipart/form-data">
 	<input type="file" name="myfile"/>
-    <input type="text" name="title"/>
+    <input type="text" name="title" placeholder="Input filename" required/>
 	<button name="btn"> IMPORT </button>
 </form>      
         </center>

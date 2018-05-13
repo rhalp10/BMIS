@@ -16,31 +16,33 @@
 
 </head>
 <body>	
+
   <form action="NOEFundOperationInsert.php" method="POST">
-<div class="head"><font size="5">Add Non-Office Expenditures</font></div>
+<div class="head"><font size="5">Add Non-Office Expenditures Particular</font></div>
 <br><br>
 	<br>
 <center>
 	
 	<form action="IncomeFundOperationInsert.php" method="POST">
-		<td><div class="form-group col-lg-offset-4 col-md-4 ">
+		<td><div class="form-group col-md-6 "><div class="clearfix"></div>
 			<label for="noe_code">Non-Office Expenditure Code</label>
-	<input type="number" class="form-control" name="noe_code" placeholder="Enter Account Code" required >
+	<input type="number" min=1 class="form-control" name="noe_code" placeholder="Enter Account Code" required >
 </div>
 
-    <td><div class="form-group col-lg-offset-4 col-md-4 ">
-      <label for="noe_type">Non-Office Expenditure Type</label>
+    <td><div class="form-group col-md-6 "><div class="clearfix"></div>
+      <label for="noe_type">Non-Office Expenditure Particular</label>
   <input type="text" class="form-control" name="noe_type" placeholder="Enter Non-Office Expenditure Type" required >
 </div>
 
-	<td><div class="clearfix"></div><input type="submit" value="Submit" class="btn btn-success"></td>
+	<td><div class="clearfix"></div><input type="submit" value="Submit" class="btn btn-primary"></td>
 </form>
 <br><br>
 
 <form action="NOEFundOperationView.php" method="POST">
-	<td><input type="submit" value="View Non-Office Expenditures" class="btn btn-success"></td>
+	<td><input type="submit" value="View Non-Office Expenditures" class="btn btn-primary"></td>
 
 </center>
+
 
 </body>
 </html>

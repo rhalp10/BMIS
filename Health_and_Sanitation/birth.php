@@ -11,9 +11,8 @@ require('db.php');
 <body>
 <link href="css/design.css" rel="stylesheet" type="text/css"> 
 <body>
-	<div class="label">
-						<div class="nav" style="
-    background-color: #e94b3c">
+	<div class="label"> Health and Sanitation
+						<div class="nav">
 <?php
 if ($_SESSION['position']=='Barangay Secretary' OR $_SESSION['position']=='Barangay Health Worker' OR ($_SESSION['position']=='Barangay Councilor' && $_SESSION['committee']=="Health and Sanitation"))
     echo'
@@ -33,11 +32,70 @@ if (isset($_POST['search'])) {
     $valueToSearch = $_POST['valueToSearch'];
     // search in all table columns
     // using concat mysql function
-    $query         = "SELECT * From resident_detail INNER JOIN resident_newborn ON resident_detail.res_ID= resident_newborn.res_ID INNER JOIN ref_gender on resident_detail.gender_ID = ref_gender.gender_ID where concat(res_fName,res_mName,res_lName,res_Bday,gender_Name) LIKE '%".$valueToSearch."%'";
+    $query         = "SELECT res_ID,
+res_fName,
+res_mName,
+res_lName,
+rs.suffix,
+res_Bday,
+rg.gender_Name,
+rms.marital_Name,
+rr.religion_Name,
+rc.country_nationality,
+rc.country_citizenship,
+ro.occupation_Name,
+ros.occuStat_Name,
+res_Date_Record,
+TIMESTAMPDIFF(YEAR,res_Bday,CURDATE()) AS Age,
+(case  
+ when (TIMESTAMPDIFF(Month,res_Bday,CURDATE())<=1) then 'Maternal and Newborn'
+   end) Age_Stage 
+FROM resident_detail rd 
+LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID 
+LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
+LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID
+LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
+LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
+LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
+LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '0' AND '1' and concat(res_fName,res_mName,res_lName,res_Bday,gender_Name) LIKE '%".$valueToSearch."%'";
     $search_result = filterTable($query);
     
 } else {
-    $query         = "SELECT * From resident_detail INNER JOIN resident_newborn ON resident_detail.res_ID= resident_newborn.res_ID INNER JOIN ref_gender ON resident_detail.gender_ID = ref_gender.gender_ID";
+    $query         ="SELECT res_ID,
+res_fName,
+res_mName,
+res_lName,
+rs.suffix,
+res_Bday,
+rg.gender_Name,
+rms.marital_Name,
+rr.religion_Name,
+rc.country_nationality,
+rc.country_citizenship,
+ro.occupation_Name,
+ros.occuStat_Name,
+res_Date_Record,
+TIMESTAMPDIFF(YEAR,res_Bday,CURDATE()) AS Age,
+(case  
+ when (TIMESTAMPDIFF(Month,res_Bday,CURDATE())<=1) then 'Maternal and Newborn'
+ when (TIMESTAMPDIFF(Month,res_Bday,CURDATE())<=1 and TIMESTAMPDIFF(Month,res_Bday,CURDATE())<=12) then 'Babies'
+when (TIMESTAMPDIFF(Month,res_Bday,CURDATE())<=13 and TIMESTAMPDIFF(Month,res_Bday,CURDATE())<=24) then 'Toddlers'
+when (TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=2 and TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=4) then 'Preschoolers'
+ when (TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=5 and TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=8) then 'School Age Children'
+ when (TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=9 and TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=12) then 'Tweens '
+when (TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=13 and TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=19) then 'Teenager'
+when (TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=20 and TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=35) then 'Young Adult'
+when (TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=36 and TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=55) then 'Middle-Aged Adults'
+when (TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=56 and TIMESTAMPDIFF(Year,res_Bday,CURDATE())<=100) then 'Senior'
+   end) Age_Stage 
+FROM resident_detail rd 
+LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID 
+LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
+LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID
+LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
+LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
+LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
+LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '0' AND '1'";
     $search_result = filterTable($query);
 }
 
@@ -73,7 +131,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 	<td align="center"><?php echo $row["res_lName"]; ?></td>
 		<td align="center"><?php echo $row["res_Bday"]; ?></td>
 			<td align="center"><?php echo $row["gender_Name"]; ?></td>
-			<td align="center"><?php echo $row["newborn_Date_Record"]; ?></td>
+			<td align="center"><?php echo $row["res_Date_Record"]; ?></td>
 	</tr>
 <?php $count++; }
 

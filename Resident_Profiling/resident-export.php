@@ -36,7 +36,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID";
  <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
    <table class="table" bordered="1">  
@@ -122,7 +122,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'M
  <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
 
@@ -208,7 +208,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'F
  <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
 
@@ -308,7 +308,7 @@ $result = mysqli_query($connect, $query);
  <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
    <table class="table" bordered="1">  
@@ -410,7 +410,7 @@ $result = mysqli_query($connect, $query);
   <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
 
@@ -514,7 +514,7 @@ $result = mysqli_query($connect, $query);
    <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
 
@@ -615,7 +615,7 @@ $result = mysqli_query($connect, $query);
  <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
 
@@ -717,7 +717,7 @@ $result = mysqli_query($connect, $query);
   <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
 
@@ -804,7 +804,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
  <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
    <table class="table" bordered="1">  
@@ -885,7 +885,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
    <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
 
@@ -953,7 +953,7 @@ if(mysqli_num_rows($result) > 0)
  <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
    <table class="table" bordered="1">  
@@ -1008,7 +1008,7 @@ if(mysqli_num_rows($result) > 0)
  <center> Republic of the Philippines<br>
 Province of Cavite<br>
 Municipality of Indang<br>
-    BARANGAY -------<br>
+    BARANGAY CALUMPANG CERCA<br>
 </center><br><br>
 
    <table class="table" bordered="1">  
@@ -1090,9 +1090,14 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID";
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
      
-      $sqll = "SELECT * FROM ref_logo";  
-       $resultt = mysqli_query($connect, $sqll); 
-    $roww = mysqli_fetch_array($resultt);
+        $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
      
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -1113,12 +1118,25 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID";
       $content .= ' <br>
 <br>
                         <center> 
-                                   <table><tr><td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="120" width="120" class="img-circle img-responsive"/>  </td>
-                                   <td width="17%"></td>
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="105" class="img-circle img-responsive"/>  </td>
+                                   
                                    <td>
-                             Republic of the Philippines<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
-                               &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>BARANGAY BANABA CERCA<br><br><br>  </td></tr></table></center>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="90" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+                    <br>
+                    
+   <br>
    List of all Residents
    <br>
    <br>
@@ -1188,6 +1206,18 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'M
  if(isset($_POST["malepdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+     
+     
+          $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -1203,12 +1233,26 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'M
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= '  <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                        <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all male residents
    <br>
    <br>
@@ -1276,6 +1320,15 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'F
  if(isset($_POST["femalepdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+         $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -1291,13 +1344,26 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'F
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= '  
-      <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                       <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all female residents
    <br>
    <br>
@@ -1380,6 +1446,15 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  if(isset($_POST["Infantpdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+          $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -1395,13 +1470,26 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= ' 
-      <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                        <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all infants:
    <br>
    <br> 
@@ -1484,7 +1572,16 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  }  
  if(isset($_POST["Minorpdf"]))  
  {  
-      require_once('vendor/tcpdf/tcpdf.php');  
+      require_once('vendor/tcpdf/tcpdf.php'); 
+          $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -1500,13 +1597,26 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= '  
-         <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                        <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all minors:
    <br>
    <br> 
@@ -1591,6 +1701,15 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  if(isset($_POST["Teenpdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+         $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -1606,13 +1725,26 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= '
-         <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                        <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all teenagers:
    <br>
    <br>   
@@ -1682,13 +1814,13 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
                                     <td>'.$row["res_fName"].'</td>  
                                     <td>'.$row["res_mName"].'</td>  
                                     <td>'.$row["res_lName"].'</td>  
-                                      <td>'.$row["res_Bday"].'</td> 
-                                     <td>'.$row["Age"].'</td> 
+                                    <td>'.$row["res_Bday"].'</td> 
+                                    <td>'.$row["Age"].'</td> 
                                     <td>'.$row["marital_Name"].'</td>  
                                     <td>'.$row["gender_Name"].'</td> 
                                     <td>'.$row["religion_Name"].'</td>  
                                     <td>'.$row["country_citizenship"].'</td>    
-                                      <td>'.$row["res_Date_Record"].'</td>  
+                                    <td>'.$row["res_Date_Record"].'</td>  
                      </tr>  
                           ';  
       }  
@@ -1697,6 +1829,15 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  if(isset($_POST["Adultpdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+         $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -1712,13 +1853,27 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= ' 
-         <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                        <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+                    
+   <br>
    List of all adults:
    <br>
    <br>  
@@ -1803,6 +1958,15 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  if(isset($_POST["Seniorpdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+         $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -1818,13 +1982,26 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= ' 
-         <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                        <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all senior:
    <br>
    <br>  
@@ -1897,6 +2074,16 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
  if(isset($_POST["employedpdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+         
+      $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -1912,13 +2099,26 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= '
-         <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                       <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all employed residents:
    <br>
    <br>   
@@ -1991,6 +2191,15 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
  if(isset($_POST["unemployedpdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+         $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -2006,13 +2215,26 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= '  
-         <br>
+      $content .=' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                        <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all unemployed residents:
    <br>
    <br> 
@@ -2068,6 +2290,15 @@ LEFT JOIN ref_gender rg ON resident_detail.gender_ID = rg.gender_ID";
  if(isset($_POST["deathpdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+         $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -2083,13 +2314,26 @@ LEFT JOIN ref_gender rg ON resident_detail.gender_ID = rg.gender_ID";
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= ' 
-         <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                       <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all died residents:
    <br>
    <br>  
@@ -2139,6 +2383,16 @@ INNER JOIN resident_detail ON resident_pregnant.res_ID= resident_detail.res_ID";
  if(isset($_POST["pregpdf"]))  
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
+        
+      $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
+        $resultt = mysqli_query($connect, $sqll); 
+        $roww = mysqli_fetch_array($resultt);
+     
+     
+        $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
+        $resultt2 = mysqli_query($connect, $sqll2); 
+        $roww2 = mysqli_fetch_array($resultt2);
+     
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       $obj_pdf->SetCreator(PDF_CREATOR);  
       $obj_pdf->SetTitle("Resident List");  
@@ -2154,13 +2408,26 @@ INNER JOIN resident_detail ON resident_pregnant.res_ID= resident_detail.res_ID";
       $obj_pdf->SetFont('helvetica', '', 12);  
       $obj_pdf->AddPage('L');  
       $content = '';  
-      $content .= '  
-         <br>
+      $content .= ' <br>
 <br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Republic of the Philippines<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Province of Cavite<br>
-&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Municipality of Indang<br>
-   &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BARANGAY BANABA CERCA<br><br><br> 
+                        <center> 
+                                   <table><tr> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive"/>  </td>
+                                   
+                                   <td>
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Republic of the Philippines<br>
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Province of Cavite<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Municipality of Indang<br>
+                           &nbsp; &nbsp;BARANGAY CALUMPANG CERCA  <br><br><br>    </td>
+                           
+                           
+                       
+                        
+                        
+                       <td width="20%"> <img src="data:image/jpeg;base64,'.base64_encode($roww2['logo_img'] ).'" height="80" width="100" class="img-circle img-responsive "/>  
+                                       </td> 
+
+                    </tr></table> </center>
+   <br>
    List of all pregnants:
    <br>
    <br> 

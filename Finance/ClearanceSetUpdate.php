@@ -16,12 +16,22 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/css/mis.css" rel="stylesheet">
       <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+                  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
+
       </head>
   <body> 
 <link href="Style.css" style="text/css" rel="stylesheet">
-
-<div class="head"><font size="5">Clearance Price Update</font></div>
+<br>
+<div class="head"><font size="5">Clearance Amount Update</font></div>
 <br><br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'ViewClearancePurposeAmount.php';"  >Back
+  <span class="glyphicon glyphicon" aria-hidden="true"></span>
+</button>
+
 		<section id="asd" class="asds">
 
 	    <article>
@@ -71,20 +81,18 @@ session_start();
 
 			<br>
 			<tr>
-                <td><div class="form-group col-md-4"><label for="price">Price</label></div></td>
-                    <td><input type="number" class="form-control" value="<?php echo $row["price"]; ?>" required name="price"></td>
+                <td><div class="form-group col-md-4"><label for="price">Amount</label></div></td>
+                    <td><input type="text" maxlength=20 class="form-control input-sm text-left amount" value="<?php echo number_format($row["price"],2); ?>" required name="price"></td>
 			</tr>
 			<br>
 	
 </table>
-		<button type="submit" value="Submit" class="btn btn-success">Submit</button>
+
+		<button type="submit" value="Submit" class="btn btn-primary">Submit</button>
                     <input type="hidden" class="form-control" value="<?php echo $iid; ?>" required name="iiid">
                 </form>
 
 			</center>
-		
-
-            		
 
 		</article>
         </section>
@@ -93,6 +101,12 @@ session_start();
 	</div>
 
 </body>
+		<script type="text/javascript">
+$(function(){
+	$('.amount').mask('#,###,###,###,###.##',{ reverse : true});
+});
+</script>
+
 </html>
 		
 							

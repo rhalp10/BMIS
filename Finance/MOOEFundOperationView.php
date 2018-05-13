@@ -1,9 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Management Information System</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/css/mis.css" rel="stylesheet">
+    <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+      </head>
+  
+      <br><br>
+  <body> 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'MOOEFundOperation.php';"  >Back
+  <span class="glyphicon glyphicon" aria-hidden="true"></span>
+</button>
+
+
 <?php session_start();
 include("dbcon.php");
 ?>
-
-<html>
-<head>
 
 <link href="Style.css" style="text/css" rel="stylesheet">
 <style>
@@ -19,39 +37,73 @@ th,td{
 tr:nth-child(even){ background-color:#f2f2f2;}
 </style>
 
-
-</head>
-
-<body>
-
-	<br><br>
 <center>
-
-	<div class="head"><font size="5">List of Maintenance and Expenses</font></div>
-<br><br>
-<table border="2">
-	<td><center>Type</center></td>
-	<td><center>Account Code</center></td>
-	<td><center>Update</center></td>
-	<td><center>Delete</center></td>
-
 <?php
 		
 include('dbcon.php');
 
 
-$res = mysqli_query($con, "SELECT * FROM `finance_fundoperation_mooe`");
+$res = mysqli_query($con, "SELECT * FROM `finance_fundoperation_mooe`");?>
+
+<div class="container">
+  <div class="table-responsive">
+  <table class="table table table-hover" id="mytable">
+  <thead>
+     <tr>
+      <th scope="col">Particulars</th>
+      <th scope="col">Account Code</th> 
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th></tr>
+  </thead>
+
+
+      <?php  
 while($row = mysqli_fetch_array($res)){
 	$id = $row["mooe_id"];
-echo "<tr><td>".$row["mooe_type"]."</td><td>".$row["mooe_code"]."</td>
-<td><center><a href='MOOEFundOperationUpdate.php?id=$id'><button  class='btn btn-success'> UPDATE </button></a>&nbsp;&nbsp;&nbsp;&nbsp;</td></center>
-<td><center><a href='MOOEFundOperationDelete.php?id=$id'><button  class='btn btn-success'> DELETE </button></a></td></tr></center>";
+	?>
+<tr>
+<td><?php echo $row["mooe_type"]?></td>  
+<td><?php echo $row["mooe_code"]?></td>  
+
+
+<td><a href="MOOEFundOperationUpdate.php?id=<?php echo $row['mooe_id']?>" class="btn btn-primary">Update</a></td>
+    <td><input type="button" onClick="deleteme(<?php echo $row['mooe_id']?>)" name="Delete" value="Delete" class="btn btn-primary"></td>
+    </tr>  
+
+<script language="javascript">
+  function deleteme(delid)
+  {
+    if(confirm("Are you sure you want to delete?")){
+      window.location.href='MOOEFundOperationDelete.php?del_id=' +delid+'';
+      return true;
+    }
+  }
+</script>
+<?php
 }
-
-?>
-</tr>
-
+?>  
+  </div>
+  </div>
 </table>
 
+<script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> 
+    <script src="vendor/js/jquery.dataTables.min.js"></script>  
+     <script src="vendor/js/dataTables.bootstrap.min.js"></script>
+       <script>$(document).ready(function() {
+    var table = $('#mytable').removeAttr('width').DataTable( {
+        scrollY:        "500px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false,
+        columnDefs: [
+            { width: 120, targets: 0 }
+
+        ],
+        fixedColumns: true
+    } );
+} );</script>
+
+</center>
 </body>
 </html>	

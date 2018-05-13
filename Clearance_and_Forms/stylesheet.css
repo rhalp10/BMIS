@@ -442,7 +442,7 @@ section.sec1{
 .mb_logo {width: 80%; background: white; margin: 0 auto;  padding-bottom: 50px; text-align: center;}
 .mb_names {width: 80%; background: white;}
 .mb_names_holder {width: 97%; border-top: 1px solid; padding: 6px; margin: 0 auto;}
-.super_holder{ overflow-y: auto; overflow-x: auto;  height: 200px; }
+.super_holder{ overflow-y: auto; overflow-x: auto;}
 
 .resu {padding-left: 6px; width: 97%; border-bottom: 1px solid; margin: 0 auto;
 }

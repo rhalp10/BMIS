@@ -29,7 +29,7 @@ function Header()
     $this->Cell(200,5,"OFFICE OF THE LUPON TAGAPAMAYAPA",0,1,'C');
     $this->Cell(200,5,"OFFICE OF THE PUNONG BARANGAY",0,1,'C');
     $this->Cell(200,5,"BARANGAY $brgy",0,1,'C');
-    $this->Ln(10); 
+    $this->Cell(200,0,"",1,1,'C');
     $this->Ln(10);
     $this->Cell(200,5,"Monthly Transmittal of Final Reports",0,1,'C');
     $this->Ln(10);

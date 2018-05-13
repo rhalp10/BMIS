@@ -14,6 +14,7 @@
     }
 ?>
 <?php
+$res_IDnow = 1;
   $first = $_POST['first'];
   $middleName = $_POST['middleName'];
   $lastName = $_POST['lastName'];

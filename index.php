@@ -13,7 +13,7 @@ if (isset($_SESSION['id'])) {
 <link rel="stylesheet" href="Css/slider.css">  -->
 <style type="text/css">
 	.nav {
-  background-color: #e94b3c;
+  background-color:#2e4a62;
   border: none;
   width: 100%;
   position:fixed;
@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
 				$_SESSION['device_Id'] = $count['Position'];
 				$_SESSION['positionID'] = $pos;
 				$_SESSION['fullname'] = $fullname;
-
+				$_SESSION['position_id'] = $accnt['position_id'];
 				echo "<script>alert('Welcome.');</script>";
 				echo '<script>window.location = "home.php";</script>';
 

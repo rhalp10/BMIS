@@ -21,6 +21,10 @@ session_start();
 <div class="head"><font size="5">Clearance Update</font></div>
 <br><br>
 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'ViewClearanceList.php';"  >Back
+  <span class="glyphicon glyphicon" aria-hidden="true"></span>
+</button>
 
 		<section id="asd" class="asds">
 
@@ -53,19 +57,19 @@ session_start();
 			<br>
 			<tr>
 				<td><div class="form-group col-md-4">
-      			<label for="clearance_form">Clearance Form</label>
+      			<label for="clearance_form">Clearance Type</label>
 				<td><input type="text" class="form-control" value="<?php echo $row["clearance_form"]; ?>" required name="clearance_form" size="50">
 			</tr>
 			<br>
 
 
 				<td></td>
-				<td><input type="submit" value="Update" class="btn btn-success"></td>
+				<td><input type="submit" value="Update" class="btn btn-primary"></td>
 			</tr>
 		</table>	
 	</form>	
 </font>		
-			</center>
+			</center>	
 		
 
             		

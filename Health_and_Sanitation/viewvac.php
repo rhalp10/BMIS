@@ -45,8 +45,8 @@ function filterTable($query)
 </head>
 <link href="css/design.css" rel="stylesheet" type="text/css"> 
 <body>
-	<div class="label">
-						<div class="nav" style="background-color: #e94b3c">
+	<div class="label"> Health and Sanitation /Admin Panel
+						<div class="nav">
 							<a href="index.php">Home</a>
 							<a href="view.php">Drug Inventory</a>
 							<a href="viewdrugrelease.php">Drug Distribution</a>
@@ -105,7 +105,16 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <thead>
 <tr><th><strong>No.</strong></th><th><strong>Resident's Name</strong></th><th><strong>Height (cm)</strong></th><th><strong>Weight (kg)</strong></th><th><strong>Date of Vaccination </strong></th><th><strong>Name of Vaccine </strong></th><th><strong>Date Recorded </strong></th><th><strong></strong></th><th><strong></strong></th></tr>
 </thead>
+<script>
+function deleletconfig(){
 
+var del=confirm("Are you sure you want to delete this record?");
+if (del==true){
+   alert ("record deleted")
+}
+return del;
+}
+</script>
 <tbody>
 <?php 
 
@@ -119,8 +128,8 @@ while($row = mysqli_fetch_assoc($search_result)) { ?>
 	<td align="center"><?php echo $row["vac_Date"]; ?></td>
 	<td align="center"><?php echo $row["vac_Name"]; ?></td>
 	<td align="center"><?php echo $row["vac_Date_Recorded"]; ?></td>
-	<td align="center"><a style="color:BLUE;" href="editvac.php?id=<?php echo $row["vac_ID"]; ?>">Edit</a></td>
-	<td align="center"><a style="color:BLUE;" href="deletevac.php?id=<?php echo $row["vac_ID"]; ?>">Delete</a></td>
+	<td align="center"><a style="text-decoration:none;color: blue" href="editvac.php?id=<?php echo $row["vac_ID"]; ?>">Edit</a></td>
+	<td align="center"><a style="text-decoration:none;color: blue" onclick="return deleletconfig()" href="deletevac.php?id=<?php echo $row["vac_ID"]; ?>">Delete</a></td>
 	</tr>
 <?php $count++; }
 
@@ -128,7 +137,7 @@ while($row = mysqli_fetch_assoc($search_result)) { ?>
 </tbody>
 </table>
 
-
+  <h2 align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="Print3.php" style="text-decoration:none;color: blue">Print in PDF</a></h2>
 
 </center>
 </div>

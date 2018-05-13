@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,29 +17,30 @@
 
 </head>
 <body>	
+
   <form action="IncomeFundOperationInsert.php" method="POST">
-<div class="head"><font size="5">Add Income Type</font></div>
+<div class="head"><font size="5">Add Income Particular</font></div>
 <br><br>
 	<br>
 <center>
 	
 	<form action="IncomeFundOperationInsert.php" method="POST">
-		<td><div class="form-group col-lg-offset-4 col-md-4 ">
+		<td><div class="form-group  col-md-6 "><div class="clearfix"></div>
 			<label for="income_code">Income Code</label>
-	<input type="number" class="form-control" name="income_code" placeholder="Enter Account Code" required >
+	<input type="number" min=1 class="form-control" name="income_code" placeholder="Enter Account Code" required >
 </div>
 
-    <td><div class="form-group col-lg-offset-4 col-md-4 ">
-      <label for="income_type">Income Type</label>
-  <input type="text" class="form-control" name="income_type" placeholder="Enter Income Type" required >
+    <td><div class="form-group col-md-6 "><div class="clearfix"></div>
+      <label for="income_type">Income Particular</label>
+  <input type="text" class="form-control" name="income_type" placeholder="Enter Income Particular" required >
 </div>
 
-	<td><div class="clearfix"></div><input type="submit" value="Submit" class="btn btn-success"></td>
+	<td><div class="clearfix"></div><input type="submit" value="Submit" class="btn btn-primary"></td>
 </form>
 <br><br>
 
 <form action="IncomeFundOperationView.php" method="POST">
-	<td><input type="submit" value="View Sources of Income" class="btn btn-success"></td>
+	<td><input type="submit" value="View" class="btn btn-primary"></td>
 
 </center>
 

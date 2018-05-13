@@ -25,7 +25,7 @@ $largestNumber= $rid= "";
     <link href="css/css/mis.css" rel="stylesheet">
       <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
       </head>
-  <body> 
+  <body style="font-family: calibri; font-size: 18px; "> 
 
 <br> <?php  
  $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
@@ -46,7 +46,7 @@ $largestNumber= $rid= "";
       <th scope="col">Suffix</th>
       <th scope="col">Birthdate</th>
       <th scope="col">Marital</th>
-        <th scope="col">Gender</th>
+        <th scope="col">Sex</th>
         <th scope="col">Religion</th>
         <th scope="col">Nationality</th>
           <th scope="col">Citizenship</th>
@@ -63,7 +63,7 @@ $largestNumber= $rid= "";
                                <tr>  
                                <td>
                                 
-               <a href="floader.php?id=<?php echo $row['res_ID'] ?>" class="btn btn-success btn-s">Select</a>
+               <a href="floader.php?id=<?php echo $row['res_ID'] ?>" class="btn btn-primary btn-s">Select</a>
           </td>
                                     <td><?php echo $row["res_ID"]?></td>  
                                     <td><?php echo $row["res_fName"]?></td>  
@@ -94,7 +94,7 @@ $largestNumber= $rid= "";
       <th scope="col">Suffix</th>
       <th scope="col">Birthdate</th>
       <th scope="col">Marital</th>
-        <th scope="col">Gender</th>
+        <th scope="col">Sex</th>
         <th scope="col">Religion</th>
         <th scope="col">Nationality</th>
           <th scope="col">Citizenship</th>

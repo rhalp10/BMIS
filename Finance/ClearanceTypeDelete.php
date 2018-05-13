@@ -1,7 +1,21 @@
 <?php
-include('dbcon.php');
+include_once('dbcon.php');
 
-$query = "DELETE FROM finance_clearance_list WHERE `clearance_id`='".$_GET["id"]."'"; 
-mysqli_query($con,$query)  or die(mysql_errno());
-header("Location: ViewClearanceList.php"); 
+$delid=$_GET['del_id'];
+
+if($delid>10){
+
+$select = "DELETE FROM finance_clearance_list WHERE `clearance_id`='$delid'";
+$query = mysqli_query($con, $select);
+if($con->query($select) === TRUE){
+	echo "<script>alert('Data Deleted.');</script>";
+	echo'<script> window.location = "ViewClearanceList.php"</script>';
+}
+}
+else{
+		echo "<script>alert('Default data cannot be deleted.');</script>";
+	echo'<script> window.location = "ViewClearanceList.php"</script>';
+
+}
+
 ?>	

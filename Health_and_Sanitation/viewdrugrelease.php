@@ -8,8 +8,14 @@ $name = $_REQUEST['drug_name'];
 $quantity = $_REQUEST['quantity'];
 $res = $_REQUEST['resident_name'];
 
-$ins_query= "insert into inventory_drugs_release (`drug_ID`,`res_ID`,`drgrelease_Qnty`,`drgrelease_Date_Record`) values ('$name','$res','$quantity','$daterec')";
+$qq="SELECT * from inventory_drugs where drug_ID='".$name."'";
+$resu = mysqli_query($con, $qq) or die ( mysqli_error());
+$r = mysqli_fetch_assoc($resu);
+$numQ=$r['drug_Qnty'];
 
+if ($numQ>=$quantity)
+{
+$ins_query= "insert into inventory_drugs_release (`drug_ID`,`res_ID`,`drgrelease_Qnty`,`drgrelease_Date_Record`) values ('$name','$res','$quantity','$daterec')";
 mysqli_query($con, $ins_query) or die(mysql_error());
 
 $dif= "select * from inventory_drugs where drug_ID = '".$name."' ";
@@ -20,9 +26,14 @@ $drgQuan= $r['drug_Qnty'];
 $res=$drgQuan-$quantity;
 $update="update inventory_drugs set drug_Qnty='".$res."' where drug_ID='".$name."' ";
 mysqli_query($con, $update) or die(mysqli_error());
-
+}
+else
+{
+	echo "<script>alert('Not enough drugs');document.location='viewdrugrelease.php'</script>";
 
 }
+}
+
 ?>
 
 <?php
@@ -54,8 +65,8 @@ function filterTable($query)
 </head>
 <link href="css/design.css" rel="stylesheet" type="text/css"> 
 <body>
-	<div class="label">
-						<div class="nav" style="background-color: #e94b3c">
+	<div class="label"> Health and Sanitation /Admin Panel
+						<div class="nav">
 							<a href="index.php">Home</a>
 							<a href="view.php">Drug Inventory</a>
 							<a href="viewdrugrelease.php">Drug Distribution</a>
@@ -81,7 +92,7 @@ $sel_query="Select * from inventory_drugs ORDER BY drug_ID asc;";
 $result = mysqli_query($con,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <optgroup>
-<option><?php echo $row["drug_ID"]; ?><?php echo " "; ?> <?php echo $row["drug_Name"]; ?></option></optgroup>
+<option><?php echo"<td align='center'><font color=white>".$row['drug_ID']."</font></td>"; ?><?php echo " "; ?> <?php echo $row["drug_Name"]; ?></option></optgroup>
 <?php $count++; }
 ?></datalist>
 
@@ -105,8 +116,6 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 </form>
   
 
-
-
 <div id="header_container">		
 		    <div class="container">
 				<div id="header" class="row">	
@@ -129,27 +138,40 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 </thead>
 
 <tbody>
+
+
+<script>
+function deleletconfig(){
+
+var del=confirm("Are you sure you want to delete this record?");
+if (del==true){
+   alert ("record deleted")
+}
+return del;
+}
+</script>
 <?php 
 
 $count=1;
 
-while($row = mysqli_fetch_assoc($search_result)) { ?>
-<tr>
-	<td align="center"><?php echo $count; ?></td>
-	<td align="center"><?php echo $row["drug_Name"]; ?></td>
-	<td align="center"><?php echo $row["drgrelease_Qnty"]; ?></td>
+while($row = mysqli_fetch_assoc($search_result)) { 
+echo "<tr>
+	<td align='center'>" .$count. "</td>";
+	echo"<td align='center'>"  .$row['drug_Name']. "</td>";
+	echo"<td align='center'>" .$row["drgrelease_Qnty"]. "</td>";
+	echo"<td align='center'>" .$row["res_fName"].  " "   .$row["res_mName"]. " " .$row["res_lName"]. "</td>";
+	echo"<td align='center'>" .$row["drgrelease_Date_Record"]. "</td>";
+	echo "<td><a style='text-decoration:none;color: blue' href='edit.php?id=".$row['drug_ID']."'>Edit</a></td>";
+	echo "<td><a style='text-decoration:none;color: blue' onclick='return deleletconfig()' href='deletedrugrelease.php?id=".$row['drug_ID']."'>Delete</a></td> </tr>";
 	
-<td align="center"><?php echo $row["res_fName"]; ?><?php echo" "; ?><?php echo $row["res_mName"]; ?><?php echo " " ?><?php echo $row["res_lName"]; ?></td>
-<td align="center"><?php echo $row["drgrelease_Date_Record"]; ?></td>
-<td align="center"><a style="color:BLUE;" href="editdrugrelease.php?id=<?php echo $row["drgrelease_ID"]; ?>">Edit</a></td>
-	<td align="center"><a style="color:BLUE;" href="deletedrugrelease.php?id=<?php echo $row["drgrelease_ID"]; ?>">Delete</a></td>
-	</tr>
+	?>
 <?php $count++; }
 
-?>
+?> 
+
 </tbody>
 </table>
-
+ <h2 align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="print2.php" style="text-decoration:none;color: blue">Print in PDF</a></h2>
 
 <br /><br /><br /><br />
 </center>

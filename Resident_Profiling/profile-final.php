@@ -196,10 +196,11 @@ death_Date) VALUES('$did','$death_id','$cause','$ddate') ");
     
     
     
-    <body style="font-family: calibri; font-size: 16px;">
+    <body style="font-family: calibri; font-size: 18px;">
         <!-- ##################QUERY FOR RETRIEVING RESIDENT DETAILS###################### --> 
        
 <?php
+$today = date('Y-m-d');
   $view_query = mysqli_query($connections, "SELECT * FROM resident_detail where res_ID=' $user_id'");
 
   while($row = mysqli_fetch_assoc($view_query)){
@@ -219,6 +220,12 @@ death_Date) VALUES('$did','$death_id','$cause','$ddate') ");
     $db_res_country = $row["country_ID"];
     $db_res_occust = $row["occuStat_ID"];
     $db_res_occu = $row["occupation_ID"];
+
+      
+    
+$diff = date_diff(date_create($db_res_bdate), date_create($today));
+    
+    $age= $diff->format('%y');
      }
               
         
@@ -326,7 +333,8 @@ death_Date) VALUES('$did','$death_id','$cause','$ddate') ");
         
       <?php
   $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation_status where occuStat_ID='$db_res_occust '");
-  while($row = mysqli_fetch_assoc($view_query)){
+   $db_res_ocst="Not Available/Unemployed";
+        while($row = mysqli_fetch_assoc($view_query)){
     $db_res_ocst = $row["occuStat_Name"];
  }
 ?>
@@ -334,6 +342,7 @@ death_Date) VALUES('$did','$death_id','$cause','$ddate') ");
         
             <?php
   $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation where occupation_ID='$db_res_occu '");
+        $db_res_occ ="---";
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_occ = $row["occupation_Name"];
  }
@@ -415,15 +424,15 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
                      echo '  
                           <tr>  
                                <td>  
-                                    <img  height="200" width="200" class="img-circle img-responsive" style="border-radius: 50%; width: 180px;height: 180px; background-image: url(data:image/jpeg;base64,'.base64_encode($row['res_Img'] ).'); background-repeat: no-repeat;background-size: cover; border:solid 1px;"/>  
+                                    <img src="data:image/jpeg;base64,'.base64_encode($row['res_Img'] ).'" height="200" width="200" class="img-circle img-responsive"/>  
                                </td>  
                           </tr>  
                      ';  
                 }  
                 ?>  
-                <input id="profile-image-upload" class="hidden" type="file">
-<div style="color:#999;" >click here to change profile image</div>
-                <!--Upload Image Js And Css-->
+                
+<div style="color:#999;" >Profile Image</div>
+              
            
               
    
@@ -448,7 +457,7 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
                 
      
                 
-<div class="col-sm-5 col-xs-6 tital " >Gender:</div><div class="col-sm-7 col-xs-6 "><?php echo  $db_res_gen;?></div>
+<div class="col-sm-5 col-xs-6 tital " >Sex:</div><div class="col-sm-7 col-xs-6 "><?php echo  $db_res_gen;?></div>
      <div class="clearfix"></div>
 <div class="bot-border"></div>
 
@@ -456,8 +465,7 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<!-- <div class="col-sm-5 col-xs-6 tital " >Age:</div><div class="col-sm-7" > <input type="number" readonly maxlength="3"   id="res_age" placeholder="Age" onfocus="getAge();" > </div> -->
-<div class="col-sm-5 col-xs-6 tital " >Age:</div><div class="col-sm-7" > <p id="res_age"></p> </div>
+<div class="col-sm-5 col-xs-6 tital " >Age:</div><div class="col-sm-7" > <?php echo $age;?> </div>
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
@@ -491,12 +499,12 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
         <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Contact No.:</div><div class="col-sm-7"><?php echo $db_res_cnum;?></div>
+<div class="col-sm-5 col-xs-6 tital " >Contact No.:</div><div class="col-sm-7"><?php echo isset($db_res_cnum);?></div>
         
         <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><?php echo $db_res_unit .", ".$db_res_build.", L".$db_res_lot.", BLK".$db_res_block.", PH".$db_res_phase.", ".$db_res_house .", ".$db_res_street." Street, ".$db_res_sub.", ".$db_res_pur.", Pulo".", Indang, Cavite";?></div>
+<div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><?php echo $db_res_unit .", ".$db_res_build.", L".$db_res_lot.", BLK".$db_res_block.", PH".$db_res_phase.", ".$db_res_house .", ".$db_res_street." Street, ".$db_res_sub.", ".$db_res_pur.", Calumpang Cerca".", Indang, Cavite";?></div>
         
         <div class="clearfix"></div>
 <div class="bot-border"></div>
@@ -523,22 +531,23 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
                 
                  
 <div id="signup">
-<button type="button" class="btn btn-primary col-lg-offset-10" id="signup"  name="signup">Deceased
+<button type="button" class="btn btn-primary col-lg-offset-10" id="signup"  name="signup">Status
   <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 </button>
     <form hidden action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="POST"  id="form1">
     <div required class="form-group col-md-4">
      
-    <input type="hidden" maxlength="20" class="form-control" id="dethId" name="deathId" placeholder="Firstname" value="<?php echo $user_id;?>">
+    <input type="hidden" maxlength="20" class="form-control" id="dethId" name="deathId" value="<?php echo $user_id;?>">
   </div>  
         <br>
-        <div required class="form-group col-md-4">
+        <div required class="col-lg-offset-1 form-group col-md-5">
       <label for="res_fname">Cause of Death</label>
-    <input type="text" maxlength="20" class="form-control" id="cause" name="cause" placeholder="Firstname" required>
+    <input type="text" maxlength="20" class="form-control" id="cause" name="cause" placeholder="Cause of Death" required>
   </div>
+
          <div class="form-group col-md-4">
       <label for="res_bdate">Date of Death</label>
-    <input placeholder="Birthdate" class="form-control"  type="date" id="ddate" name="ddate"> <!-- onblur="(this.type='text')" -->
+    <input placeholder="Date of Death" class="form-control"  type="date" id="ddate" name="ddate"> <!-- onblur="(this.type='text')" -->
   </div>
         <div class="clearfix"></div>
        <center>  <input type="submit" name="signup" id="insert" value="Insert" class="btn btn-info" /> </center>
@@ -553,10 +562,10 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
                 
              
                 
-      <!--       <div class="form-group col-md-4">
+            <div class="form-group col-md-4">
     
-    <input placeholder="Birthdate"  class="form-control"  type="hidden" onfocus="(this.type='date')"   id="res_bdate" name="res_bdate" value="<?php echo $db_res_bdate;?>"> 
-  </div> -->
+    <input placeholder="Birthdate"  class="form-control"  type="hidden" onfocus="(this.type='date')"   id="res_bdate" name="res_bdate" value="<?php echo $db_res_bdate;?>"> <!-- onblur="(this.type='text')" -->
+  </div>
 
 
             <!-- /.box-body -->
@@ -587,27 +596,31 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
 
         
         
-           <!-- ##################SCRIPT FOR GETTING AGE###################### -->
         <script type="text/javascript">
             $( document ).ready( function() {
-
-// function getAge(){
-// var dob = document.getElementById('res_bdate').value;
-
-var dob = "<?php echo $db_res_bdate?>";
-dob = new Date(dob);
-var today = new Date();
-var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
-    document.getElementById("res_age").innerHTML = age;
-// }
-
-
   $( "#signup" ).click( function() {
     $( "#form1" ).show();
        $( "#form1" ).show();
   });
 });
 </script>
+
+    <script type="text/javascript">
+  $(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+    $('#ddate').attr('max', maxDate);
+});
+ </script>
 </body>
 
 </html>

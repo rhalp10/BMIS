@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <title>Create Building Permit</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap.css">
     <script src="../js/jquery-2.1.3.js">
     </script>
     <script type="text/JavaScript">
@@ -25,7 +26,7 @@
 
   <body>
     <div class="wrapper">
-      <nav>
+      <nav style="background: #14aa6c">
         <div class="logo">Building Permit</div>
         <ul>
 
@@ -90,9 +91,12 @@
                     <input type="text" name="orNo" id="orNo" readonly="readonly"/><br><br>
                   </div>
               </div>
+              <center>
               <div class="btn paddingT170">
-                <button type="submit">Submit</button>
+                <button class="btn btn-success" type="submit">Submit</button>
+
               </div>
+              </center>
             </form>
           </div>
         </div>

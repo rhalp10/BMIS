@@ -10,36 +10,34 @@
     <link href="css/css/mis.css" rel="stylesheet">
       <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
       </head>
-  <body> 
 <link href="Style.css" style="text/css" rel="stylesheet">
  <br>
 
-</head>
 <body>	
-<div class="head"><font size="5">Personal Services</font></div>
+
+<div class="head"><font size="5">Add Personal Service Particular</font></div>
 <br><br>
 	<br>
 <center>
 	
 	<form action="ServiceFundOperationInsert.php" method="POST">
-		<td><div class="form-group col-lg-offset-4 col-md-4 ">
+		<td><div class="form-group col-md-6 "><div class="clearfix"></div>
 			<label for="service_code">Service Code</label>
-	<input type="number" class="form-control" name="service_code" placeholder="Enter Account Code" required >
+	<input type="number" min=1 class="form-control" name="service_code" placeholder="Enter Account Code" required >
 </div>
 
-    <td><div class="form-group col-lg-offset-4 col-md-4 ">
-      <label for="service_type">Service Type</label>
-  <input type="text" class="form-control" name="service_type" placeholder="Enter Service Type" required >
+    <td><div class="form-group col-md-6 "><div class="clearfix"></div>
+      <label for="service_type">Service Particular</label>
+  <input type="text" class="form-control" name="service_type" placeholder="Enter Service Particular" required >
 </div>
 
-	<td><div class="clearfix"></div><input type="submit" value="Submit" class="btn btn-success"></td>
+	<td><div class="clearfix"></div><input type="submit" value="Submit" class="btn btn-primary"></td>
 </form>
 <br><br>
 
 <form action="ServiceFundOperationView.php" method="POST">
-	<td><input type="submit" value="View List of Services" class="btn btn-success"></td>
+	<td><input type="submit" value="View" class="btn btn-primary"></td>
 </form>
 </center>
-
 </body>
 </html>

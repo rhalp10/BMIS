@@ -1,7 +1,9 @@
 	<?php
-session_start();
+ 	include('dbcon.php');
+
 $mc = $_POST['income_code'];
-$mt = $_POST['income_type'];
+$mt = mysqli_real_escape_string($con, $_POST['income_type']);
+$mt = ucwords(strtolower($mt));
 
 
 
@@ -10,7 +12,7 @@ $mt = $_POST['income_type'];
 
 	$chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_income` WHERE `income_code` = '$mc' OR `income_type`='$mt'");
 		if(mysqli_num_rows($chk) > 0 ){
-			echo'<script>alert("DATA ALREADY EXISTS!")</script>';
+			echo'<script>alert("Data Already Exists!")</script>';
 			require("IncomeFundOperation.php");
 		}
 
@@ -19,7 +21,7 @@ $mt = $_POST['income_type'];
 			$sql="INSERT INTO finance_fundoperation_income (income_code,income_type) VALUES ('$mc','$mt')";
 				if ($con->query($sql) === TRUE) 
 				{
-					echo '<script> alert ("Saved")</script>';	
+					echo '<script> alert ("Data Saved")</script>';	
 					echo '<script> window.location = "IncomeFundOperation.php"</script>';			
 				}
 		}

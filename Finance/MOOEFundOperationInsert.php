@@ -1,7 +1,9 @@
 	<?php
-session_start();
+ 	include('dbcon.php');
+
 $mc = $_POST['mooe_code'];
-$mt = $_POST['mooe_type'];
+$mt = mysqli_real_escape_string($con, $_POST['mooe_type']);
+$mt = ucwords(strtolower($mt));
 
 
 
@@ -10,7 +12,7 @@ $mt = $_POST['mooe_type'];
 
 $chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_mooe` WHERE `mooe_code` = '$mc' OR `mooe_type`='$mt'");
 		if(mysqli_num_rows($chk) > 0 ){
-			echo'<script>alert("DATA ALREADY EXISTS!");</script>';
+			echo'<script>alert("Data already exists!");</script>';
 			require("MOOEFundOperation.php");
 		}
 
@@ -19,7 +21,7 @@ $chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_mooe` WHERE `moo
 	$sql="INSERT INTO finance_fundoperation_mooe (mooe_code,mooe_type) VALUES ('$mc','$mt')";
 				if ($con->query($sql) === TRUE) 
 				{
-					echo '<script> alert ("Saved")</script>';	
+					echo '<script> alert ("Data Saved")</script>';	
 					echo '<script> window.location = "MOOEFundOperation.php"</script>';			
 				}
 		}

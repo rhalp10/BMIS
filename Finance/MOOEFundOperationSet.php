@@ -9,6 +9,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/css/mis.css" rel="stylesheet">
       <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
       </head>
   <body> 
 <link href="Style.css" style="text/css" rel="stylesheet">
@@ -32,7 +35,7 @@
 			?>
 					<form action="MOOEFundOperationSetInsert.php" method="POST">
 			<select name="mooe_id" class="form-control" >
-				<option value="">SELECT EXPENSE</option>
+				<option value="">Select Expense</option>
 				<?php
 					if($rowCount > 0){
 						while($row = $query->fetch_assoc()){
@@ -54,20 +57,23 @@
 	<td>
 		<div class="form-group col-md-4">
 			<label for="mooe_amount">Amount</label>
-		<td><input type="number" class="form-control" name="mooe_amount" placeholder="Enter Expense Amount" required ></td>
+		<td><input type="text" maxlength=20 class="form-control input-sm text-right amount" name="mooe_amount" placeholder="Enter MOOE Amount" required ></td>
 	</div>
 	</tr>
 
 	<tr>
 	<td>
-		<div class="form-group col-md-4">
-			<label for="mooe_year">Year</label>
-		<td><input type="text" class="form-control" name="mooe_year" placeholder="Enter Year" required ></td>
-	</div>
-	</td>	
+
+
+<div class="form-group col-md-4">
+	<label for="mooe_year">Year</label>
+	<input class="form-control" type="text" readonly name="mooe_year" value="<?php $d=date('Y'); echo $d+1; ?>">
+
+</div>
+</td>
 	</tr>
 	
-	<td><input type="submit" value="Submit" class="btn btn-success"></td>
+	<td><input type="submit" value="Submit" class="btn btn-primary"></td>
 	</td>
 </td>
 	</form>
@@ -75,12 +81,15 @@
 	<br><br>
 	<form action="MOOEFundOperationSetView.php" method="POST">
 		<div class="form-group col-mid-3">
-		<td><input type="submit" value="View" class="btn btn-success"></div></td>
+		<td><input type="submit" value="View" class="btn btn-primary"></div></td>
 	</form>
 
 	</center>
 
-
-
 	</body>
+	<script type="text/javascript">
+$(function(){
+	$('.amount').mask('#,###,###,###,###.##',{ reverse : true});
+});
+</script>
 	</html>

@@ -8,6 +8,7 @@
     <meta charset="utf-8">
     <title>Create Film Making Permit</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap.css">
     <script src="../js/jquery-2.1.3.js">
     </script>
 
@@ -15,8 +16,8 @@
 
   <body>
     <div class="wrapper">
-      <nav>
-        <div class="logo">Film Making Permit</div>
+      <nav style="background: #14aa6c">
+        <div class="logo">Film Making Permit&nbsp;&nbsp;&nbsp; | </div>
         <ul>
           <li class="dd">
 
@@ -28,6 +29,7 @@
         </ul>
       </nav>
       <section class="sec1">
+        <center>
         <div class="qwe">
           <div class="input-container">
             <form action="../Clearances/FilmMakingPermit.php" method="POST">
@@ -70,14 +72,16 @@
                        <input type="text" name="orNo" id="orNo" readonly="readonly"/><br><br>
                      </div>
                  </div>
+                 <center>
               <div class="btn paddingT200">
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
               </div>
+      </center>
             </form>
           </div>
         </div>
       </section>
-
+      </center>
       <section class="content">
 
       </section>

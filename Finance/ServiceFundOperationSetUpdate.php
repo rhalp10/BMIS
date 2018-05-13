@@ -16,12 +16,21 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/css/mis.css" rel="stylesheet">
       <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+                        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
       </head>
   <body> 
 <link href="Style.css" style="text/css" rel="stylesheet">
-
-<div class="head"><font size="5">Personal Services</font></div>
+<br>
+<div class="head"><font size="5">Personal Services Update</font></div>
 <br><br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'ServiceFundOperationSetView.php';"  >Back
+  <span class="glyphicon glyphicon" aria-hidden="true"></span>
+</button>
+
 		<section id="asd" class="asds">
 
 	    <article>
@@ -33,7 +42,7 @@ session_start();
 				include('dbcon.php');
             $query1 = $con->query("SELECT finance_fundoperation_ps.service_type,
 							finance_fundoperation_ps.service_code, finance_fundoperation_psset.service_position,finance_fundoperation_psset.service_amount, finance_fundoperation_psset.service_year FROM finance_fundoperation_ps INNER JOIN finance_fundoperation_psset
-							WHERE finance_fundoperation_psset.service_setid='$id'");
+							WHERE finance_fundoperation_ps.service_id = finance_fundoperation_psset.service_id AND finance_fundoperation_psset.service_setid='$id'");
 			$row1=mysqli_fetch_assoc($query1);
 
 			?>
@@ -50,7 +59,7 @@ session_start();
 			<tr>	
                 <div class="form-group col-md-4">	
                 <td>   
-					<label for="service_type">Service Type</label>
+					<label for="service_type">Service Particular</label>
                 </td>
 		        <td>
 			
@@ -75,7 +84,7 @@ session_start();
 			<tr>
 				<td><div class="form-group col-md-4">
       			<label for="service_amount">Amount</label>
-				<td><input type="number" class="form-control" value="<?php echo $row1["service_amount"]; ?>" required name="service_amount" size="50">
+				<td><input type="text" maxlength=20 class="form-control input-sm text-left amount" value="<?php echo number_format($row1["service_amount"],2); ?>" required name="service_amount" size="50">
 			</tr>
 
 			<tr>
@@ -86,7 +95,8 @@ session_start();
 
 	
 </table>
-		<button type="submit" value="Submit" class="btn btn-success">Update</button>
+
+		<button type="submit" value="Submit" class="btn btn-primary">Update</button>
                     <input type="hidden" class="form-control" value="<?php echo $id; ?>" required name="id">
                 </form>
 
@@ -102,6 +112,11 @@ session_start();
 	</div>
 
 </body>
+		<script type="text/javascript">
+$(function(){
+	$('.amount').mask('#,###,###,###,###.##',{ reverse : true});
+});
+</script>
 </html>
 		
 							

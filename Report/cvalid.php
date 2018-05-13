@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
     .container{
-        width:60%;
+        width:45%;
         height:50%;
         background-color: white;
         float: center;
@@ -55,69 +55,42 @@
 }    
 
     </style>
-     <header>
-    <h1 align='left'>   <a  href="viewreport.php"><button  class='btn btn-success'> back </button></a></h1>
+     <header style="padding: 40px;">
+    <h1 style="margin-left:70;">   <a  href="viewreport.php"><button  class='btn btn-success'> Back </button></a></h1>
     </header>
  
 
-<form method="post" action="accom.php">
+<form method="post" action="computecov.php">
         
       
 <center>
-  <br><br>
+  
     <div class="container">
         
    <BR><BR>
-<input type="text" name="barangay" placeholder="Enter Barangay" required>
-<br><br><br> <label>Start Day</label>
-<select name="fyear">
+
+<br><br><br> <label>Select month :</label>
+
+    
+<select name="fmonth" required>
+	<option value="">Month</option>
+	<?php for ($month = 1; $month <= 12; $month++) { ?>
+	<option value="<?php echo strlen($month)==1 ? '0'.$month : $month; ?>"><?php echo date('F', mktime(0,0,0,$month,1,date('Y'))); ?></option>
+	<?php } ?>
+</select>
+<br> <label>Select year :</label>
+<select name="fyear" required>
   <option value="">Year</option>
   <?php for ($year = date('Y'); $year > date('Y')-100; $year--) { ?>
 	<option value="<?php echo $year; ?>"><?php echo $year; ?></option>
 	<?php } ?>
-</select>
-    
-<select name="fmonth">
-	<option value="">Month</option>
-	<?php for ($month = 1; $month <= 12; $month++) { ?>
-	<option value="<?php echo strlen($month)==1 ? '0'.$month : $month; ?>"><?php echo strlen($month)==1 ? '0'.$month : $month; ?></option>
-	<?php } ?>
-</select>
-<select name="fday">
-  <option value="">Day</option>
-	<?php for ($day = 1; $day <= 31; $day++) { ?>
-	<option value="<?php echo strlen($day)==1 ? '0'.$day : $day; ?>"><?php echo strlen($day)==1 ? '0'.$day : $day; ?></option>
-	<?php } ?>
-</select>
+</select><br><br>
+ <button class="button button1">Generate Report</button>
 
-<br><br><br>
-     <label>End Date</label>
-
-   
-<select name="syear">
-  <option value="">Year</option>
-  <?php for ($year = date('Y'); $year > date('Y')-100; $year--) { ?>
-	<option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-	<?php } ?>
-</select>
-<select name="smonth">
-	<option value="">Month</option>
-	<?php for ($month = 1; $month <= 12; $month++) { ?>
-	<option value="<?php echo strlen($month)==1 ? '0'.$month : $month; ?>"><?php echo strlen($month)==1 ? '0'.$month : $month; ?></option>
-	<?php } ?>
-</select>
-    <select name="sday">
-  <option value="">Day</option>
-	<?php for ($day = 1; $day <= 31; $day++) { ?>
-	<option value="<?php echo strlen($day)==1 ? '0'.$day : $day; ?>"><?php echo strlen($day)==1 ? '0'.$day : $day; ?></option>
-	<?php } ?>
-        
-        </div>
-</select>
-
+</div>
 <br><br><br>
     
-           <button class="button button1">Generate Report</button>
+          
     </div>
     </div> </center> 
        </body>

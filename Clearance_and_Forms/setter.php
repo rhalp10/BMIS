@@ -28,15 +28,16 @@ $s1="";
     <meta charset="utf-8">
     <title>Set up barangay address</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
   </head>
   <body>
     <div ng-app="app" ng-controller="ctrl" class="wrapper">
-      <nav  style="background-color: #e94b3c;" >
-        <div class="logo">Barangay Address</div>
+      <nav style="background: #14aa6c">
+        <div class="logo">Barangay Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</div>
         <ul>
           <li class="dd">
           </li>
-          <li><a href="index.php">Back</a></li>
+          <li><a style="text-decoration: none;"href="index.php">Back</a></li>
         </ul>
       </nav>
 
@@ -46,19 +47,21 @@ $s1="";
                           <div class="mb_names borderNow toCenterDiv">
                             <center><h3>Set Address</h3></center>
                             <div class="mb_names_holder">
+                              <div class="intro-text text-right">
                             <form action="setter.php" method="post">
                               <input type="text" name="search" placeholder="Search">
-                              <input type="submit" name="searchbtn" id="searchbtn" value="Search">
+                              <input class="btn btn-success" type="submit" name="searchbtn" id="searchbtn" value="Search">
                             </form>
+                            </div>
                             <div class="super_holder">
-                              <table id="table" border="1px" text-align="center" width="100%">
-                              <tr>
+                              <table id="table" border="1px" class="table" width =  "100%" >
+                              <!-- <tr>
                                 <th colspan="10"><h3>NAMES</h3></th>
-                              </tr>
+                              </tr> -->
                               <tr>
-                                <th>Barangay </th>
-                                <th>Municipality</th>
-                                <th>Province</th>
+                                <th class="text-center">Barangay </th>
+                                <th class="text-center">Municipality</th>
+                                <th class="text-center">Province</th>
                               </tr>
                               <?php
                               if(isset($_POST['searchbtn'])){
@@ -68,7 +71,7 @@ $s1="";
                                             FROM ref_brgy rb
                                             LEFT JOIN ref_citymun rf ON rb.citymun_Code = rf.citymun_Code
                                             LEFT JOIN ref_province rp ON rp.province_Code = rb.province_Code
-                                            WHERE brgy_Name LIKE '%$searchq%' OR citymun_Name LIKE '%$searchq%' OR province_Name LIKE '%$searchq%'";
+                                            WHERE brgy_Name LIKE '%$searchq%' OR citymun_Name LIKE '%$searchq%' OR province_Name LIKE '%$searchq%'  ORDER BY brgy_Name ASC " ;
 
                                             $res_conf = mysqli_query($conn, $squery);
                                             $conf_check = mysqli_num_rows($res_conf);
@@ -110,10 +113,10 @@ $s1="";
                             </div>
                             <div class="resu">
                               <form action="setter.php" method="post">
-                                <input type="text" id="a1" readonly="readonly" name="a1"><br><br>
-                                <input type="text" id="a2" readonly="readonly" name="a2"><br><br>
-                                <input type="text" id="a3" readonly="readonly" name="a3"><br><br>
-                                <button type="submit" id="labuleh" name="labuleh" >Submit</button>
+                                <label class="intro-text text-left">Barangay Name:</label><input class="form-control" type="text" id="a1" readonly="readonly" name="a1">
+                                <label class="intro-text text-left">Municipality:</label><input class="form-control" type="text" id="a2" readonly="readonly" name="a2">
+                                <label class="intro-text text-left">Province:</label><input class="form-control" type="text" id="a3" readonly="readonly" name="a3"><br><br>
+                                <button class="btn btn-success" type="submit" id="labuleh" name="labuleh" >Submit</button>
                               </form>
                             </div>
                           </div>

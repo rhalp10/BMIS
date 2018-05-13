@@ -4,7 +4,8 @@ session_start();
 	
     $id= $_POST['service_id'];
 	$mc = $_POST['service_code'];
-	$mt = $_POST['service_type'];
+	$mt = mysqli_real_escape_string($con, $_POST['service_type']);
+$mt = ucwords(strtolower($mt));
 
 
 

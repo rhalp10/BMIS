@@ -7,11 +7,34 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <link href="css/bootstrap.min.css" rel="stylesheet">
+	  <script src="js/jquery.min.js"></script>
+     <script type="text/javascript">
+	 function chk(){
+		 function chk(){
+		 var waw = "";
+		var chb = {0,0,0,0,0,0,0,};
+		var chh = document.getElementByClassName('barangaychairman');
+		for(1 = 0; 1<7; i++){
+			if(chh[i].checked === true){
+				chb[i] = 1;
+			}
+			else{
+				chb[i] = 1;
+			}
+			waw += ''+chb[i]+'';
+		`}
+		document.getElementById('wow').value = "fuck";
+	 }
+		document.getElementById('wow').value = "fuck";
+	 }
+	</script>
+	
+	  
 <center>
 <style>
    
 input[type=text], select {
-    width: 100%;
+    width: 45%;
     padding: 12px 20px;
     
     display: inline-block;
@@ -21,7 +44,7 @@ input[type=text], select {
 }
 
 input[type=texttable], select {
-    width: 100%;
+    width: 60%;
    
     
     
@@ -53,7 +76,7 @@ table, th, td {
    
  
     
-    <form target="_blank" action="lgucompliance.php" method="POST">
+    <form >
        
         
             <left><p><h5> <font face="Times new roman"><b>Dengue Monitoring Form</b></font></h5></p></left>
@@ -64,7 +87,7 @@ table, th, td {
                  </center>
                       <br>
                       
-                <left><p><b><h4> <font face="Times new roman"> Region: IV-A CALABARZON <br>
+                <left><p><b><h4>Region: IV-A CALABARZON <br>
                     Province: CAVITE <br>
                     Municipality: INDANG</b></h4>
                       
@@ -72,14 +95,14 @@ table, th, td {
   
 
             
-        <center>
+
             
-      <div class="table-responsive">
- <table class="table table-bordered" >
-     <div class="whole">
+    
+     
            <center>
                <br>
                <br>
+			   <table border="1">
   <tr>
     <th>BARANGAY (a)</th> 
      <enter> <th colspan="3">Presence/Absence (b)</th> 
@@ -106,16 +129,17 @@ table, th, td {
     </tr>
               
         <tr> 
-                <td><input type="text" name="barangaychairman1" ></td>
-                <td><input type="text" name="barangaychairman2" ></td> 
-                <td><input type="text" name="barangaychairman3" ></td>
-                <td><input type="text" name="barangaychairman4" ></td> 
-                <td><input type="text" name="barangaychairman5" ></td> 
-                <td><input type="text" name="barangaychairman6" ></td> 
-                <td><input type="text" name="barangaychairman7" ></td> 
-                <td><input type="text" name="barangaychairman8" ></td>
+                <td><input type="text" name="barangaychairman1" required></td> 
+               <td><input type="checkbox" class="barangaychairman[]" value="1"></td>
+			   <td><input type="checkbox" class="barangaychairman[]" value="1"></td>
+			   <td><input type="checkbox" class="barangaychairman[]" value="1"></td>
+			   <td><input type="checkbox" class="barangaychairman[]" value="1"></td>
+			    <td><input type="checkbox" class="barangaychairman[]" value="1"></td>
+			   <td><input type="checkbox" class="barangaychairman[]" value="1"></td>
+			   <td><input type="checkbox" class="barangaychairman[]" value="1"></td>
                 <td><input type="text" name="barangaychairman9" ></td>
               <td><input type="text" name="barangaychairman10" ></td>
+			 
     </tr>
            
         
@@ -142,16 +166,15 @@ table, th, td {
 </center>
     <br>
        
-      <center>
                       
       <b><label1 for="exampleInputName2" >Prepared By:</label1><br></b>
-        <input class="form-control113" name="sec" type="text" value="<?php echo $_SESSION['secretary']; ?>"> <br>
+        <input name="sec" type="text" readonly value="<?php echo $_SESSION['secretary']; ?>"> <br>
                 <label1 for="exampleInputName2">Barangay Secretary/Lupon Secretary</label1> <br><br>
           
-   <center>
+ 
                       
       <b><label1 for="exampleInputName2" >Attested By:</label1><br></b>
-        <input class="form-control113" name="cap" type="text"value="<?php echo $_SESSION['captain']; ?>"> <br>
+        <input name="capt" type="text" readonly value="<?php echo $_SESSION['captain']; ?>"> <br>
                 <label1 for="exampleInputName2">Punong Barangay</label1> <br><br>
    
         
@@ -159,7 +182,8 @@ table, th, td {
             <br>
        
             <p class="text-center">
-<button class="btn btn-primary btn-lg active" role="button">Save</button> </p> 
+<input type="submit" value="Submit" onclick="chk()" name="submit" class="btn btn-primary btn-lg active"></p> 
+<input type="text" id="wow">
 </section>
         
 </form>

@@ -237,7 +237,7 @@ $diff = date_diff(date_create($dob), date_create($today));
     <div id="piechart" style="width: 1200px; height: 800px;"></div>
   </body>
   <footer>
-    <b><p class="fl_right">Copyright &copy; 2018 - All Rights Reserved | Pesigan-Fadriquela </p></b>
+    <b><p class="fl_right">Copyright &copy; 2018 - All Rights Reserved | De Guzman </p></b>
   </footer>
         
         

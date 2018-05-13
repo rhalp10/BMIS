@@ -108,10 +108,11 @@ while ($row_edit = mysqli_fetch_assoc($get_contact)){
     
     
     
-    <body>
+    <body style="font-family: calibri; font-size: 18px; ">
         <!-- ##################QUERY FOR RETRIEVING RESIDENT DETAILS###################### --> 
        
 <?php
+$today = date('Y-m-d');
   $view_query = mysqli_query($connections, "SELECT * FROM resident_detail where res_ID=' $largestNumber'");
 
   while($row = mysqli_fetch_assoc($view_query)){
@@ -129,6 +130,11 @@ while ($row_edit = mysqli_fetch_assoc($get_contact)){
 $db_res_country = $row["country_ID"];
       $db_res_occust = $row["occuStat_ID"];
       $db_res_occu = $row["occupation_ID"];
+
+      $diff = date_diff(date_create($db_res_bdate), date_create($today));
+    
+    $age= $diff->format('%y');
+     
      }
               
         
@@ -169,6 +175,7 @@ $db_res_country = $row["country_ID"];
         
       <?php
   $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation_status where occuStat_ID='$db_res_occust '");
+         $db_res_ocst="Not Available/Unemployed";
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_ocst = $row["occuStat_Name"];
  }
@@ -177,6 +184,7 @@ $db_res_country = $row["country_ID"];
         
             <?php
   $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation where occupation_ID='$db_res_occu '");
+          $db_res_occ ="---";
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_occ = $row["occupation_Name"];
  }
@@ -298,7 +306,7 @@ $muser_id=$user_id;
         
         <br>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-success col-lg-offset-0" onclick="location.href = 'resident.php';"  >Back
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'resident.php';"  >Back
   <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 </button><br><br>
    
@@ -336,7 +344,7 @@ $muser_id=$user_id;
                 }  
                 ?>  
                 <input id="profile-image-upload" class="hidden" type="file">
-<div style="color:#999;" >click here to change profile image</div>
+<div style="color:#999;" >Profile Picture</div>
                 <!--Upload Image Js And Css-->
            
               
@@ -359,7 +367,7 @@ $muser_id=$user_id;
             <hr style="margin:5px 0 5px 0;">
     
               
-<div class="col-sm-5 col-xs-6 tital " >Gender:</div><div class="col-sm-7 col-xs-6 "><?php echo  $db_res_gen;?></div>
+<div class="col-sm-5 col-xs-6 tital " >Sex:</div><div class="col-sm-7 col-xs-6 "><?php echo  $db_res_gen;?></div>
      <div class="clearfix"></div>
 <div class="bot-border"></div>
 
@@ -367,7 +375,7 @@ $muser_id=$user_id;
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Age:</div><div class="col-sm-7" > <input type="number" readonly maxlength="3"   id="res_age" placeholder="Age" onfocus="getAge();" > </div>
+<div class="col-sm-5 col-xs-6 tital " >Age:</div><div class="col-sm-7" > <?php echo $age;?> </div>
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
@@ -472,7 +480,7 @@ $muser_id=$user_id;
          <br>
          <br> 
           <div class="row-bttn" >
-       &nbsp;&nbsp; <p > <center><a><input type="submit" name="insert" id="insert" value="Submit" class="btn btn-success" /> </a></center></p>
+       &nbsp;&nbsp; <p > <center><a><input type="submit" name="insert" id="insert" value="Submit" class="btn btn-primary" /> </a></center></p>
                
           
           </div>  

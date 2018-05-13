@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <title>Create Business Permit</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap.css">
     <script src="../js/jquery-2.1.3.js">
     </script>
 
@@ -17,7 +18,7 @@
 
   <body>
     <div class="wrapper">
-      <nav>
+      <nav style="background: #14aa6c">
         <div class="logo">Business Permit</div>
         <ul>
           <li class="dd">
@@ -52,12 +53,12 @@
                     Business Address
                   </div>
                   <div class="left">
-                    <label for="first">:</label>
+                    <label for="first">House No : </label>
                     <input type="text" name="houseNo" id="houseNo" placeholder="Input House Number"/><br><br>
 
                   </div>
                   <div class="right">
-                    <label for="first">:</label>
+                    <label for="first">Street : </label>
                     <input type="text" name="street" id="street" placeholder="Input Street"/><br><br>
                   </div>
               </div>
@@ -75,9 +76,13 @@
                     <input type="text" name="orNo" id="orNo" readonly="readonly"/><br><br>
                   </div>
               </div>
+              <center>
               <div class="btn paddingT150">
-                <button type="submit">Submit</button>
+                
+                <button class="btn btn-success" type="submit">Submit</button>
+                
               </div>
+              </center>
             </form>
           </div>
         </div>

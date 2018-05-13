@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Create Working Permit</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap.css">
     <script src="../js/jquery-2.1.3.js">
     </script>
     <script type="text/JavaScript">
@@ -19,17 +20,12 @@
   </head>
   <body>
     <div class="wrapper">
-      <nav>
-        <div class="logo">Working Permit</div>
+      <nav style="background: #14aa6c">
+        <div class="logo">Working Permit&nbsp;&nbsp;&nbsp; | </div>
         <ul>
           <li class="dd">
-
-            <div class="ddcontent">
-
-
-            </div>
           </li>
-          <li><a href="../index.php">Home</a></li>
+          <li><a href="../index.php"><b>Home</b></a></li>
         </ul>
       </nav>
       <section class="sec1">
@@ -40,10 +36,12 @@
                                   <div class="titele center borderNow">
                                     Picture
                                   </div>
-                                  <div class="ss">
+                                </div>
+                                <br>
+                                <center>
                                   <input type="file" name="picpic">
-                                  </div>
-                              </div>
+                                  </center>
+                                  <br>
                               <div class="perBox">
                                 <div class="titele center borderNow">
                                   APPLICANT
@@ -67,7 +65,7 @@
                                   <input type="date" name="birthdate" id="birthdate" /><br><br>
                                 </div>
                               </div>
-                              <div class="perBox margint">
+                              <div class="perBox margint200">
                                 <div class="titele center borderNow">
                                   Basic Information
                                 </div>
@@ -159,13 +157,14 @@
                               </div>
                             </div>
 
-
+                            <center>
                   <div class="btn paddingT80">
-                    <button type="submit" name="submit" value="upload">Submit</button>
+                    <button class="btn btn-success" type="submit" name="submit" value="upload">Submit</button>
                   </div>
+                </center>
           </form>
           <?php
-          
+
           if (isset($_POST['submit'])) {
             $picpic = addslashes(file_get_contents($_FILES['picpic']['tmp_name']));
             $picss = "transient";

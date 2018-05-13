@@ -1,6 +1,18 @@
 <?php
-include('dbcon.php');
-$query = "DELETE FROM finance_fundoperation_mooe WHERE mooe_id='".$_GET["id"]."'"; 
-mysqli_query($con,$query)  or die(mysql_errno());
-header("Location: MOOEFundOperationView.php"); 
-?>		
+include_once('dbcon.php');
+
+$chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_mooeset` WHERE `mooe_id`='".$_GET['del_id']."'");
+		if(mysqli_num_rows($chk) > 0 ){
+			echo'<script>alert("Unable to delete! This particular is being used for allotment")</script>';
+			require("MOOEFundOperationView.php");
+		}
+
+		else{
+$select = "DELETE FROM finance_fundoperation_mooe WHERE `mooe_id`='".$_GET['del_id']."'";
+$query = mysqli_query($con, $select);
+if($con->query($select) === TRUE){
+	echo "<script>alert('Data Deleted.');</script>";
+	echo'<script> window.location = "MOOEFundOperationView.php"</script>';
+}
+}
+?>	

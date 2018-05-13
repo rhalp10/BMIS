@@ -1,3 +1,4 @@
+
 <?php 
 session_start();
 require('fpdf/fpdf.php');
@@ -182,8 +183,8 @@ require('fpdf/fpdf.php');
     return $mon;
 } 
   
- if(isset($_POST["create_pdf"]))  
- {  
+  
+   
 
   class PDF extends FPDF
 {
@@ -198,94 +199,23 @@ function Header()
   $month=$_GET['month'];
 
     // Arial bold 15
-    $this->SetFont('Times','B',12);
+    $this->SetFont('Arial','B',11);
     // Move to the right
     
     
     
     $this->Cell(80);
     
-   
-    // Title
-    $this->Cell(400,5,"",0,1,'C');
-    $this->Cell(0,5,"Republic of the Philippines",0,1,'C');
-/*    $this->Image('logo.png',30,6,30);
-    $this->Image('logo.png',150,6,30);*/
-    $this->Cell(0,5,"Province of Cavite",0,1,'C');
-    $this->Cell(0,5,"Municipal of Indang",0,1,'C');
-    $this->Cell(0,5,"BARANGAY  TAMBO MALAKI",0,0,'C');
-    $this->Cell(0,5," ",0,0,'C');
-    
-    $this->SetFont('Times','B',12);
-    $this->Ln(10);
-    $this->Cell(0,5,"ITEMIZED MONTHLY COLLECTION AND DISBURSEMENT ",0,1,'C');
-    
-    $this->Cell(0,3,fetch_month(),0,1,'C');
-    
-    $this->Cell(0,5,$year,0,0,'C');
-    $this->Ln(15);
-    
-    $this->SetFont('Times','B',10);
-    $this->Cell(200,5,"COLLECTION" ,1,1,'C');
-    
-    
-    $this->Cell(50,5,"DATE" ,1,0,'C');
-    $this->Cell(100,5,"PARTICULARS" ,1,0,'C');
-    $this->Cell(50,5,"AMOUNT" ,1,1,'C');
-    //query
-    $res = mysqli_query($con, "SELECT * FROM finance_collection  WHERE collection_date LIKE '$year-$month%'");
-       while($row = mysqli_fetch_array($res))
-       {
+}
 
-        $this->Cell(50,5,$row["collection_date"] ,1,0,'C');
-        $this->Cell(100,5,$row["collection_particular"] ,1,0,'C');
-        $this->Cell(50,5,number_format($row["collection_amount"],2) ,1,1,'R');
-      }
-      //TOTAL
-      $this->Cell(50,5,"" ,1,0,'C');
-      $this->Cell(100,5,"TOTAL COLLECTION" ,1,0,'C');
-      $this->Cell(50,5,number_format(fetch_t1(),2) ,1,1,'R');
+function Footer()
+{
 
-      $this->Ln(15);
-
-      $this->SetFont('Times','B',10);
-    $this->Cell(200,5,"DISBURSEMENT" ,1,1,'C');
-
-    $this->Cell(50,5,"DATE" ,1,0,'C');
-    $this->Cell(100,5,"PARTICULARS" ,1,0,'C');
-    $this->Cell(50,5,"AMOUNT" ,1,1,'C');
-    
-    
-    $ress = mysqli_query($con, "SELECT * FROM finance_disbursement  WHERE disbursement_date LIKE '$year-$month%'");
-       while($row1= mysqli_fetch_array($ress))
-       {
-    
-        $this->Cell(50,5,$row1["disbursement_date"] ,1,0,'C');
-        $this->Cell(100,5,$row1["disbursement_particular"] ,1,0,'C');
-        $this->Cell(50,5,number_format($row1["disbursement_amount"],2) ,1,1,'R');
-       }
-     
-    $this->Cell(50,5,"" ,1,0,'C');
-    $this->Cell(100,5,"TOTAL DISBURSEMENT" ,1,0,'C');
-    $this->Cell(50,5,number_format(fetch_t2(),2) ,1,1,'R');
-    
-    $this->Ln(30);
-    
-    $this->SetFont('Arial','B',12);
-    $this->Cell(100,5,"Prepared by:",0,0,'L');
-    $this->Cell(60,5,"Approved by:",0,0,'R');
-    $this->Ln(20);
-    $this->SetFont('Arial','BU',15);
-   // $this->Cell(300,5,"$secname",5,0,'L');
-   // $this->Cell(36,5,"$name",5,1,'R');
-    $this->Ln(3);
-    $this->SetFont('Arial','',13);
-    $this->Cell(0.5,-10, $_SESSION['fullname'], 0, 0, 'L');
-    $this->Cell(60,5, $_SESSION['position'],0,0,'L');
-    $this->Cell(120,-10, $_SESSION['captain'], 0, 0, 'R');
-    $this->Cell(-5,5,"Punong Barangay",0,0,'R');
-    
-}}
+  $this->SetY(-15);
+  $this->SetFont('Arial','',8);
+  $this->Cell(0,10,'Page' .$this->PageNo()." / {pages}",0,0,'C');
+}
+}
     
    
  
@@ -293,20 +223,107 @@ function Header()
 
 $pdf = new PDF('P','mm','legal');
 
-$pdf->AliasNbPages();
+$pdf->AliasNbPages('{pages}');
 $pdf->AddPage();
-$pdf->SetFont('Times','',12);
+$pdf->SetFont('Arial','',11);
+
+include("dbcon.php");
+  $year=$_GET['year'];
+  $month=$_GET['month'];
+ 
+
+    // Title
+    $pdf->Cell(400,5,"",0,1,'C');
+    $pdf->Cell(0,5,"Republic of the Philippines",0,1,'C');
+    $pdf->Image('TAMBO MALAKI.png',30,6,30);
+    $pdf->Image('INDANG.png',150,9,25);
+    $pdf->Cell(0,5,"Province of Cavite",0,1,'C');
+    $pdf->Cell(0,5,"Municipal of Indang",0,1,'C');
+    $pdf->Cell(0,5,"BARANGAY TAMBO MALAKI",0,0,'C');
+    $pdf->Cell(0,5," ",0,0,'C');
+    
+    $pdf->SetFont('Arial','B',11);
+    $pdf->Ln(10);
+    $pdf->Cell(0,5,"ITEMIZED MONTHLY COLLECTION AND DISBURSEMENT ",0,1,'C');
+    
+    $pdf->Cell(0,3,fetch_month(),0,1,'C');
+    
+    $pdf->Cell(0,5,$year,0,0,'C');
+    $pdf->Ln(15);
+    
+    $pdf->SetFont('Arial','',11);
+    $pdf->Cell(200,5,"COLLECTION" ,1,1,'C');
+    
+    
+    $pdf->Cell(50,5,"DATE" ,1,0,'C');
+    $pdf->Cell(100,5,"PARTICULARS" ,1,0,'C');
+    $pdf->Cell(50,5,"AMOUNT" ,1,1,'C');
+    //query
+    $res = mysqli_query($con, "SELECT * FROM finance_collection  WHERE collection_date LIKE '$year-$month%'");
+       while($row = mysqli_fetch_array($res))
+       {
+
+        $pdf->Cell(50,5,$row["collection_date"] ,1,0,'C');
+        $pdf->Cell(100,5,$row["collection_particular"] ,1,0,'C');
+        $pdf->Cell(50,5,number_format($row["collection_amount"],2) ,1,1,'R');
+      }
+      //TOTAL
+      $pdf->Cell(50,5,"" ,1,0,'C');
+      $pdf->Cell(100,5,"TOTAL COLLECTION" ,1,0,'C');
+      $pdf->Cell(50,5,number_format(fetch_t1(),2) ,1,1,'R');
+
+      $pdf->Ln(15);
+
+      $pdf->SetFont('Arial','',11);
+    $pdf->Cell(200,5,"DISBURSEMENT" ,1,1,'C');
+
+    $pdf->Cell(50,5,"DATE" ,1,0,'C');
+    $pdf->Cell(100,5,"PARTICULARS" ,1,0,'C');
+    $pdf->Cell(50,5,"AMOUNT" ,1,1,'C');
+    
+    
+    $ress = mysqli_query($con, "SELECT * FROM finance_disbursement  WHERE disbursement_date LIKE '$year-$month%'");
+       while($row1= mysqli_fetch_array($ress))
+       {
+    
+        $pdf->Cell(50,5,$row1["disbursement_date"] ,1,0,'C');
+        $pdf->Cell(100,5,$row1["disbursement_particular"] ,1,0,'C');
+        $pdf->Cell(50,5,number_format($row1["disbursement_amount"],2) ,1,1,'R');
+       }
+     
+    $pdf->Cell(50,5,"" ,1,0,'C');
+    $pdf->Cell(100,5,"TOTAL DISBURSEMENT" ,1,0,'C');
+    $pdf->Cell(50,5,number_format(fetch_t2(),2) ,1,1,'R');
+    
+    $pdf->Ln(10);
+    
+    $pdf->SetFont('Arial','B',11);
+    $pdf->Cell(100,5,"Prepared by:",0,0,'L');
+    $pdf->Cell(60,5,"Approved by:",0,0,'R');
+    $pdf->Ln(20);
+    $pdf->SetFont('Arial','BU',11);
+   // $this->Cell(300,5,"$secname",5,0,'L');
+   // $this->Cell(36,5,"$name",5,1,'R');
+     $pdf->Ln(3);
+    $pdf->SetFont('Arial','',13);
+    $pdf->Cell(0.5,-10, $_SESSION['Fullname'], 0, 0, 'L');
+    $pdf->Cell(60,5, $_SESSION['position'],0,0,'L');
+    $pdf->Cell(120,-10, $_SESSION['captain'], 0, 0, 'R');
+    $pdf->Cell(-5,5,"Punong Barangay",0,0,'R');
+
 
 $pdf->Output();
-}
+
  ?>  
  <!DOCTYPE html>  
  <html>
  
-      <head>  
+      <head> 
+      <link rel="stylesheet" type="text/css" href="../bootstrap.css"> 
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.css" / >
                        
       </head>  
-      <body>  
+      <body>  <center>
            <br /><br />  
            <div class="container" style="width:800px;">  
                 <h3 align="center"></h3><br />  
@@ -345,10 +362,9 @@ $pdf->Output();
           ?>
                      </table>  
                      <br />  
-                     <form method="post">  
-                          <input type="submit" name="create_pdf" class="btn btn-danger" value="Create PDF" />  
-                     </form>  
+                     
                 </div>  
            </div>  
+         </center>
       </body>  
  </html>  

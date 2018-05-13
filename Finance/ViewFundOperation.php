@@ -1,13 +1,35 @@
-<?php session_start();
-$year = $_POST['year'];
+ <?php session_start();
+ include('dbcon.php');
+$year=$_GET['year'];
 ?>
-<html>
-<head>
-<link href="Style.css" style="text/css" rel="stylesheet">
 
-</head>
-<body>
- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Statement of Fund Operation</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/css/mis.css" rel="stylesheet">
+      <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+      </head>
+  <body> 
+<link href="Style.css" style="text/css" rel="stylesheet">
+ <br>
+<div class="head"><font size="5">Statement of Fund Operation</font></div>
+	<br>
+
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'printButton.php';"  >Back
+  <span class="glyphicon glyphicon" aria-hidden="true"></span>
+</button>
+
+ <?php
+include("dbcon.php");
+?>
+
 <style>
 table{
 	border-collapse: collapse;
@@ -19,193 +41,138 @@ th,td{
 }
 
 tr:nth-child(even){ background-color:#f2f2f2;}
+
+
+td.amount{
+	text-align: right;
+}
 </style>
 
-		<section id="finance" class="module">
+<center>
 
-	    <article>
-			
+
+	<?php
 		
-			<center>
+include('dbcon.php');
 
-<br>
-<div class="head"><font size="5">STATEMENT OF FUND OPERATION</font></div>
-<br><br>
+
+$res = mysqli_query($con, "SELECT * FROM finance_fundoperation_incomeset fs, finance_fundoperation_income fi WHERE fs.income_id=fi.income_id AND fs.income_year LIKE '%$year%'");
+
+$tp = 0;?>
+
+<div class="container">
+  <div class="table-responsive">
+  <table class="table table table-hover" id="mytable">
+  <thead>
+     <tr>
+      <th scope="col"><center>Particulars</center></th>
+      <th scope="col"><center>Account Classification</center></th>
+      <th scope="col"><center>Year</center></th>
+      <th scope="col"><center>Amount</center></th>
+      
+  </thead>
+
+<?php
+					while($row = mysqli_fetch_array($res)){
+					$tp += $row["income_amount"];
+							$id = $row["income_id"];
+							echo "<tr>
+							<td><center>".$row["income_type"]."</center></td>
+							<td><center>".$row["income_code"]."</center></td>
+							<td><center>".$row["income_year"]."</center></td>
+							<td class='amount'>".number_format($row["income_amount"],2)."</td>
+
+					</tr>";
+						}
+						echo "<tr><td><td></td>
+							<td><b>Total Income</b></td>
+							<td class='amount'><b>".number_format($tp,2)."</td></b></td><tr>";
+?>
+
 
 
 <?php
-echo "CY ";
-echo $year
+		
+include('dbcon.php');
+
+
+$ress = mysqli_query($con, "SELECT * FROM finance_fundoperation_psset ps, finance_fundoperation_ps pp WHERE ps.service_id=pp.service_id AND ps.service_year LIKE '%$year%'");
+
+		
+$tp = 0;?>
+
+<?php
+					while($row = mysqli_fetch_array($ress)){
+					$tp += $row["service_amount"];
+							$id = $row["service_id"];
+							echo "<tr>
+							<td><center>".$row["service_position"]."</center></td>							
+							<td><center>".$row["service_code"]."</center></td>
+							<td><center>".$row["service_year"]."</center></td>
+							<td class='amount'>".number_format($row["service_amount"],2)."</td>
+					</tr>";
+						}
+						echo "<tr><td><td></td>
+							<td><b>Total Personal Services</b></td>
+							<td class='amount'><b>".number_format($tp,2)."</b></td></td><tr>";
 ?>
-<br><br>
-<div class="fontstyle">Income
-</div>
-<form><table border="2">
-	<tr>
-		<td><center>Particulars</center></td>
-		<td><center>Account</center><br><center>Classification</center></td>
-		<td><center>Amount</center></td>
-		<td><center>Update</center></td>
-		<td><center>Delete</center></td>
-	</tr>
-	<tr>
-	<?php
-						
-				include('dbcon.php');
 
-						$query = "SELECT * FROM `finance_income` WHERE `income_year`LIKE '%$year%'";
-						$res = mysqli_query($con,$query);
-						$tp = 0;				
-					while($row = mysqli_fetch_array($res)){
-							$tp += $row["income_amount"];
+<?php
+		
+include('dbcon.php');
 
-							$id = $row["income_id"];
-							echo "<tr>
-							<td>".$row["income_particular"]."</td>
-							<td>".$row["income_code"]."</td>
-							<td>".$row["income_amount"]."</td>
-							
-							<td><center><a href='FinanceIncomeUpdate.php?id=$id'><button  class='btn btn-success'> UPDATE </button></a>&nbsp;&nbsp;&nbsp;&nbsp;</td></center>
-							<td><center><a href='FinanceIncomeDelete.php?id=$id'><button  class='btn btn-success'> DELETE </button></a></td></tr></center>";
-									
-						}
-						echo "<tr><td></td>
-							<td>total</td>
-							<td>".$tp."</td><td></td><td></td><tr>";
-					?>
-				</tr>
 
-				<br>
-</table>
-<br>
-<br>
-<div class="fontstyle">Personal Services
-</div>
-<table border="2">
-	<tr>
-		<td><center>Particulars</center></td>
-		<td><center>Account</center><br><center>Classification</center></td>
-		<td><center>Amount</center></td>
-		<td><center>Update</center></td>
-		<td><center>Delete</center></td>
-	</tr>
-	<tr>
-	<?php
-						
-				include('dbcon.php');
+$resss = mysqli_query($con, "SELECT * FROM finance_fundoperation_mooeset ms, finance_fundoperation_mooe mm WHERE ms.mooe_id=mm.mooe_id AND ms.mooe_year LIKE '%$year%'");
 
-						$query = "SELECT * FROM `finance_personalservices` WHERE `ps_year`LIKE '%$year%'";
-						$res = mysqli_query($con,$query);
-						$tp = 0;				
-					while($row = mysqli_fetch_array($res)){
-							$tp += $row["ps_amount"];
-								
-							$id = $row["ps_id"];
-							echo "<tr>
-							<td>".$row["ps_particular"]."</td>
-							<td>".$row["ps_code"]."</td>
-							<td>".$row["ps_amount"]."</td>
-							<td><center><a href='FinancePersonalServicesUpdate.php?id=$id'><button  class='btn btn-success'> UPDATE </button></a>&nbsp;&nbsp;&nbsp;&nbsp;</td></center>
-							<td><center><a href='FinancePersonalServicesDelete.php?id=$id'><button  class='btn btn-success'> DELETE </button></a></td></tr></center>";
-									
-						}
-						echo "<tr><td></td>
-							<td>total</td>
-							<td>".$tp."</td><td></td><td></td><tr>";
-					?>
-				</tr>
+		
+$tp = 0;?>
 
-				<br>
-</table>
-<br>
-<br><div class="fontstyle">Maintenance and Other Operating Expenses
-</div>
-
-<table border="2">
-	<tr>
-		<td><center>Particulars</center></td>
-		<td><center>Account</center><br><center>Classification</center></td>
-		<td><center>Amount</center></td>
-		<td><center>Update</center></td>
-		<td><center>Delete</center></td>
-	</tr>
-	</tr>
-	<tr>
-	<?php
-						
-						include('dbcon.php');
-
-						$query = "SELECT * FROM `finance_mooe` WHERE `mooe_year` LIKE '%$year%'";
-						$res = mysqli_query($con,$query);
-						$tp = 0;				
-					while($row = mysqli_fetch_array($res)){
-							$tp += $row["mooe_amount"];
-								
+<?php
+			
+					while($row = mysqli_fetch_array($resss)){
+					$tp += $row["mooe_amount"];
 							$id = $row["mooe_id"];
 							echo "<tr>
-							<td>".$row["mooe_particular"]."</td>
-							<td>".$row["mooe_code"]."</td>
-							<td>".$row["mooe_amount"]."</td>
-							<td><center><a href='FinanceMOOEUpdate.php?id=$id'><button  class='btn btn-success'> UPDATE </button></a>&nbsp;&nbsp;&nbsp;&nbsp;</td></center>
-							<td><center><a href='FinanceMOOEDelete.php?id=$id'><button  class='btn btn-success'> DELETE </button></a></td></tr></center>";
-									
+							<td><center>".$row["mooe_type"]."</center></td>
+							<td><center>".$row["mooe_code"]."</center></td>
+							<td><center>".$row["mooe_year"]."</center></td>
+							<td class='amount'>".number_format($row["mooe_amount"],2)."</td>
+					</tr>";
 						}
-						echo "<tr><td></td>
-							<td>total</td>
-							<td>".$tp."</td><td></td><td></td><tr>";
-					?>
-				</tr>
+						echo "<tr><td><td></td>
+							<td><b>Total Maintenance and Other Expenses</b></td>
+							<td class='amount'><b>".number_format($tp,2)."</b></td></td><tr>";
 
-				<br>
-</table>
-<br>
-<br><div class="fontstyle">Non-Office Expenditures
-</div>
 
-<table border="2">
-	<tr>
-		<td><center>Particulars</center></td>
-		<td><center>Account</center><br><center>Classification</center></td>
-		<td><center>Amount</center></td>
-		<td><center>Update</center></td>
-		<td><center>Delete</center></td>
-	</tr>
-	<tr>
-	<?php
-						
-						include('dbcon.php');
+?>
 
-						$query = "SELECT * FROM `finance_noe` WHERE `noe_year` LIKE '%$year%'";
-						$res = mysqli_query($con,$query);
-						$tp = 0;				
-					while($row = mysqli_fetch_array($res)){
-							$tp += $row["noe_amount"];
-								
+<?php
+		
+include('dbcon.php');
+
+
+$ressss = mysqli_query($con, "SELECT * FROM finance_fundoperation_noeset ns, finance_fundoperation_noe nn WHERE ns.noe_id=nn.noe_id AND ns.noe_year LIKE '%$year%'");
+
+$tp = 0;?>
+
+<?php
+			
+					while($row = mysqli_fetch_array($ressss)){
+					$tp += $row["noe_amount"];
 							$id = $row["noe_id"];
 							echo "<tr>
-							<td>".$row["noe_particular"]."</td>
-							<td>".$row["noe_code"]."</td>
-							<td>".$row["noe_amount"]."</td>
-							<td><center><a href='FinanceNOEUpdate.php?id=$id'><button  class='btn btn-success'> UPDATE </button></a>&nbsp;&nbsp;&nbsp;&nbsp;</td><center>
-							<td><center><a href='FinanceNOEDelete.php?id=$id'><button  class='btn btn-success'> DELETE </button></a></td></tr><center>";
-									
+							<td><center>".$row["noe_type"]."</center></td>
+							<td><center>".$row["noe_code"]."</center></td>
+							<td><center>".$row["noe_year"]."</center></td>
+							<td class='amount'>".number_format($row["noe_amount"],2)."</td>
+					</tr>";
 						}
-						echo "<tr><td></td>
-							<td>total</td>
-							<td>".$tp."</td><td></td><td></td><tr>";
-									
-					?>
-				</tr>
-
-				<br>
-</table>
-					
-					
-			</center>
-            		
-
-		</article>
-        </section>
-		
-<body>
-<html>
+						echo "<tr><td><td></td>
+							<td><b>Total Non-Office Expenditures</b></td>
+							<td class='amount'><b>".number_format($tp,2)."<b></td></td><tr>";
+?>
+						
+</center>
+</div>
+</body>
+</html>

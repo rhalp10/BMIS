@@ -28,6 +28,17 @@ $largestNumber= $rid= "";
                                   ?>
 
 
+<?php
+include("connections.php");
+$largestocc= $oid= "";
+                           $rowSQL = mysqli_query($connections, "SELECT MAX( occupation_ID ) AS max FROM `ref_occupation`;" );
+                                  $row = mysqli_fetch_array( $rowSQL );
+                                  $largestocc = $row['max'];
+                                    $oid= $largestocc+1;
+                              
+
+                                  ?>
+
 
 <?php
 include("connections.php");
@@ -39,6 +50,8 @@ $largest_address= $aid= "";
                                  
 
                                   ?>
+
+
 
 
 <?php
@@ -178,10 +191,15 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
        }
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
-             $occ= "";
+            
+          
+            $res_occupation=$oid;
+            
+           
                         $rows = mysqli_query($connections, "SELECT occupation_ID  FROM `ref_occupation` where occupation_Name = '$iocc';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $occ = $row['occupation_ID'];
+            
              $res_occupation=$occ;
         }
 
@@ -247,6 +265,9 @@ $res_street=$_POST["res_street"];
 $res_subd=$_POST["res_subd"];
         }
 
+if ($_SERVER["REQUEST_METHOD"]== "POST"){
+$res_trabaho=$_POST["res_trabaho"];
+        }
 
 
 if ($_SERVER["REQUEST_METHOD"]== "POST"){
@@ -295,25 +316,30 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
        
    
  
-If($rid &&$res_fname  && $res_lname && $res_suffix && $res_gender && $res_bdate && $res_civilstatus && $res_religion && $res_religion && $res_occupationstatus && $res_occupation && $res_height && $res_weight && $res_citizenship){
-        
+If($rid && $res_fname  && $res_lname  && $res_gender && $res_bdate && $res_civilstatus  && $res_religion  && $res_citizenship){
+  
     
+     if($res_trabaho){
+         $res_occupation=$oid;
+          $query=mysqli_query($connections,"INSERT INTO ref_occupation(occupation_Name,occupation_ID) VALUES('$res_trabaho','$oid') ");
+     }
     
         $query=mysqli_query($connections,"INSERT INTO resident_detail(res_ID,res_Img, 
-res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religion_ID,res_Height,res_Weight, occuStat_ID,occupation_ID,country_ID) VALUES('$rid','$file','$res_fname','$res_mname','$res_lname','$res_suffix','$res_gender','$res_bdate','$res_civilstatus','$res_religion','$res_height', '$res_weight','$res_occupationstatus','$res_occupation','$res_citizenship') ");
+res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religion_ID,res_Height,res_Weight, occuStat_ID,occupation_ID,country_ID,Status) VALUES('$rid','$file','$res_fname','$res_mname','$res_lname','$res_suffix','$res_gender','$res_bdate','$res_civilstatus','$res_religion','$res_height', '$res_weight','$res_occupationstatus','$res_occupation','$res_citizenship','Active') ");
     echo "<script type='text/javascript'>alert('submitted successfully!')</script>";
     
     
-        if ($res_contactnum && $rid && $res_contacttype && $res_citizenship){
+        if ($rid  && $res_citizenship){
              $query=mysqli_query($connections,"INSERT INTO resident_contact(contact_ID,contact_telnum,res_ID,contactType_ID,country_ID) VALUES('$cid','$res_contactnum','$rid','$res_contacttype','$res_citizenship') ");
             
         }
     
-          if ( $rid ){
+          if ( $rid && $res_houseno && $res_purokno && $res_address){
              $query=mysqli_query($connections,"INSERT INTO resident_address(address_ID,address_Unit_Room_Floor_num,res_ID,address_BuildingName,address_Lot_No,address_Block_No,address_Phase_No,address_House_No,address_Street_Name,address_Subdivision,country_ID,purok_ID,region_ID,addressType_ID) VALUES('$aid','$res_unit','$rid','$res_building',' $res_lot',' $res_block','$res_phase','$res_houseno','$res_street','$res_subd','$res_citizenship','$res_purokno','$res_region','$res_address') ");
             
         }
          
+        
     header('Location: profile.php');
        
     }
@@ -338,24 +364,18 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
       
       
       </head>
-  <body style="font-family: calibri; font-size: 20px; ">
+  <body style="font-family: calibri; font-size: 18px; ">
 
 <br>
 <br>
 <br>
  <div class="container">
 <?php 
-            if ($_SESSION['position']=='Barangay Secretary')
-            echo'
-            <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#myModal"   >Add resident
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-            
-         <button type="button" class="btn btn-info col-lg-offset-10 pull-right" data-toggle="modal" data-target="#print"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-            ';?>
-
-
-
+if ($_SESSION['position']=='Barangay Secretary')
+echo'
+<button type="button" class="btn btn-primary col-lg-offset-10" data-toggle="modal" data-target="#myModal"   >Add resident
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+</button>';?>
     </div><br>
    
 
@@ -371,28 +391,52 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
       <form method ="POST" enctype="multipart/form-data" action="<?php htmlspecialchars("PHP_SELF");?>" >
 
 
-      <div class="modal-body"> 
+      <div class="modal-body">
+<br>
+<br>
+
+      <h4 style="text-align: center; font-style: normal;font-size: 18px;font-family: Verdana">PERSONAL INFORMATION</h4>
+      <br>     
 <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <style type="text/css">
 .thumb-image{
  float:left;width:250px;height: 200px;
  position:relative;
- padding:5px;
+ padding:6px;
 }
 </style>
+ <div class="clearfix"></div>
+<center><p style="font-size: 15px;">Fill up all the required fields with asterisk**</p></center>
+ <div class="clearfix"></div>
 <div class="col-lg-offset-4" id="image-holder">
     </div>
      <div class="clearfix"></div>
-<div class="form-group col-lg-offset-4 col-md-4">
- <div class="file-upload">
-  <div class="file-select">
-    <div class="file-select-button" id="fileName">Profile Picture</div>
-    <div class="file-select-name" id="noFile">No file chosen...</div> 
-    <input type="file" name="image" id="image">
-  </div>
+<div class="form-group col-lg-offset-5 col-md-4">
+  <div class="upload">
+      <input type="file" name="image" id="image" />
+    </div>
+   
 </div>
-</div>
+
+<style type="text/css">
+  div.upload {
+    width: 113px;
+    height: 29px;
+    background: url("images/Choose-photo.png");
+    overflow: hidden;
+}
+
+div.upload input {
+    display: block !important;
+    width: 157px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+</style>
+
+
 
 <script>
     function numbersOnly(input){
@@ -403,26 +447,26 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
 
   <div class="clearfix"></div>
   <div required class="form-group col-md-4">
-      <label for="res_fname">Firstname</label>
-    <input type="text" maxlength="20" class="form-control" id="res_fname" name="res_fname" placeholder="Firstname" required>
+      <label for="res_fname">First name*</label>
+    <input type="text" maxlength="20" required class="form-control" id="res_fname" name="res_fname" placeholder="First name" required>
   </div>
 
 
   <div class="form-group col-md-4">
-      <label for="res_mname">Middlename</label>
-    <input type="text" maxlength="20" class="form-control" id="res_mname" name="res_mname" placeholder="Middlename">
+      <label for="res_mname">Middle name </label>
+    <input type="text" maxlength="20" class="form-control" id="res_mname" name="res_mname" placeholder="Middle name">
   </div>
 
 
   <div class="form-group col-md-4">
-      <label for="res_lname">Lastname</label>
-    <input type="text" maxlength="20" class="form-control" id="res_lname" name="res_lname" placeholder="Lastname" required>
+      <label for="res_lname">Last name*</label>
+    <input type="text" maxlength="20" class="form-control" id="res_lname" name="res_lname" placeholder="Last name" required>
   </div>
 
           <div class="form-group col-md-4">
     <label for="res_suffix">Suffix</label>
   <select  class="form-control" id="res_suffix" name="res_suffix">
-     <option value="" >Suffix</option>
+     
    <?php
           $res=mysqli_query($link,"SELECT * FROM ref_suffixname");
         while ($row=mysqli_fetch_array($res))
@@ -438,9 +482,9 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
   </div>
       
 <div class="form-group col-md-4">
-    <label for="res_gender">Gender</label>
+    <label for="res_gender">Sex*</label>
   <select required class="form-control" id="res_gender" name="res_gender">
-    <option value="" disabled selected>Gender</option>
+    <option value="" disabled selected>Sex</option>
  
         <?php
           $res=mysqli_query($link,"SELECT * FROM ref_gender");
@@ -455,21 +499,24 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
         ?>
 </select>
   </div>
-          
-          
+
            <div class="form-group col-md-4">
-      <label for="res_bdate">Birthdate</label>
-    <input placeholder="Birthdate" class="form-control" type="text" onfocus="(this.type='date')" onblur="getAge();"  id="res_bdate" name="res_bdate"> <!-- onblur="(this.type='text')" -->
+      <label for="res_bdate">Birthdate*</label>
+    <input  placeholder="Birthdate"  required class="form-control" type="date"  id="res_bdate" name="res_bdate" onblur="getAge();" >
   </div>
 
+
 <div class="form-group col-md-4">
-    <label for="res_age">Age</label>
+    <label for="res_age">Age*</label>
     <input type="number" readonly maxlength="3" class="form-control" id="res_age" placeholder="Age" >
   </div>
-
+          
+          
+          
+ 
           
 <div class="form-group col-md-4">
-    <label for="res_civilstatus">Civil status</label>
+    <label for="res_civilstatus">Civil status*</label>
   <select required class="form-control"  id="res_civilstatus" name="res_civilstatus">
      <option value="" disabled selected>Civil status</option>
  <?php
@@ -487,14 +534,9 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
 </div>          
           
 
-<div class="form-group col-md-4">
-    <label for="res_contactnum">Contact</label>
-    <input  type="text" maxlength="11" class="form-control" id="res_contactnum" name="res_contactnum" onkeyup="numbersOnly(this)" placeholder="Contact number">
-  </div>
-
-          <div class="form-group col-md-4">
+            <div class="form-group col-md-4">
       <label for="res_contacttype">Contact type</label>
-  <select required class="form-control" id="res_contacttype" name="res_contacttype">
+  <select class="form-control" id="res_contacttype" name="res_contacttype" onchange="maxLengthFunction()">
     <option value="" disabled selected>Contact type</option>
    <?php
           $res=mysqli_query($link,"SELECT * FROM ref_contact");
@@ -508,17 +550,39 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
 
         ?>
 </select>
-</div>
+</div> 
+          
+          
+            <script>
+ $(function () {
+        $("#res_contacttype").change(function () {
+            if ($(this).val() == "N/A") {
+                  document.getElementById("res_contactnum").disabled = true;
+            
+            }
+            else {
+                  document.getElementById("res_contactnum").disabled = false;
+            }
+        });
+    });
+</script>    
+          
+<div class="form-group col-md-4">
+    <label for="res_contactnum">Contact</label>
+    <input  type="text" maxlength="11" class="form-control" id="res_contactnum" name="res_contactnum" onkeyup="numbersOnly(this)" placeholder="Contact number">
+  </div>
+
+       
           
 
 <div class="form-group col-md-4">
-      <label for="res_mname">Height</label>
+      <label for="res_mname">Height</label><label ><font size="2">&nbsp; (Optional)</font></label>
     <input type="number" class="form-control" id="res_height" name="res_height" placeholder="Meter/Centimeter">
   </div>
 
 
 <div class="form-group col-md-4">
-      <label for="res_mname">Weight</label>
+      <label for="res_mname">Weight</label><label ><font size="2">&nbsp; (Optional)</font></label>
     <input type="number" class="form-control" id="res_weight" name="res_weight" placeholder="Kilogram">
   </div>
 
@@ -528,7 +592,7 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
 
 
           <div class="form-group col-md-4">
-      <label for="res_citizenship">Citizenship</label>
+      <label for="res_citizenship">Citizenship*</label>
   <select required class="form-control" id="res_citizenship" name="res_citizenship">
     <option value="" disabled selected>Citizenship</option>
    <?php
@@ -547,7 +611,7 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
 </div>
           
 <div class="form-group col-md-4">
-    <label for="res_religion">Religion</label>
+    <label for="res_religion">Religion*</label>
     <select required class="form-control" id="res_religion" name="res_religion">
  <option value="" disabled selected>Religion</option>
         <?php
@@ -570,8 +634,8 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
 
    <div class="form-group col-md-4">
       <label for="res_occupationstatus">Occupation status</label>
-  <select required class="form-control" id="res_occupationstatus" name="res_occupationstatus">
- <option value="" disabled selected>Occupational status</option>
+  <select class="form-control" id="res_occupationstatus" name="res_occupationstatus">
+ <option value="" disabled selected></option>
   <?php
           $res=mysqli_query($link,"SELECT * FROM ref_occupation_status");
         while ($row=mysqli_fetch_array($res))
@@ -585,11 +649,23 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
         ?> 
  </select>
 </div>
-          
+          <script>
+ $(function () {
+        $("#res_occupationstatus").change(function () {
+            if ($(this).val() == "Unemployed") {
+                  document.getElementById("res_occupation").disabled = true;
+            
+            }
+            else {
+                  document.getElementById("res_occupation").disabled = false;
+            }
+        });
+    });
+</script>        
           
   <div class="form-group col-md-4">
       <label for="mname">Occupation</label>
-    <select required class="form-control" id="res_occupation" name="res_occupation">
+    <select  class="form-control" id="res_occupation" name="res_occupation" disabled>
  <option value="" disabled selected>Occupational </option>
         <?php
           $res=mysqli_query($link,"SELECT * FROM ref_occupation");
@@ -602,10 +678,27 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
         }
 
         ?>
-      
+  <option value="Others">Others</option>    
  </select>
   </div>
+          
+            <script>
+ $(function () {
+        $("#res_occupation").change(function () {
+            if ($(this).val() == "Others") {
+                  document.getElementById("res_trabaho").disabled = false;
+            } else {
+                  document.getElementById("res_trabaho").disabled = true;
+            }
+        });
+    });
+</script>        
 
+          <div class="form-group col-md-3">
+     <label for="mname">Adding Occupation</label>
+    <input type="text" maxlength="20" class="form-control" id="res_trabaho" name="res_trabaho" placeholder="Add Occupation" disabled>
+  </div>
+          
    <div class="clearfix"></div>
           <br>
 <br>
@@ -626,25 +719,25 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
 
   <div class="form-group col-md-4">
       <label for="res_lot">Lot</label>
-    <input type="text" maxlength="15" class="form-control" id="res_lot" name="res_lot" placeholder="Lot">
+    <input type="text" onkeypress="return isNumberKey(event)" maxlength="15" class="form-control" id="res_lot" name="res_lot" placeholder="Lot">
   </div>
 
   <div class="form-group col-md-4">
       <label for="res_block">Block</label>
-    <input type="text" maxlength="15" class="form-control" id="res_block" name="res_block" placeholder="Block">
+    <input type="text" onkeypress="return isNumberKey(event)" maxlength="15" class="form-control" id="res_block" name="res_block" placeholder="Block">
   </div>
 
   <div class="form-group col-md-4">
       <label for="res_phase">Phase</label>
-    <input type="text" maxlength="15" class="form-control" id="res_phase"  name="res_phase" placeholder="Phase">
+    <input type="text" onkeypress="return isNumberKey(event)" maxlength="15" class="form-control" id="res_phase"  name="res_phase" placeholder="Phase">
   </div>
           
           
           
           
           <div class="form-group col-md-4">
-      <label for="res_houseno">House number</label>
-    <input type="text" maxlength="15" class="form-control" id="res_houseno" name="res_houseno" placeholder="House number">
+      <label for="res_houseno">House number*</label>
+    <input type="text"  onkeypress="return isNumberKey(event)" maxlength="15" required class="form-control" id="res_houseno" name="res_houseno" placeholder="House number">
   </div>
 
           
@@ -661,7 +754,7 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
           
           
            <div class="form-group col-md-4">
-      <label for="res_purokno"> Purok no.</label>
+      <label for="res_purokno"> Purok no.*</label>
   <select required class="form-control" id="res_purokno" name="res_purokno">
  <option value="" disabled selected>Purok no.</option>
  <?php
@@ -682,7 +775,7 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
   
           
            <div class="form-group col-md-4">
-      <label for="res_address">Address type</label>
+      <label for="res_address">Address type*</label>
   <select required class="form-control" id="res_address" name="res_address">
    <option value="" disabled selected>Address type</option>
   <?php
@@ -722,135 +815,60 @@ res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religi
 
 <br>
  <br> <?php  
- $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
- $query ="SELECT rd.res_ID ,
-rd.res_fName ,
-rd.res_mName ,
-rd.res_lName ,
-sfx.suffix,
-rd.res_Bday ,
-rms.marital_Name,
-rg.gender_Name,
-rr.religion_Name,
-rc.country_nationality,
-rc.country_citizenship,
-ro.occupation_Name,
-ros.occuStat_Name,
-rd.res_Date_Record FROM resident_detail rd 
-LEFT JOIN ref_suffixname sfx ON rd.suffix_ID = sfx.suffix_ID 
-LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID 
-LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID 
-LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
-LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
-LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
-LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID";  
- $result = mysqli_query($connect, $query);  
- ?>  
-
-<div class="container">
-  <div class="table-responsive">
-  <table class="table table table-hover" id="mytable">
-  <thead>
-     <tr>
-      <th scope="col">Operations</th>
-      <th scope="col">ID</th>
-      <th scope="col">Firstname</th>
-      <th scope="col">Middle</th>
-      <th scope="col">Lastname</th>
-      <th scope="col">Suffix</th>
-      <th scope="col">Birthdate</th>
-      <th scope="col">Marital</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Religion</th>
-        <th scope="col">Nationality</th>
-          <th scope="col">Citizenship</th>
-        <th scope="col">Occupation</th>
-         <th scope="col">Status</th>
-            <th scope="col">Date record</th>
-    </tr>
-  
-  </thead>
-     <?php  
-                     while($row = mysqli_fetch_array($result))  
-                          {  
-                             ?> 
-                               <tr>  
-                               <td>
-                                <div class="btn-group">
-               <a href="profile-final.php?id=<?php echo $row['res_ID'] ?>" class="btn btn-primary btn-s">View</a>
-               <a href="edit.php?id=<?php echo $row['res_ID'] ?>" class="btn btn-info btn-s">Edit</a>
-               </div>
-                     
-                                   
-          </td>
-                                    <td><?php echo $row["res_ID"]?></td>  
-                                    <td><?php echo $row["res_fName"]?></td>  
-                                    <td><?php echo $row["res_mName"]?></td>  
-                                    <td><?php echo $row["res_lName"]?></td>  
-                                    <td><?php echo $row["suffix"]?></td> 
-                                      <td><?php echo $row["res_Bday"]?></td>  
-                                    <td><?php echo $row["marital_Name"]?></td>  
-                                    <td><?php echo $row["gender_Name"]?></td> 
-                                    <td><?php echo $row["religion_Name"]?></td> 
-                                     <td><?php echo $row["country_nationality"]?></td>  
-                                    <td><?php echo $row["country_citizenship"]?></td>  
-                                     <td><?php echo $row["occupation_Name"]?></td>  
-                                      <td><?php echo $row["occuStat_Name"]?></td>  
-                                       <td><?php echo $row["res_Date_Record"]?></td>  
-                                    
-                               </tr>  
-                               <?php
-                          }
-                          ?>  
-  <tfoot>
-    <tr>
-      <th scope="col">Operations</th>
-      <th scope="col">ID</th>
-      <th scope="col">Firstname</th>
-      <th scope="col">Middle</th>
-      <th scope="col">Lastname</th>
-      <th scope="col">Suffix</th>
-      <th scope="col">Birthdate</th>
-      <th scope="col">Marital</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Religion</th>
-        <th scope="col">Nationality</th>
-          <th scope="col">Citizenship</th>
-        <th scope="col">Occupation</th>
-         <th scope="col">Status</th>
-            <th scope="col">Date record</th>
-    </tr>
-  
-  </tfoot>
-  </table>
-</div>
-  </div>
-
-<div class="clearfix"></div>
+         $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+         $query ="SELECT rd.res_ID , rd.res_fName , rd.res_mName , rd.res_lName , sfx.suffix, rd.res_Bday , rms.marital_Name, rg.gender_Name, rr.religion_Name, rc.country_nationality, rc.country_citizenship, ro.occupation_Name, ros.occuStat_Name, rd.res_Date_Record FROM resident_detail rd LEFT JOIN ref_suffixname sfx ON rd.suffix_ID = sfx.suffix_ID LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID where rd.res_ID NOT IN (Select res_ID from resident_death) && rd.Status='Active'";  
+         $result = mysqli_query($connect, $query);  
+         ?>  
+      <div class="container">
+         <div class="table-responsive">
+            <table class="table table-bordered" id="mytable">
+               <thead>
+                  <tr>
+                     <th scope="col-2">Name</th>
+                     <th scope="col">Sex</th>
+                     <th scope="col">Citizenship</th>
+                     <th scope="col">Religion</th>
+                     <th scope="col">Civil Status</th>
+                     <th scope="col">Action</th>
+                  </tr>
+               </thead>
+               <?php  
+                  while($row = mysqli_fetch_array($result))  
+                       {  
+                          ?> 
+               <tr>
+             
+                  <td><?php echo $row["res_lName"].", "?> <?php echo $row["res_fName"]?> <?php echo"( ". $row["res_mName"]." )"?> <?php echo $row["suffix"]?></td>
+                  <td><?php echo $row["gender_Name"]?></td> 
+                  <td><?php echo $row["country_citizenship"]?></td>
+                  <td><?php echo $row["religion_Name"]?></td>
+                  <td><?php echo $row["marital_Name"]?></td>
+                  <td>
+                     <div class="btn-group">
+                        <a href="profile-final.php?id=<?php echo $row['res_ID'] ?>" class="btn btn-primary btn-xs">View</a>
+                       <?php if($_SESSION['position']!="Barangay Captain"){ echo '<a href="edit.php?id='.$row['res_ID'].'" class="btn btn-info btn-xs">Edit</a>';} ?> 
+                     </div>
+                  </td>
+               </tr>
+               <?php
+                  }
+                  ?>  
+               <tfoot>
+                  <tr>
+                     <th scope="col-2">Name</th>
+                     <th scope="col">Sex</th>
+                     <th scope="col">Citizenship</th>
+                     <th scope="col">Religion</th>
+                     <th scope="col">Status</th>
+                     <th scope="col">Action</th>
+                  </tr>
+               </tfoot>
+            </table>
+         </div>
+      </div>
+      <div class="clearfix"></div>
           <br>
 <br>
-<!-- <?php 
-if ($_SESSION['position']=='Barangay Secretary')
-echo'
-
-            
-    
- <style>
-  .file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
-.file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
-.file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
-.file-upload .file-select .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
-.file-upload .file-select:hover{border-color:#34495e;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
-.file-upload .file-select:hover .file-select-button{background:#34495e;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
-.file-upload.active .file-select{border-color:#3fa46a;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
-.file-upload.active .file-select .file-select-button{background:#3fa46a;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
-.file-upload .file-select input[type=file]{z-index:100;cursor:pointer;position:absolute;height:100%;width:100%;top:0;left:0;opacity:0;filter:alpha(opacity=0);}
-.file-upload .file-select.file-select-disabled{opacity:0.65;}
-.file-upload .file-select.file-select-disabled:hover{cursor:default;display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;margin-top:5px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
-.file-upload .file-select.file-select-disabled:hover .file-select-button{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
-.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
-
-</style>  ';?> -->
 
 
 <script>
@@ -879,57 +897,29 @@ function getAge(){
 
 </script>
   
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="vendor/js/jquery.dataTables.min.js"></script>  
      <script src="vendor/js/dataTables.bootstrap.min.js"></script>
-       <script>
-        $(document).ready(function() {
-    var table = $('#mytable').removeAttr('width').DataTable( {
-        scrollY:        "500px",
-        scrollX:        true,
-        scrollCollapse: true,
-        paging:         true,
-        columnDefs: [
-            { width: 110, targets: 0 }
+       <script>$(document).ready(function() {
+    var table = $('#mytable').removeAttr('width').DataTable();
+} );</script>
+      
+      <script type="text/javascript">
+   var uploadField = document.getElementById("image");
 
-        ],
-        fixedColumns: true
-    } );
-} );
-// $(document).ready(function() {
-//     $('#mytable').DataTable( {
-//     } );
-// } );
-
-</script>
+uploadField.onchange = function() {
+    if(this.files[0].size > 307200){
+      swal("ERROR", "Check the size of your image it must be less than 300 kb size or check the file you've selected it must be an image file type.");
+       this.value = "";
+    };
+};
+ </script>
       
       
-      <script>  
- $(document).ready(function(){  
-      $('#insert').click(function(){  
-           var image_name = $('#image').val();  
-           if(image_name == '')  
-           {  
-                alert("Please Select Image");  
-                return false;  
-           }  
-           else  
-           {  
-                var extension = $('#image').val().split('.').pop().toLowerCase();  
-                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
-                {  
-                     alert('Invalid Image File');  
-                     $('#image').val('');  
-                     return false;  
-                }  
-           }  
-      });  
- });  
- </script>  
-
- <script>
+ 
+  <script>
 $(document).ready(function() {
         $("#image").on('change', function() {
           //Get count of selected files
@@ -954,198 +944,167 @@ $(document).ready(function() {
                 reader.readAsDataURL($(this)[0].files[i]);
               }
             } else {
-              alert("This browser does not support FileReader.");
+               swal("ERROR", "This browser does not support FileReader.");
             }
           } else {
-            alert("Pls select only images");
+           swal("ERROR", "Check the size of your image it must be less than 300 kb size or check the file you've selected it must be an image file type.");
           }
         });
       });
 </script>
-    
-       <script type="text/javascript">
-   var uploadField = document.getElementById("image");
 
-uploadField.onchange = function() {
-    if(this.files[0].size > 2307200){
-       alert("File is too big!");
-       this.value = "";
-    };
-};
- </script>
+ <script>  
+ $(document).ready(function(){  
+      $('#insert').click(function(){  
+           var image_name = $('#image').val();  
+           if(image_name == '')  
+           {  
+               swal("ERROR", "Please select a image file.");   
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#image').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                    swal("ERROR", "Invalid image file.");  
+                     $('#image').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script> 
+
+
+
+
+  
       
+ <script type="text/javascript">
+  $(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+    $('#res_bdate').attr('max', maxDate);
+});
+ </script>
+<script type="text/javascript">
+  $(function() {
+
+  $('#res_fname').keydown(function (e) {
+  
+    if (e.shiftKey || e.ctrlKey || e.altKey) {
+    
+      e.preventDefault();
+      
+    } else {
+    
+      var key = e.keyCode;
+      
+      if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+      
+        e.preventDefault();
+        
+      }
+
+    }
+    
+  });
+  
+});
+</script>
+<script type="text/javascript">
+  $(function() {
+
+  $('#res_mname').keydown(function (e) {
+  
+    if (e.shiftKey || e.ctrlKey || e.altKey) {
+    
+      e.preventDefault();
+      
+    } else {
+    
+      var key = e.keyCode;
+      
+      if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+      
+        e.preventDefault();
+        
+      }
+
+    }
+    
+  });
+  
+});
+</script>
+<script type="text/javascript">
+  $(function() {
+
+  $('#res_lname').keydown(function (e) {
+  
+    if (e.shiftKey || e.ctrlKey || e.altKey) {
+    
+      e.preventDefault();
+      
+    } else {
+    
+      var key = e.keyCode;
+      
+      if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+      
+        e.preventDefault();
+        
+      }
+
+    }
+    
+  });
+  
+});
+</script>
+      
+      
+      <script type="application/javascript">
+
+  function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      }
+
+</script>
+
+<script type="text/javascript">
+   function maxLengthFunction()
+{
+
+   var ddl = document.getElementById("res_contacttype");
+   var strOption = ddl.options[ddl.selectedIndex].text
+
+   if(strOption == "Mobile")
+       document.getElementById("res_contactnum").maxLength="11";
+  if(strOption == "Home") 
+       document.getElementById("res_contactnum").maxLength="7";
+     if(strOption == "Work")
+       document.getElementById("res_contactnum").maxLength="11";
+  if(strOption == "Fax") 
+       document.getElementById("res_contactnum").maxLength="10";
+      if(strOption == "Etc") 
+       document.getElementById("res_contactnum").maxLength="11";
+}
+    </script>
   </body>  
 </html>
-
-
-<!-- Modal -->
-<div id="print" class="modal fade" role="dialog">
-   <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">GENERATE RESIDENT REPORTS</h4>
-         </div>
-         <div class="modal-body">
-            <form action="resident-export.php" target="_blank" method="POST">
-               <div class="modal-body">
-                  <div class="form-group">
-                     <div class="row">
-                        <div class="col-sm-6  text-center">
-                           <h1>All list of resident</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Resident.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <!-- <a href="resident-export.php?report=all" class="btn btn-primary btn-sm legitRipple" target="_blank">PRINT</a> -->
-                           <div class="btn-group">
-                              <button type="submit" name="resident" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="residentpdf" class="btn btn-danger btn-xs">Pdf</button>
-                           </div>
-                        </div>
-                        <div class="col-sm-6  text-center">
-                           <h1>Male Resident</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Male.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="male" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="malepdf" class="btn btn-danger btn-xs">Pdf</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="form-group">
-                     <div class="row">
-                        <div class="col-sm-6  text-center">
-                           <h1>Female Resident</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Female.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="female" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="femalepdf" class="btn btn-danger btn-xs">Pdf</button>
-                           </div>
-                        </div>
-                        <div class="col-sm-6  text-center">
-                           <h1>Infant</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Infant.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="Infant" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="Infantpdf" class="btn btn-danger btn-xs">Pdf</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="form-group">
-                     <div class="row">
-                        <div class="col-sm-6  text-center">
-                           <h1>Minor</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Minor.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="Minor" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="Minorpdf" class="btn btn-danger btn-xs">Pdf</button>
-                           </div>
-                        </div>
-                        <div class="col-sm-6  text-center">
-                           <h1>Teenager</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Teen.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="Teen" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="Teenpdf" class="btn btn-danger btn-xs">Pdf</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="form-group">
-                     <div class="row">
-                        <div class="col-sm-6  text-center">
-                           <h1>Adult</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Adult.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="Adult" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="Adultpdf" class="btn btn-danger btn-xs">Pdf</button>
-                           </div>
-                        </div>
-                        <div class="col-sm-6  text-center">
-                           <h1>Senior Citizen</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Senior.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="Senior" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="Seniorpdf" class="btn btn-danger btn-xs">Pdf</button>
-                              
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="form-group">
-                     <div class="row">
-                        <div class="col-sm-6  text-center">
-                           <h1>Employed</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Employed.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="employed" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="employedpdf" class="btn btn-danger btn-xs">Pdf</button>
-                              
-                           </div>
-                        </div>
-                        <div class="col-sm-6  text-center">
-                           <h1>Unemployed</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Unemployed.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="unemployed" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="unemployedpdf" class="btn btn-danger btn-xs">Pdf</button>
-                              
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="form-group">
-                     <div class="row">
-                        <div class="col-sm-6  text-center">
-                           <h1>Death</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/Death.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="death" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="deathpdf" class="btn btn-danger btn-xs">Pdf</button>
-                              
-                           </div>
-                        </div>
-                        <div class="col-sm-6  text-center">
-                           <h1>Pregnant</h1>
-                           <div class="thumbnail">
-                              <img   class='img-circle img-responsive' alt='' style="border-radius: 50%; width: 180px;height: 180px; background-image: url(images/pregnant.jpg); background-repeat: no-repeat;background-size: cover; border:solid 1px;">
-                           </div>
-                           <div class="btn-group">
-                              <button type="submit" name="preg" class="btn btn-success btn-xs">Excel</button>
-                              <button type="submit" name="pregpdf" class="btn btn-danger btn-xs">Pdf</button>
-                              
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </form>
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         </div>
-      </div>
-   </div>
-</div>

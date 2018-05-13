@@ -9,6 +9,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/css/mis.css" rel="stylesheet">
       <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+                  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
       </head>
   <body> 
 <link href="Style.css" style="text/css" rel="stylesheet">
@@ -23,7 +26,7 @@
 	<tr>
 	<br><br><br><br>
 		<td><div class="form-group col-md-3">
-			<label for="service_id">Services Type</label>
+			<label for="service_id">Services Particular</label>
 		<td>
 			<?php
 				include('dbcon.php');
@@ -32,7 +35,7 @@
 			?>
 					<form action="ServiceFundOperationSetInsert.php" method="POST">
 			<select name="service_id" class="form-control" >
-				<option value="">SELECT SERVICE TYPE</option>
+				<option value="">Select Service Type</option>
 				<?php
 					if($rowCount > 0){
 						while($row = $query->fetch_assoc()){
@@ -55,8 +58,8 @@
 	<tr>
 	<td>
 		<div class="form-group col-md-3">
-			<label for="service_position">Position</label>
-		<td><input type="text" class="form-control" name="service_position" placeholder="Enter Service Position" required ></td>
+			<label for="service_position">Classification</label>
+		<td><input type="text" class="form-control" name="service_position" placeholder="Enter Service Classification" required ></td>
 	</div>
 	</tr>
 
@@ -64,20 +67,24 @@
 	<td>
 		<div class="form-group col-md-3">
 			<label for="service_amount">Amount</label>
-		<td><input type="number" class="form-control" name="service_amount" placeholder="Enter Service Amount" required ></td>
+		<td><input type="text" maxlength=20 class="form-control input-sm text-right amount" name="service_amount" placeholder="Enter Personal Service Amount" required ></td>
 	</div>
 	</tr>
 
 	<tr>
 	<td>
-		<div class="form-group col-md-3">
-			<label for="service_year">Year</label>
-		<td><input type="number" class="form-control" name="service_year" placeholder="Enter Year" required ></td>
-	</div>
-	</td>
+
+<div class="form-group col-md-3">
+	<label for="service_year">Year</label>
+	<input class="form-control" type="text" readonly name="service_year" value="<?php $d=date('Y'); echo $d+1; ?>">
+
+</div>
+
+</td>
 	</tr>
+
 	<td><div class="clearfix"></div>
-	<td><input type="submit" value="Submit" class="btn btn-success"></td>
+	<td><input type="submit" value="Submit" class="btn btn-primary"></td>
 	</td>
 </td>
 	</form>
@@ -85,12 +92,16 @@
 	<br><br>
 	<form action="ServiceFundOperationSetView.php" method="POST">
 		<div class="form-group col-mid-3">
-		<td><input type="submit" value="View" class="btn btn-success"></td>
+		<td><input type="submit" value="View" class="btn btn-primary"></td>
 	</form>
 
 	</center>
 
 
-
 	</body>
+		<script type="text/javascript">
+$(function(){
+	$('.amount').mask('#,###,###,###,###.##',{ reverse : true});
+});
+</script>
 	</html>

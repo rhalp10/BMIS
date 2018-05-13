@@ -10,9 +10,8 @@ require('db.php');
 </head>
 <link href="css/design.css" rel="stylesheet" type="text/css">
 <body>
-	<div class="label">
-						<div class="nav" style="
-    background-color: #e94b3c">
+	<div class="label"> Health and Sanitation
+						<div class="nav">
 <?php
 if ($_SESSION['position']=='Barangay Secretary' OR $_SESSION['position']=='Barangay Health Worker' OR ($_SESSION['position']=='Barangay Councilor' && $_SESSION['committee']=="Health and Sanitation"))
     echo'

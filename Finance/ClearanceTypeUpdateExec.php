@@ -1,21 +1,23 @@
 <?php
 	include("dbcon.php");
 	$id= $_POST['clearance_id'];
-	$cf = $_POST['clearance_form'];
+	$cf = mysqli_real_escape_string($con, $_POST['clearance_form']);
+$cf = ucwords(strtolower($cf));
 
 
+		if($id>10){
 
-
-	$chk = mysqli_query($con, "SELECT * FROM `finance_clearance_list` WHERE `clearance_form` = '$cf'");
-		if(mysqli_num_rows($chk) > 0 ){
-			echo'<script>alert("CLEARANCE ALREADY EXISTS!");</script>';
-			require("ClearanceType.php");
-		}
-
-
-				$ins_query="INSERT into `finance_clearance_list` (`clearance_form`) values ('$cf')";
-				if ($con->query($ins_query) === TRUE) 
-				{
-					echo '<script> alert ("Saved")</script>';	
-					echo '<script> window.location = "ClearanceType.php"</script>';			
+		$sql = "UPDATE `finance_clearance_list` SET `clearance_id` = '$id',`clearance_form` = '$cf'  WHERE `clearance_id` = '$id'";
+		 		if ($con->query($sql) === TRUE) 
+		 		{
+					echo '<script> alert ("Data Updated")</script>';	
+					echo '<script> window.location = "ViewClearanceList.php"</script>';			
 				}
+
+}
+else{
+		echo "<script>alert('Default data cannot be updated.');</script>";
+	echo'<script> window.location = "ViewClearanceList.php"</script>';
+
+}
+?>

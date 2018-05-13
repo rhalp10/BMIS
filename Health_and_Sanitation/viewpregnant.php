@@ -46,8 +46,8 @@ function filterTable($query)
 </head>
 <link href="css/design.css" rel="stylesheet" type="text/css"> 
 <body>
-	<div class="label">
-						<div class="nav" style="background-color: #e94b3c">
+	<div class="label"> Health and Sanitation /Admin Panel 
+						<div class="nav">
 							<a href="index.php">Home</a>
 							<a href="view.php">Drug Inventory</a>
 							<a href="viewdrugrelease.php">Drug Distribution</a>
@@ -104,7 +104,16 @@ Date of Labor:
 <thead>
 <tr><th><strong>No.</strong></th><th><strong>First Name</strong></th><th><strong>Middle Name</strong></th><th><strong>Last Name</strong></th><th><strong>Date of Conception</strong></th><th><strong>Date of Labor</strong></th><th><strong>Date Recorded</strong></th><th><strong></strong></th><th><strong></strong></th></tr>
 </thead>
+<script>
+function deleletconfig(){
 
+var del=confirm("Are you sure you want to delete this record?");
+if (del==true){
+   alert ("record deleted")
+}
+return del;
+}
+</script>
 <tbody>
 	<?php 
 $count=1;
@@ -120,8 +129,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 	<td align="center"><?php echo $row["preg_Date"]; ?></td>
 	<td align="center"><?php echo $row["preg_Labor"]; ?></td>
 	<td align="center"><?php echo $row["preg_Date_Record"]; ?></td>
-	<td align="center"><a style="color:BLUE;" href="editpregnant.php?id=<?php echo $row["preg_ID"]; ?>">Edit</a></td>
-	<td align="center"><a style="color:BLUE;" href="deletepregnant.php?id=<?php echo $row["preg_ID"]; ?>">Delete</a></td>
+	<td align="center"><a style="text-decoration:none;color: blue" href="editpregnant.php?id=<?php echo $row["preg_ID"]; ?>">Edit</a></td>
+	<td align="center"><a style="text-decoration:none;color: blue" onclick="return deleletconfig()" href="deletepregnant.php?id=<?php echo $row["preg_ID"]; ?>">Delete</a></td>
 
 	</tr>
 

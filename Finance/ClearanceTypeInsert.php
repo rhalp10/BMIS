@@ -1,11 +1,12 @@
 <?php
-session_start();
  	include("dbcon.php");
-$clearance = $_POST['Clearance'];
+$clearance = mysqli_real_escape_string($con, $_POST['Clearance']);
+$clearance = ucwords(strtolower($clearance));
+
 
 	$chk = mysqli_query($con, "SELECT * FROM `finance_clearance_list` WHERE `clearance_form` = '$clearance'");
 		if(mysqli_num_rows($chk) > 0 ){
-			echo'<script>alert("CLEARANCE ALREADY EXISTS!");</script>';
+			echo'<script>alert("Clearance Already Exists!");</script>';
 			require("ClearanceType.php");
 		}
 
@@ -13,7 +14,7 @@ $clearance = $_POST['Clearance'];
 				$ins_query="INSERT into `finance_clearance_list` (`clearance_form`) values ('$clearance')";
 				if ($con->query($ins_query) === TRUE) 
 				{
-					echo '<script> alert ("Saved")</script>';	
+					echo '<script> alert ("Data Saved")</script>';	
 					echo '<script> window.location = "ClearanceType.php"</script>';			
 				}
 

@@ -1,5 +1,6 @@
 <?php
   include_once '../connection.php';
+
   $sql_Problema = "SELECT brgy_Name, citymun_Name, province_Name
                   FROM brgy_address_info";
   $result_Problema = mysqli_query($conn, $sql_Problema);
@@ -300,7 +301,7 @@ $datedate = date('Y-m-d H:i:s');
 
 
 $sqlsli = "INSERT INTO form_release (res_ID, form_ID, purpose_ID, release_date)
-         VALUES ('$res_IDnow', 1, 1,'$datedate');";
+         VALUES ('1', 1, 1,'$datedate');";
 
          mysqli_query($conn, $sqlsli);
 ?>

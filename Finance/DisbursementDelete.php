@@ -1,6 +1,10 @@
 <?php
-include('dbcon.php');
-$query = "DELETE FROM finance_disbursement WHERE disbursement_id='".$_GET["id"]."'"; 
-mysqli_query($con,$query)  or die(mysql_errno());
-header("Location: Disbursement.php"); 
-?>
+include_once('dbcon.php');
+
+$select = "DELETE FROM finance_disbursement WHERE `disbursement_id`='".$_GET['del_id']."'";
+$query = mysqli_query($con, $select);
+if($con->query($select) === TRUE){
+	echo "<script>alert('Data Deleted.');</script>";
+	echo'<script> window.location = "DisbursementView.php"</script>';
+}
+?>	

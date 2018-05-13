@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <title>Create Fencing Permit</title>
     <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap.css">
     <script src="../js/jquery-2.1.3.js">
     </script>
     <script type="text/JavaScript">
@@ -25,8 +26,8 @@
 
   <body>
     <div class="wrapper">
-      <nav>
-        <div class="logo">Fencing Permit</div>
+      <nav style="background: #14aa6c">
+        <div class="logo">Fencing Permit&nbsp;&nbsp;&nbsp; | </div>
         <ul>
           <li class="dd">
 
@@ -86,9 +87,11 @@
                      <label for="first">O.R No:</label>
                      <input type="text" name="orNo" id="orNo" readonly="readonly"/><br><br>
                    </div>
+                   <center>
                    <div class="btn paddingT100">
-                     <button type="submit">Submit</button>
+                     <button type="submit" class="btn btn-success">Submit</button>
                    </div>
+                   </center>
                  </div>
             </form>
           </div>

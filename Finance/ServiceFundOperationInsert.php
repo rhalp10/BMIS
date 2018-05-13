@@ -1,7 +1,9 @@
 	<?php
-session_start();
+ 	include('dbcon.php');
+
 $mc = $_POST['service_code'];
-$mt = $_POST['service_type'];
+$mt = mysqli_real_escape_string($con, $_POST['service_type']);
+$mt = ucwords(strtolower($mt));
 
 
 
@@ -10,7 +12,7 @@ $mt = $_POST['service_type'];
 
 $chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_ps` WHERE `service_code` = '$mc' OR `service_type`='$mt'");
 		if(mysqli_num_rows($chk) > 0 ){
-			echo'<script>alert("DATA ALREADY EXISTS!")</script>';
+			echo'<script>alert("Data already exists!")</script>';
 			require("ServiceFundOperation.php");
 		}
 
@@ -19,7 +21,7 @@ $chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_ps` WHERE `servi
 	$sql="INSERT INTO finance_fundoperation_ps (service_code,service_type) VALUES ('$mc','$mt')";
 				if ($con->query($sql) === TRUE) 
 				{
-					echo '<script> alert ("Saved")</script>';	
+					echo '<script> alert ("Data Saved")</script>';	
 					echo '<script> window.location = "ServiceFundOperation.php"</script>';			
 				}
 		}

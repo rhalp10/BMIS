@@ -21,13 +21,14 @@ $s1="";?>
     <meta charset="utf-8">
     <title>Forms and Clearances</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
   </head>
   <body>
     <div ng-app="app" ng-controller="ctrl" class="wrapper">
-      <nav  style="background-color: #e94b3c;" >
-        <div class="logo">Filter Log to Print</div>
+      <nav style="background: #14aa6c">
+        <div class="logo">Filter Log to Print&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </div>
         <ul>
-          <li><a href="index.php">Back</a></li>
+          <li><a style="text-decoration: none;"href="index.php">Back</a></li>
         </ul>
       </nav>
 
@@ -37,15 +38,16 @@ $s1="";?>
                           <div class="mb_logo3 borderNow">
                             <h3>Released FORMS</h3>
                             <form name="search"method="post">
-                            <input type="date" name="from" placeholder="From Date"/>
-                            <input type="date" name="to" placeholder="to Date"/>
-                            <input type="submit" name="search" value="Search"><br><br><br>
-                            <input type="submit" name="print" value="Print">
+                            <label>FROM : </label><input type="date" name="from" placeholder="From Date"/><br><br>
+                            <label>TO : </label><input type="date" name="to" placeholder="to Date"/><br><br>
+                            <input type="submit" name="search" value="SEARCH"<button class="btn btn-success"></button>
+                            <input type="submit" name="print" value="PRINT"<button class="btn btn-success"></button>
                             </form>
                           </div>
                           <div class="mb_logo borderNow">
                             <?php
                             if(isset($_POST['search'])){
+                             
                               $startd = $_POST['from'];
                               $endd = $_POST['to'];
                               $sss="SELECT res_fName, res_mName, res_lName, fcl.clearance_form, fcs.purpose, fcs.price, release_Date
@@ -79,11 +81,14 @@ $s1="";?>
                                 <td><?php echo $row['release_Date'];?></td>
                                 </tr>
                               <?php
+
                             }
                           }
                           else{
                             echo "<div class='warning'>No Record Found!!</div>";
+                            // echo '<script> window.history.back();</script>';
                           }
+
                         }
                         ?>
                               <div class="warning">

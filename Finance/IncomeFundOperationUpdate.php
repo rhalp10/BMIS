@@ -19,9 +19,15 @@ session_start();
       </head>
   <body> 
 <link href="Style.css" style="text/css" rel="stylesheet">
-
+<br>
 <div class="head"><font size="5">Income Update</font></div>
 <br><br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'IncomeFundOperationView.php';"  >Back
+  <span class="glyphicon glyphicon" aria-hidden="true"></span>
+</button>
+
 		<section id="asd" class="asds">
 
 	    <article>
@@ -56,20 +62,19 @@ session_start();
 			<br>
 			<tr>
 				<td><div class="form-group col-md-4">
-      			<label for="income_type">Income Type</label>
+      			<label for="income_type">Income Particular</label>
 				<td><input type="text" class="form-control" value="<?php echo $row1["income_type"]; ?>" required name="income_type" size="50">
 			</tr>
 			<br>
 	
 </table>
-		<button type="submit" value="Submit" class="btn btn-success">Submit</button>
+
+		<button type="submit" value="Submit" class="btn btn-primary">Update</button>
                     <input type="hidden" class="form-control" value="<?php echo $id; ?>" required name="id">
                 </form>
 
 			</center>
-		
-
-            		
+	
 
 		</article>
         </section>

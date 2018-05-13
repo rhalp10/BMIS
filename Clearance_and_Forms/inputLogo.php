@@ -7,44 +7,42 @@ $s1="";?>
     <meta charset="utf-8">
     <title>Forms and Clearances</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
   </head>
   <body>
+
     <div ng-app="app" ng-controller="ctrl" class="wrapper">
-      <nav  style="background-color: #e94b3c;" >
-        <div class="logo">Input Logo</div>
+      <nav style="background: #14aa6c">
+        <div class="logo">Input Logo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</div>
         <ul>
 
           <li class="dd">
 
           </li>
 
-          <li><a href="index.php">Back</a></li>
+          <li><a style="text-decoration: none"href="index.php">Back</a></li>
         </ul>
       </nav>
+      <br><br><br><br><br><br><br><br>
 
       <section class="sec1">
-                      <div class="qwe">
-                        <div class="input-container1">
-
+                          <div class="container">
+                        <div class="jumbotron">
+                         
                           <div class="mb_logo borderNow">
+                           
                             <h3>INPUT LOGO</h3>
 
-                            <div class="uploadform1">
-                              <div class="left1">
-                                <form class="" action="inputLogo.php" method="post" enctype="multipart/form-data">
-                                  <select name="logo_type">
-                                    <option name="logo_type" value="Municipal Logo">Municipal Logo</option>
+                            
+                                <form class="" action="inputLogo.php" method="post" enctype="multipart/form-data" class="form-group">
+                                  <select name="logo_type" class="form-control">
+                                    <option name="logo_type" value="Municipal Logo" >Municipal Logo</option>
                                     <option name="logo_type" value="Barangay Logo">Barangay Logo</option>
-                                  </select>
-
-                              </div>
-                              <div class="right1">
-                                <input class="file" type="file" name="logo">
-                                <input type="submit" name="submit" value="Upload">
+                                  </select><br>
+                                <input class="file form-control" type="file" name="logo"><br>
+                                <input type="submit" name="submit" value="UPLOAD" <button class="btn btn-success"></button>
                                 </form>
-                              </div>
-                            </div>
-                            <br><br><br>
+                           
                             <div class="warning">
                             <?php
                                 if (isset($_POST['submit'])) {
@@ -64,11 +62,13 @@ $s1="";?>
                                 }
                             ?>
                           </div>
+                          </tr>
+                          </table>
                           </div>
 
                         </div>
                       </div>
       </section>
-    </div>
+
   </body>
 </html>

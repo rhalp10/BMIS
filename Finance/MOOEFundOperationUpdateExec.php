@@ -4,7 +4,8 @@ session_start();
 	
     $id= $_POST['mooe_id'];
 	$mc = $_POST['mooe_code'];
-	$mt = $_POST['mooe_type'];
+	$mt = mysqli_real_escape_string($con, $_POST['mooe_type']);
+$mt = ucwords(strtolower($mt));
 
 
 

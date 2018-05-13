@@ -288,7 +288,7 @@ if (isset($_POST['submit']))
 </form>
 <br>
 <br>
-<table  class="table table-bordered">
+<table id="x" class="table table-bordered" >
 
 	<thead> <tr>
 			<th> Fullname </th>
@@ -469,9 +469,14 @@ if (isset($_POST['submit']))
   </div>
 </div>
 
- <script src="Resident_Profiling/jquery/jquery-3.3.1.min.js"></script>
+ 	<script src="Resident_Profiling/jquery/jquery-3.3.1.min.js"></script>
     <script src="Resident_Profiling/js/bootstrap.min.js"></script>
     <script src="Resident_Profiling/vendor/js/jquery.dataTables.min.js"></script>  
-     <script src="Resident_Profiling/vendor/js/dataTables.bootstrap.min.js"></script>
+    <script src="Resident_Profiling/vendor/js/dataTables.bootstrap.min.js"></script>
+    <script>
+	$(document).ready(function() {
+    $('#x').DataTable();
+	} );
+	</script>
 </body>
 </html>

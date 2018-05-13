@@ -1,0 +1,9 @@
+CHANGE/S: POP-UP MESSAGES
+
+(since yun lang naman po yung pinabago samin wala na pong ibang nabanggit)
+
+Pakidrop nalang po yung tables na "finance_fundoperation_noe" at "finance_fundoperation_noeset" para magcomplement sa funds na pinanggagalingan sa special project since sa id sila nagbased naggwa kami ng restriction na hindi pwedeng madelete yung limang fixed na sources of funds. Pero pede parin naman pong mag-add/update/delete kapag may bago.
+
+Bale yung bmis_db(8) nga po pala na nakaattach dito ay ang laman lang ay yung dalawang tables.
+
+Thanks :)

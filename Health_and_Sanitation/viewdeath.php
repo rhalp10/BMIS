@@ -43,9 +43,9 @@ function filterTable($query)
 </head>
 <link href="css/design.css" rel="stylesheet" type="text/css"> 
 
-<body> 
-	<div class="label">
-						<div class="nav" style="background-color: #e94b3c">
+<body>
+	<div class="label"> Health and Sanitation /Admin Panel
+						<div class="nav">
 							<a href="index.php">Home</a>
 							<a href="view.php">Drug Inventory</a>
 							<a href="viewdrugrelease.php">Drug Distribution</a>
@@ -56,35 +56,6 @@ function filterTable($query)
 						</div>		
 
 </div>
-        <br>
-	<h2>&nbsp&nbsp&nbsp&nbsp&nbspInsert New Record</h2>
-<form name="form" method="post" action="" > 
-<input type="hidden" name="new" value="1" />
-
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Resident's Name:
-<input type="text" name="resident_name" id="search" list="datalist1" placeholder="Enter here..." required />
-<datalist id=datalist1>
-<?php 
-$count=1;
-$sel_query="Select * from resident_detail ORDER BY res_ID asc;";
-$result = mysqli_query($con,$sel_query);
-while($row = mysqli_fetch_assoc($result)) { ?>
-<optgroup>
-<option> <?php echo $row["res_ID"]; ?> <?php echo " " ?> <?php echo $row["res_fName"]; ?><?php echo " "; ?><?php echo $row["res_mName"]; ?><?php echo " "; ?><?php echo $row["res_lName"]; ?></option></optgroup>
-<?php $count++; }
-?></datalist>
-Death Cause:
-<input type="text" name="cost" placeholder="Enter here..." />
-&nbsp&nbsp&nbspDate of Death: &nbsp&nbsp&nbsp<input id="date" type="date"  name="date" required /></p>
-<p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input name="submit" type="submit" value="Submit" required /></p>
- </form>
-<div id="header_container">		
-		    <div class="container">
-				<div id="header" class="row">	
-				</div>
-			</div>	
-        </div>		
-        <br>
 
  
 <h2>&nbsp&nbsp&nbsp&nbsp&nbspDeath Records</h2>
@@ -94,7 +65,7 @@ Death Cause:
             &nbsp&nbsp&nbsp<input type="submit" name="search" value="Search" ></p>
 <table width="90%" border="2" style="border-collapse:collapse;">
 <thead>
-<tr><th><strong>No.</strong></th><th><strong>Resident's Name</strong></th><th><strong>Death Cause</strong></th><th><strong>Date of Death</strong></th><th><strong>Date Recorded</strong></th><th><strong></strong></th><th><strong></strong></th></tr>
+<tr><th><strong>No.</strong></th><th><strong>Resident's Name</strong></th><th><strong>Death Cause</strong></th><th><strong>Date of Death</strong></th><th><strong>Date Recorded</strong></th></tr>
 </thead>
 <tbody>
 <?php 
@@ -108,8 +79,7 @@ while($row = mysqli_fetch_assoc($search_result)) { ?>
 	<td align="center"><?php echo $row["death_Cost"]; ?></td>
 		<td align="center"><?php echo $row["death_Date"]; ?></td>
 		<td align="center"><?php echo $row["death_Date_Record"]; ?></td>
-		<td align="center"><a style="color:BLUE;" href="editdeath.php?id=<?php echo $row["death_ID"]; ?>">Edit</a></td>
-	<td align="center"><a style="color:BLUE;" href="deletedeath.php?id=<?php echo $row["death_ID"]; ?>">Delete</a></td></tr>
+	</tr>
 <?php $count++; }
 
 ?>

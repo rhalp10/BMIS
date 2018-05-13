@@ -1,15 +1,31 @@
- <?php session_start();
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Management Information System</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/css/mis.css" rel="stylesheet">
+    <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+      </head>
+  <body> 
+
+<br><br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'ServiceFundOperationSet.php';"  >Back
+  <span class="glyphicon glyphicon" aria-hidden="true"></span>
+</button>
+
+<?php session_start();
 include("dbcon.php");
 ?>
-<html>
-<head><link href="Style.css" style="text/css" rel="stylesheet">
- <br> 
-<div class="head"><font size="5">Fund Operation Services</div>
-</head>
-
-<body>
+<link href="Style.css" style="text/css" rel="stylesheet">
 
 <style>
+
 table{
 	border-collapse: collapse;
 	width:50%;
@@ -26,56 +42,80 @@ td.amount{
 	text-align: right;
 }
 </style>
-	
-
-		<section id="asd" class="asds">
-
-	    <article>
-				
-			<center>
-<table border="2">
-	<tr>
-	</tr>
-	<tr><br>
-		<td><center>Type</center></td>
-		<td><center>Position</center></td>
-		<td><center>Amount</center></td>
-		<td><center>Year</center></td>
-		<td><center>Update</center></td>
-		<td><center>Delete</center></td>
-
-	</tr>
-	<tr>
-	<?php
+<center>
+  <?php
 		
-					include('dbcon.php');
+include('dbcon.php');
 
 
-						$res = mysqli_query($con, "SELECT finance_fundoperation_ps.service_type, finance_fundoperation_psset.service_position, finance_fundoperation_psset.service_amount, finance_fundoperation_psset.service_year,finance_fundoperation_psset.service_setid,finance_fundoperation_ps.service_id FROM finance_fundoperation_ps INNER JOIN finance_fundoperation_psset
-							WHERE finance_fundoperation_ps.service_id=
-							finance_fundoperation_psset.service_id");
+$res = mysqli_query($con, "SELECT finance_fundoperation_ps.service_type, finance_fundoperation_psset.service_position, finance_fundoperation_psset.service_amount, finance_fundoperation_psset.service_year,finance_fundoperation_psset.service_setid,finance_fundoperation_ps.service_id FROM finance_fundoperation_ps INNER JOIN finance_fundoperation_psset
+WHERE finance_fundoperation_ps.service_id=finance_fundoperation_psset.service_id");?>
 							
-					while($row = mysqli_fetch_array($res)){?>
-					<?php
-						$id = $row["service_setid"];
-                        
-							echo "<tr><td>".$row["service_type"]."<td>".$row["service_position"]."<td class='amount'>".number_format($row["service_amount"],2)."<td>".$row["service_year"]."</td>
-					<td><center><a href='ServiceFundOperationSetUpdate.php?id=$id'><button  class='btn btn-success'> UPDATE </button></a>&nbsp;&nbsp;&nbsp;&nbsp;</td><center>
-							<td><center><a href='ServiceFundOperationSetDelete.php?id=$id'><button  class='btn btn-success'> DELETE </button></a></td></tr><center>";			
-						}	
-						
-					?>
-				</tr>
-			</table>
+<div class="container">
+  <div class="table-responsive">
+  <table class="table table table-hover" id="mytable">
+  <thead>
+     <tr>
+      <th scope="col">Particulars</th>
+      <th scope="col">Position</th>
+      <th scope="col">Amount</th> 
+      <th scope="col">Year</th> 
+      <th scope="col">Update</th> 
+      <th scope="col">Delete</th></tr>
+  </thead>
 
-		</center>
-            		
+<?php
+while($row = mysqli_fetch_array($res)){?>
+<?php
+$id = $row["service_setid"];?>
+<tr>                    
+<td><?php echo $row["service_type"]?></td>  
+<td><?php echo $row["service_position"]?></td> 
+<td class='amount'><?php echo number_format($row["service_amount"],2)?></td> 
+<td><?php echo $row["service_year"]?></td> 
 
+
+<td><a href="ServiceFundOperationSetUpdate.php?id=<?php echo $row['service_setid']?>" class="btn btn-primary">Update</a></td>
+    <td><input type="button" onClick="deleteme(<?php echo $row['service_setid']?>)" name="Delete" value="Delete" class="btn btn-primary"></td>
+    </tr>  
+
+<script language="javascript">
+  function deleteme(delid)
+  {
+    if(confirm("Are you sure you want to delete?")){
+      window.location.href='ServiceFundOperationSetDelete.php?del_id=' +delid+'';
+      return true;
+    }
+  }
+</script>
+<?php
+}
+?>  
+</div>
+</div>
+</table>
+
+<script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> 
+    <script src="vendor/js/jquery.dataTables.min.js"></script>  
+     <script src="vendor/js/dataTables.bootstrap.min.js"></script>
+       <script>$(document).ready(function() {
+    var table = $('#mytable').removeAttr('width').DataTable( {
+        scrollY:        "500px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false,
+        columnDefs: [
+            { width: 120, targets: 0 }
+
+        ],
+        fixedColumns: true
+    } );
+} );</script>
+
+</center>
+        		
 		</article>
         </section>
-
-
-
-		
 <body>
 <html>

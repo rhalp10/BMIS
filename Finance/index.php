@@ -22,7 +22,7 @@ ul {
 	margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #e94b3c;
+    background-color: #2d2d2d;
 }
 
 		li {
@@ -30,7 +30,7 @@ ul {
 		}
 
 li a, .dropbtn {
-	background-color: #e94b3c;
+	background-color: #2d2d2d;
     display: inline-block;
     color: white;
     text-align: center;
@@ -85,9 +85,9 @@ li.dropdown {
 <?php
 if ($_SESSION['position']=='Barangay Secretary' OR $_SESSION['position']=='Barangay Treasurer' OR ($_SESSION['position']=='Barangay Councilor' && $_SESSION['committee']=="Finance"))
 {echo'
-  <li><a class="active" href="missionvision.php" target = "Fradisplay">Home</a></li>
+  <li><a class="active" href="printButton.php" target = "Fradisplay">Home</a></li>
 		<li class="dropdown">
-		<a herf="" class="dropbtn">Setting</a>
+		<a herf="" class="dropbtn">Particular</a>
 			<div class="dropdown-content">
 		<a href="IncomeFundOperation.php" target = "Fradisplay">Income</a>
         <a href="ServiceFundOperation.php" target = "Fradisplay">Personal Services</a>
@@ -127,14 +127,12 @@ if ($_SESSION['position']=='Barangay Secretary' OR $_SESSION['position']=='Baran
 		<a href="Collection.php" target = "Fradisplay">Collection</a>
         <a href="Disbursement.php" target = "Fradisplay">Disbursement</a>
 		</li>
-			</div>
-        
-        <li><a href="printButton.php" target = "Fradisplay">View Records</a></li>';}?>
+			</div>';}?>
 
 
 </ul>
 	<div id="root">
-		<iframe class="frame" src="missionvision.php" name="Fradisplay" height=80% width=100%></iframe>
+		<iframe class="frame" src="printButton.php" name="Fradisplay" height=80% width=100%></iframe>
 	</div>
 	
 	</body>

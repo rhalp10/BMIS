@@ -45,8 +45,8 @@ function filterTable($query)
 <link href="css/design.css" rel="stylesheet" type="text/css"> 
 
 <body>
-	<div class="label">
-						<div class="nav" style="background-color: #e94b3c">
+	<div class="label"> Health and Sanitation /Admin Panel
+						<div class="nav">
 							<a href="index.php">Home</a>
 							<a href="view.php">Drug Inventory</a>
 							<a href="viewdrugrelease.php">Drug Distribution</a>
@@ -67,9 +67,7 @@ Description:&nbsp
 <input type="text" name="description" placeholder="Enter here..." required />
 &nbsp&nbspQuantity: &nbsp&nbsp&nbsp
 <input type="number" name="quantity" placeholder="Enter here..." required/>
-</p>
-<p>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspExpiration Date: &nbsp&nbsp&nbsp
+&nbsp&nbsp&nbspExpiration Date: &nbsp&nbsp&nbsp
 <input type="date" name="exp" placeholder="Enter here..." required/>
 </p>
 
@@ -100,7 +98,16 @@ Description:&nbsp
 <thead>
 <tr><th><strong>No.</strong></th><th><strong>Name</strong></th><th><strong>Quantity</strong></th><th><strong>Description</strong></th><th><strong>Expiration Date</strong></th><th><strong></strong></th><th><strong></strong></th></tr>
 </thead>
+<script>
+function deleletconfig(){
 
+var del=confirm("Are you sure you want to delete this record?");
+if (del==true){
+   alert ("record deleted")
+}
+return del;
+}
+</script>
 <tbody>
 <?php 
 $count=1;
@@ -111,14 +118,20 @@ while($row = mysqli_fetch_assoc($search_result)) { ?>
 	<td align="center"><?php echo $row["drug_Qnty"]; ?></td>
 	<td align="center"><?php echo $row["drug_Description"]; ?></td>
 	<td align="center"><?php echo $row["drug_Expiration_Date"]; ?></td>
-	<td align="center"><a style="color:BLUE;" href="edit.php?id=<?php echo $row["drug_ID"]; ?>">Edit</a></td>
-	<td align="center"><a style="color:BLUE;" href="delete.php?id=<?php echo $row["drug_ID"]; ?>">Delete</a></td>
+	<td align="center"><a style="text-decoration:none;color: blue" href="edit.php?id=<?php echo $row["drug_ID"]; ?>">Edit</a></td>
+	<td align="center"><a style="text-decoration:none;color: blue" onclick="return deleletconfig()" href="delete.php?id=<?php echo $row["drug_ID"]; ?>">Delete</a></td>
 	</tr>
 <?php $count++; }
 
 ?>
+
+
 </tbody>
 </table>
+  
+    
+        <h2 align="left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="print.php" style="text-decoration:none;color: blue">Print in PDF</a></h2>
+    
 
 
 <br /><br /><br /><br />

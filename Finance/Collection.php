@@ -9,41 +9,18 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/css/mis.css" rel="stylesheet">
       <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
+	    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
       </head>
   <body> 
 <link href="Style.css" style="text/css" rel="stylesheet">
  <br>
+
 <div class="head"><font size="5">Collection</font></div>
 <br><br>
 
 <center>
-<form action="CollectionDisbursementView.php" method="POST">
-	<td><div class="form-group col-lg-offset-3 col-md-3 ">
-	<input type="text" class="form-control" id="year" name="year" required placeholder="Enter year"></td>
-</div>
-
-<td><div class="form-group col-md-3">
-<select name="month" class="form-control">
-	<option selected value="">-select month-</option>
-						<option value="01">January
-						</option>
-						<option value="02">February</option>
-						<option value="03">March</option>
-						<option value="04">April</option>
-						<option value="05">May</option>
-						<option value="06">June</option>
-						<option value="07">July</option>
-						<option value="08">August</option>
-						<option value="09">September</option>
-						<option value="10">October</option>
-						<option value="11">November</option>
-						<option value="12">December</option>
-</select>
-</div>
-	<td><div class="clearfix"></div>
-		<input type="submit" value="View Records" class="btn btn-success"></td>
-</form>
-
 
 <br><br><br>
 <form action="CollectionInsertion.php" method="POST">
@@ -57,20 +34,33 @@
 
 		<td><div class="form-group col-md-4">
 			<label for="col2">Particular</label>
-			<td><input type="text" class="form-control" size="50" id="col2" name="col2" required></td>
+			<td><input type="text" class="form-control" size="50" id="col2" name="col2" placeholder="Enter Collection Type" required></td>
 		</div>
 
 		<td><div class="form-group col-md-4">
 			<label for="col3">Amount</label>
-			<td><input type="number" class="form-control" size="50" id="col3" name="col3" required></td>
+			<td><input type="text" maxlength=20 class="form-control input-sm text-left amount" size="50" id="col3" name="col3" placeholder="Enter Collection Amount"required></td>
 		</div>
 	</tr>
 	
-	<td><input type="submit" value="Submit" class="btn btn-success"></td>
+	<td><div class="form-group col-md-12"><input type="submit" value="Submit" class="btn btn-primary"></div></td>
 
+</form>
+<br><br>
+
+<form action="CollectionView.php" method="POST">
+	<td><div class="clearfix"></div>
+		<input type="submit" value="View Records" class="btn btn-primary"></td>
+</form>
+
+</div>
 
 </center>
-</form>
-</div>
 </body>
+	<script type="text/javascript">
+$(function(){
+	$('.amount').mask('#,###,###,###,###.##',{ reverse : true});
+});
+</script>
+
 </html>

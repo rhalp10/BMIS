@@ -189,10 +189,11 @@ $res_father=$res_idFa;
     
     
     
-    <body style="font-family: calibri; font-size: 20px;">
+    <body style="font-family: calibri; font-size: 18px;">
         <!-- ##################QUERY FOR RETRIEVING RESIDENT DETAILS###################### --> 
        
 <?php
+		$today = date('Y-m-d');
   $view_query = mysqli_query($connections, "SELECT * FROM resident_detail where res_ID=' $largestNumber'");
 
   while($row = mysqli_fetch_assoc($view_query)){
@@ -212,6 +213,9 @@ $res_father=$res_idFa;
     $db_res_country = $row["country_ID"];
       $db_res_occust = $row["occuStat_ID"];
       $db_res_occu = $row["occupation_ID"];
+      $diff = date_diff(date_create($db_res_bdate), date_create($today));
+    
+    $age= $diff->format('%y');
      }
               
         
@@ -252,7 +256,8 @@ $res_father=$res_idFa;
         
       <?php
   $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation_status where occuStat_ID='$db_res_occust '");
-  while($row = mysqli_fetch_assoc($view_query)){
+  $db_res_ocst="Not Available/Unemployed";
+        while($row = mysqli_fetch_assoc($view_query)){
     $db_res_ocst = $row["occuStat_Name"];
  }
 ?>
@@ -260,6 +265,7 @@ $res_father=$res_idFa;
         
             <?php
   $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation where occupation_ID='$db_res_occu '");
+          $db_res_occ ="---";
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_occ = $row["occupation_Name"];
  }
@@ -361,9 +367,8 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
                      ';  
                 }  
                 ?>  
-                <input id="profile-image-upload" class="hidden" type="file">
-<div style="color:#999;" >click here to change profile image</div>
-                <!--Upload Image Js And Css-->
+<div style="color:#999;" >Profile Picture</div>
+            
            
               
    
@@ -385,7 +390,7 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
             <hr style="margin:5px 0 5px 0;">
     
               
-<div class="col-sm-5 col-xs-6 tital " >Gender:</div><div class="col-sm-7 col-xs-6 "><?php echo  $db_res_gen;?></div>
+<div class="col-sm-5 col-xs-6 tital " >Sex:</div><div class="col-sm-7 col-xs-6 "><?php echo  $db_res_gen;?></div>
      <div class="clearfix"></div>
 <div class="bot-border"></div>
 
@@ -393,7 +398,7 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Age:</div><div class="col-sm-7" > <input type="number" readonly maxlength="3"   id="res_age" placeholder="Age" onfocus="getAge();" > </div>
+<div class="col-sm-5 col-xs-6 tital " >Age:</div><div class="col-sm-7" > <?php echo $age;?> </div>
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
@@ -516,30 +521,8 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
 </div>
   <script src="jquery/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script>
-              $(function() {
-    $('#profile-image1').on('click', function() {
-        $('#profile-image-upload').click();
-    });
-});       
-              </script> 
-       
-       
-       <script type="text/javascript">
-
-function getAge(){
-    var dob = document.getElementById('res_bdate').value;
-    dob = new Date(dob);
-    var today = new Date();
-    var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
-    document.getElementById('res_age').value=age;
-}
-
-</script>
-       
-       
-       
-       
+   
+           
        
        
    </div>
