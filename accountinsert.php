@@ -1,7 +1,7 @@
 <?php
 
 //add dbconnect
-include("accountdbconnect.php");
+include("db.php");
 include("db.php");
 
 $fullname = $_POST['fullname'];

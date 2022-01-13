@@ -8,7 +8,7 @@ $quantity = $_REQUEST['quantity'];
 $description = $_REQUEST['description'];
 $date = $_REQUEST['exp'];
 $ins_query= "INSERT into inventory_drugs (drug_Name,drug_Qnty,drug_Description,drug_Expiration_Date) values ('$name','$quantity','$description','$date')";
-mysqli_query($con, $ins_query) or die("ERROR");
+mysqli_query($db, $ins_query) or die("ERROR");
 }
 ?>
 
@@ -20,18 +20,18 @@ if (isset($_POST['search'])) {
     // search in all table columns
     // using concat mysql function
     $query = "SELECT * FROM `inventory_drugs` WHERE CONCAT(`drug_Name`,`drug_Qnty`,`drug_Description`,`drug_Expiration_Date`) LIKE '%".$valueToSearch."%'";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
     
 } else {
     $query         = "SELECT * FROM `inventory_drugs` ORDER by drug_ID desc;";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
 }
 
 // function to connect and execute the query
-function filterTable($query)
+function filterTable($query,$db)
 {
-    $connect       = mysqli_connect("localhost", "root", "", "bmis_db");
-    $filter_Result = mysqli_query($connect, $query);
+    
+    $filter_Result = mysqli_query($db, $query);
     return $filter_Result;
 }
 ?>

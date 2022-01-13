@@ -2,7 +2,7 @@
   include_once 'connection.php';
   $sql_Problema = "SELECT brgy_Name, citymun_Name, province_Name
                   FROM brgy_address_info";
-  $result_Problema = mysqli_query($conn, $sql_Problema);
+  $result_Problema = mysqli_query($db, $sql_Problema);
   $resultCheck_Problema = mysqli_num_rows($result_Problema);
 
     if($resultCheck_Problema >0){
@@ -20,13 +20,13 @@ $startd = $_GET['startd'];
 $endd = $_GET['endd'];
 $logoBarangay="Barangay Logo";
 $sqllogo = "SELECT * FROM ref_logo WHERE logo_Name='$logoBarangay';";
-$sth = mysqli_query($conn, $sqllogo);
+$sth = mysqli_query($db, $sqllogo);
 $resultlogo=mysqli_fetch_array($sth);
 ?>
 <?php
 $logoMunicipal="Municipal Logo";
 $sqllogo1 = "SELECT * FROM ref_logo WHERE logo_Name='$logoMunicipal';";
-$sth1 = mysqli_query($conn, $sqllogo1);
+$sth1 = mysqli_query($db, $sqllogo1);
 $resultlogo1=mysqli_fetch_array($sth1);
 
 $ncsql = "SELECT res_fName, res_mName, res_lName, fcl.clearance_form, fcs.purpose, fcs.price, release_Date
@@ -36,7 +36,7 @@ $ncsql = "SELECT res_fName, res_mName, res_lName, fcl.clearance_form, fcs.purpos
           LEFT JOIN finance_clearance_list fcl ON fCL.clearance_id = fcs.clearance_id
           WHERE release_Date BETWEEN '$startd' AND '$endd'";
 
-$resultnc = mysqli_query($conn, $ncsql);
+$resultnc = mysqli_query($db, $ncsql);
 
 ?>
 <!--end of logo-->
@@ -48,7 +48,7 @@ $resultnc = mysqli_query($conn, $ncsql);
               LEFT JOIN resident_address ON resident_detail.res_ID =
               resident_address.res_ID where position_ID='$cptposi';";
 
-    $result13 = mysqli_query($conn, $sql13);
+    $result13 = mysqli_query($db, $sql13);
     $resultCheck13 = mysqli_num_rows($result13);
     if($resultCheck13 > 0){
       while($row13 = mysqli_fetch_assoc($result13)){
@@ -66,7 +66,7 @@ $resultnc = mysqli_query($conn, $ncsql);
               LEFT JOIN resident_address ON resident_detail.res_ID =
               resident_address.res_ID where position_ID='$cptposi';";
 
-    $result13 = mysqli_query($conn, $sql13);
+    $result13 = mysqli_query($db, $sql13);
     $resultCheck13 = mysqli_num_rows($result13);
     if($resultCheck13 > 0){
       while($row13 = mysqli_fetch_assoc($result13)){

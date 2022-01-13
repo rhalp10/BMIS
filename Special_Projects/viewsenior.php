@@ -55,10 +55,10 @@ echo'
         </div>
         </div>
      </body>
-<form action = "view_tblprint2.php" method = "post">
+<form action = "view_tblprint2.php" method = "post" target="_blank">
 <select name = "print">
 <option><li>All</li></option>
-            <?php $sql = mysqli_query($con, "SELECT year from annual_project GROUP BY year"); 
+            <?php $sql = mysqli_query($db, "SELECT year from annual_project GROUP BY year"); 
                   while($row = mysqli_fetch_assoc($sql))
                   {
                     ?><option><li><?php echo $row['year']; ?></li></option> <?php 
@@ -100,7 +100,7 @@ echo'
                     <?php
 $count=1;
 $sel_query= "Select * from annual_project where source='Senior Citizen Persons With Disability Fund' and year = (SELECT MAX(year) from annual_project) ORDER BY project_id desc";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while ($row = mysqli_fetch_assoc($result)) { ?> 
                         <tr>
                             <td align="center" width="8%">
@@ -134,7 +134,7 @@ while ($row = mysqli_fetch_assoc($result)) { ?>
                             <?php $count++; }
 
 
-  $add=mysqli_query($con,'SELECT SUM(amount) from `annual_project` Where `source` ="Senior Citizen Persons With Disability Fund" and year = (SELECT MAX(year) from annual_project);');
+  $add=mysqli_query($db,'SELECT SUM(amount) from `annual_project` Where `source` ="Senior Citizen Persons With Disability Fund" and year = (SELECT MAX(year) from annual_project);');
   while($row1=mysqli_fetch_array($add))
   {
     $total=$row1['SUM(amount)'];
@@ -200,7 +200,7 @@ while ($row = mysqli_fetch_assoc($result)) { ?>
         </div>
 
                    <?php 
-                            $result = mysqli_query($con, "select f.noe_id,ffns.noe_type,noe_code, f.noe_amount,max(f.noe_year) as MaxDate
+                            $result = mysqli_query($db, "select f.noe_id,ffns.noe_type,noe_code, f.noe_amount,max(f.noe_year) as MaxDate
     from finance_fundoperation_noeset f
     inner join (SELECT max(noe_setid) mxID FROM finance_fundoperation_noeset WHERE noe_id = 3) x ON f.noe_setid = x.mxID
     INNER JOIN finance_fundoperation_noe ffns ON ffns.noe_id = f.noe_id

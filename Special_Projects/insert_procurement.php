@@ -18,7 +18,7 @@ $total = $_REQUEST['total'];
 
 $ins_query="insert into annual_procurement (`item`,`description`,`ucost`,`quantity`,`unit`,`total`)
  values ('$item','$description','$ucost','$quantity','$unit','$total')";
-mysqli_query($con, $ins_query) or die(mysql_error());
+mysqli_query($db, $ins_query) or die(mysqli_error($db));
 
 $status = "New Record Inserted Successfully.</br></br><a href='view_procurement.php'>View Inserted Record</a>";
 }

@@ -27,9 +27,9 @@
 	<br>
 <?php
 
-$sql = mysqli_query($con,"SELECT rd.res_ID, rd.res_Img, rd.res_fName, rd.res_mName, rd.res_lName, rs.suffix, rg.gender_Name, bod.official_Start, bod.official_End, rp.position_Name FROM resident_detail rd INNER JOIN brgy_official_detail bod ON rd.res_ID = bod.res_ID INNER JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID INNER JOIN ref_gender rg on rd.gender_ID = rg.gender_ID INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID GROUP BY rd.res_fName, rd.res_lName");
+$sql = mysqli_query($db,"SELECT rd.res_ID, rd.res_Img, rd.res_fName, rd.res_mName, rd.res_lName, rs.suffix, rg.gender_Name, bod.official_Start, bod.official_End, rp.position_Name FROM resident_detail rd INNER JOIN brgy_official_detail bod ON rd.res_ID = bod.res_ID INNER JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID INNER JOIN ref_gender rg on rd.gender_ID = rg.gender_ID INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID GROUP BY rd.res_fName, rd.res_lName");
 
-// $sql = mysqli_query($con, "SELECT rd.res_fName,rd.res_mName,rd.res_mName,rs.suffix,rn.network_Name,rp.position_Name,rpp.position_Name FROM `brgy_official_detail` bod INNER JOIN resident_detail rd ON bod.res_ID = rd.res_ID LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID LEFT JOIN resident_contact rc ON rd.res_ID = rc.res_ID LEFT JOIN ref_network rn ON rc.network_ID = rn.network_ID LEFT JOIN ref_position rpp ON bod.commitee_assignID = rpp.position_ID WHERE bod.visibility = 1");
+// $sql = mysqli_query($db, "SELECT rd.res_fName,rd.res_mName,rd.res_mName,rs.suffix,rn.network_Name,rp.position_Name,rpp.position_Name FROM `brgy_official_detail` bod INNER JOIN resident_detail rd ON bod.res_ID = rd.res_ID LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID LEFT JOIN resident_contact rc ON rd.res_ID = rc.res_ID LEFT JOIN ref_network rn ON rc.network_ID = rn.network_ID LEFT JOIN ref_position rpp ON bod.commitee_assignID = rpp.position_ID WHERE bod.visibility = 1");
  
 
 ?>

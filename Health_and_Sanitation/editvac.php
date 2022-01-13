@@ -5,7 +5,7 @@ require('db.php');
 $id=$_GET['id'];
 $query = "SELECT * From resident_detail INNER JOIN resident_vaccinated ON resident_detail.res_ID= resident_vaccinated.res_ID where vac_ID='".$id."'"; 
 
-$result = mysqli_query($con, $query) or die ( mysqli_error());
+$result = mysqli_query($db, $query) or die ( mysqli_error($db));
 $row = mysqli_fetch_assoc($result); 
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ $date =$_REQUEST['date'];
 
 $update="update resident_vaccinated set res_ID='".$name."', vac_Date='".$date."', vac_Name='".$vacname."' where vac_ID='".$id."' ";
 
-mysqli_query($con, $update) or die(mysqli_error());
+mysqli_query($db, $update) or die(mysqli_error($db));
 
 $status = "Record Updated Successfully. </br></br><a href='viewvac.php'>View Updated Record</a>";
 echo '<p style="color:blue;">'.$status.'</p>';
@@ -63,7 +63,7 @@ Resident's Name:
 <?php 
 $count=1;
 $sel_query= "Select * from resident_detail ORDER BY res_ID asc";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <optgroup>
 <option > <?php echo $row["res_ID"]; ?><?php echo " "; ?> <?php echo $row["res_fName"]; ?><?php echo " "; ?><?php echo $row["res_mName"]; ?><?php echo " "; ?><?php echo $row["res_lName"]; ?></option></optgroup>
@@ -74,7 +74,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 
 $id=$_GET['id'];
 $query = "SELECT * from resident_vaccinated where vac_ID='".$id."'"; 
-$result = mysqli_query($con, $query) or die ( mysqli_error());
+$result = mysqli_query($db, $query) or die ( mysqli_error($db));
 $row = mysqli_fetch_assoc($result); 
 ?>
 Date of Vaccination:

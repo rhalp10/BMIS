@@ -2,7 +2,7 @@
 session_start();
 $id = $_GET['id'];
 require("fpdf/fpdf.php");
-	$con = mysqli_connect("localhost","root","","bmis_db");
+	include('dbcon.php');
 $ins_query1="SELECT * FROM manila_step WHERE step_id = '$id'";
 					
 					
@@ -12,7 +12,7 @@ $pdf->AddPage();
 $pdf->SetFont("ARIAL", "B","12");
 
 $ins_query2="SELECT * FROM ref_manilabay WHERE mb_ID = '$id'";
-$result1 = mysqli_query($con, $ins_query2);
+$result1 = mysqli_query($db, $ins_query2);
 $row1 = mysqli_fetch_array($result1);
 	
  $pdf->Image($picngbmis, 10, 10, 50, 30, 'png');
@@ -180,7 +180,7 @@ $pdf->Cell(45,7,"PROVISION",0,0,'L');
 $pdf->Cell(50,7,"CONSEQUENCES",0,0,'L'); 
 $pdf->Cell(55,7,"COMPLIANCE",0,0,'L'); 
 $pdf->Cell(0,8,"",0,1);
-$result = mysqli_query($con, $ins_query1);
+$result = mysqli_query($db, $ins_query1);
 while($row = mysqli_fetch_assoc( $result )){
 	$k = $row['k'];
 	$l = $row['l'];

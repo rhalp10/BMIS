@@ -4,7 +4,7 @@ require('db.php');
 
 $id=$_REQUEST['id'];
 $query = "SELECT * from inventory_drugs where drug_ID='".$id."'"; 
-$result = mysqli_query($con, $query) or die ( mysqli_error());
+$result = mysqli_query($db, $query) or die ( mysqli_error($db));
 $row = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ $name =$_REQUEST['name'];
 $quantity =$_REQUEST['quantity'];
 $description =$_REQUEST['description'];
 $update="update inventory_drugs set drug_Name='".$name."', drug_Description='".$description."', drug_Qnty='".$quantity."' where drug_ID='".$id."' ";
-mysqli_query($con, $update) or die(mysqli_error());
+mysqli_query($db, $update) or die(mysqli_error($db));
 $status = "Record Updated Successfully. </br></br><a href='view.php'>View Updated Record</a>";
 echo '<p style="color:blue;">'.$status.'</p>';
 }else {

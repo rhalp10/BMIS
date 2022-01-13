@@ -36,20 +36,20 @@ if ($_SESSION['position']=='Barangay Secretary' OR $_SESSION['position']=='Baran
     INNER JOIN inventory_drugs ON inventory_drugs_release.drug_ID= inventory_drugs.drug_ID 
     WHERE CONCAT(`drug_Name`,`res_fName`,`res_mName`,`res_lName`,`drgrelease_Qnty`,`drgrelease_Date_Record`) 
     LIKE '%".$valueToSearch."%' order by inventory_drugs_release.drgrelease_Date_Record";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
     
 } else {
     $query         = "SELECT * From inventory_drugs_release 
     INNER JOIN resident_detail ON inventory_drugs_release.res_ID= resident_detail.res_ID 
     INNER JOIN inventory_drugs ON inventory_drugs_release.drug_ID= inventory_drugs.drug_ID order by inventory_drugs_release.drgrelease_Date_Record ";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
 }
 
 // function to connect and execute the query
-function filterTable($query)
+function filterTable($query,$db)
 {
-    $connect       = mysqli_connect("localhost", "root", "", "bmis_db");
-    $filter_Result = mysqli_query($connect, $query);
+    
+    $filter_Result = mysqli_query($db, $query);
     return $filter_Result;
 }
 

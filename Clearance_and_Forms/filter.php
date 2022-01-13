@@ -57,7 +57,7 @@ $s1="";?>
                                         LEFT JOIN finance_clearance_list fcl ON fCL.clearance_id = fcs.clearance_id
                                         WHERE release_Date BETWEEN '$startd' AND '$endd'";
 
-                              $query = mysqli_query($conn, $sss);
+                              $query = mysqli_query($db, $sss);
                               $count = mysqli_num_rows($query);
                               ?>
 

@@ -1896,16 +1896,16 @@ protected function _enddoc()
 	$this->state = 3;
 }
 }
-$connectsabmis = mysqli_connect("localhost", "root", "", "bmis_db");
+include('dbcon.php');
 $sqlngbmis = "SELECT * FROM ref_logo WHERE logo_Name = 'Barangay Logo'";  
-$resultngbmis = mysqli_query($connectsabmis, $sqlngbmis); 
+$resultngbmis = mysqli_query($db, $sqlngbmis); 
 $rowngbmis = mysqli_fetch_array($resultngbmis);
  	
 	
 $picngbmis = 'data://text/plain;base64,' . base64_encode($rowngbmis['logo_img'] );
 
 $sqlngbmis1 = "SELECT * FROM ref_logo WHERE logo_Name = 'Municipal Logo'";  
-$resultngbmis1 = mysqli_query($connectsabmis, $sqlngbmis1); 
+$resultngbmis1 = mysqli_query($db, $sqlngbmis1); 
 $rowngbmis1 = mysqli_fetch_array($resultngbmis1);
  	
 	

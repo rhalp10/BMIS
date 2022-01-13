@@ -43,7 +43,7 @@
                 $id = $_GET['id'];
                
                
-                $sql = mysqli_query($connection, "SELECT * FROM sms_category WHERE id = '$id'");
+                $sql = mysqli_query($db, "SELECT * FROM sms_category WHERE id = '$id'");
                 $row = mysqli_fetch_assoc($sql);
                
                

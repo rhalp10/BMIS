@@ -52,7 +52,7 @@ require('db.php');
 <?php
 $count=1;
 $sel_query="Select * from youth_investment where year = (SELECT MAX(year) from annual_project) ORDER BY youth_id desc";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result))
 	{?>
 <tr>
@@ -66,7 +66,7 @@ while($row = mysqli_fetch_assoc($result))
 	</tr>
 <?php $count++; }
 
-  $add=mysqli_query($con,'SELECT SUM(amount) from `youth_investment` Where year = (SELECT MAX(year) from youth_investment);');
+  $add=mysqli_query($db,'SELECT SUM(amount) from `youth_investment` Where year = (SELECT MAX(year) from youth_investment);');
   while($row1=mysqli_fetch_array($add))
   {
     $total=$row1['SUM(amount)'];

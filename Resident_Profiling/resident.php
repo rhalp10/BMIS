@@ -1,74 +1,40 @@
 <?php
 session_start();
-?>
-<?php
-$link=mysqli_connect("localhost", "root", "");
-mysqli_select_db($link,"bmis_db");
-?>
-
- <?php  
- $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
- $query ="SELECT * FROM resident_detail ORDER BY res_ID DESC";  
- $result = mysqli_query($connect, $query);  
- ?>  
-
-
-
-
-
-<?php
-include("connections.php");
+ 
+include('connections.php');
+ 
+$query ="SELECT * FROM resident_detail ORDER BY res_ID DESC";  
+$result = mysqli_query($db, $query);  
+ 
+ 
 $largestNumber= $rid= "";
-                           $rowSQL = mysqli_query($connections, "SELECT MAX( res_ID ) AS max FROM `resident_detail`;" );
+                           $rowSQL = mysqli_query($db, "SELECT MAX( res_ID ) AS max FROM `resident_detail`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $largestNumber = $row['max'];
                                     $rid= $largestNumber+1;
-                              
-
-                                  ?>
-
-
-<?php
-include("connections.php");
+ 
+ 
 $largestocc= $oid= "";
-                           $rowSQL = mysqli_query($connections, "SELECT MAX( occupation_ID ) AS max FROM `ref_occupation`;" );
+                           $rowSQL = mysqli_query($db, "SELECT MAX( occupation_ID ) AS max FROM `ref_occupation`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $largestocc = $row['max'];
                                     $oid= $largestocc+1;
                               
-
-                                  ?>
-
-
-<?php
-include("connections.php");
+ 
 $largest_address= $aid= "";
-                           $rowSQL = mysqli_query($connections, "SELECT MAX( address_ID ) AS max FROM `resident_address`;" );
+                           $rowSQL = mysqli_query($db, "SELECT MAX( address_ID ) AS max FROM `resident_address`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $largest_address= $row['max'];
                                     $aid= $largest_address+1;
                                  
-
-                                  ?>
-
-
-
-
-<?php
-include("connections.php");
+ 
 $largest_contact= $cid= "";
-                           $rowSQL = mysqli_query($connections, "SELECT MAX( contact_ID ) AS max FROM `resident_contact`;" );
+                           $rowSQL = mysqli_query($db, "SELECT MAX( contact_ID ) AS max FROM `resident_contact`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $largest_contact= $row['max'];
                                     $cid= $largest_contact+1;
                                  
-
-                                  ?>
-
-
-
-<?php
- $connect = mysqli_connect("localhost", "root", "", "bmis_db");
+ 
 $res_fname = $res_mname = $res_lname = $res_suffix = $res_gender = $res_bdate = $res_bdate = $res_civilstatus= $res_contactnum =$res_id = $res_contacttype = $res_religion = $res_occupationstatus= $res_occupation =$res_height= $res_weight= $res_citizenship=  $res_houseno=   $res_purokno= $res_region= $res_address= $res_brgy="" ;
 
  $res_building= $res_lot= $res_block= $res_phase=$res_street =$res_subd= "";
@@ -100,7 +66,7 @@ $res_lname=$_POST["res_lname"];
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $suffix= "";
-                        $rows = mysqli_query($connections, "SELECT suffix_ID  FROM `ref_suffixname` where suffix = '$isuffix';" );
+                        $rows = mysqli_query($db, "SELECT suffix_ID  FROM `ref_suffixname` where suffix = '$isuffix';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $suffix = $row['suffix_ID'];
              $res_suffix=$suffix;
@@ -116,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $gender= "";
-                        $rows = mysqli_query($connections, "SELECT gender_ID  FROM `ref_gender` where gender_Name = '$igender';" );
+                        $rows = mysqli_query($db, "SELECT gender_ID  FROM `ref_gender` where gender_Name = '$igender';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $gender = $row['gender_ID'];
              $res_gender=$gender;
@@ -134,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $cstatus= "";
-                        $rows = mysqli_query($connections, "SELECT marital_ID  FROM `ref_marital_status` where marital_Name = '$icstatus';" );
+                        $rows = mysqli_query($db, "SELECT marital_ID  FROM `ref_marital_status` where marital_Name = '$icstatus';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $cstatus = $row['marital_ID'];
              $res_civilstatus=$cstatus;
@@ -152,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $ctype= "";
-                        $rows = mysqli_query($connections, "SELECT contactType_ID  FROM `ref_contact` where contactType_Name = '$ictype';" );
+                        $rows = mysqli_query($db, "SELECT contactType_ID  FROM `ref_contact` where contactType_Name = '$ictype';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $ctype = $row['contactType_ID'];
              $res_contacttype=$ctype;
@@ -166,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $relig= "";
-                        $rows = mysqli_query($connections, "SELECT religion_ID  FROM `ref_religion` where religion_name = '$irel';" );
+                        $rows = mysqli_query($db, "SELECT religion_ID  FROM `ref_religion` where religion_name = '$irel';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $relig = $row['religion_ID'];
              $res_religion= $relig;
@@ -179,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $occst= "";
-                        $rows = mysqli_query($connections, "SELECT occuStat_ID  FROM `ref_occupation_status` where occuStat_Name = '$ioccst';" );
+                        $rows = mysqli_query($db, "SELECT occuStat_ID  FROM `ref_occupation_status` where occuStat_Name = '$ioccst';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $occst = $row['occuStat_ID'];
              $res_occupationstatus=$occst;
@@ -196,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
             $res_occupation=$oid;
             
            
-                        $rows = mysqli_query($connections, "SELECT occupation_ID  FROM `ref_occupation` where occupation_Name = '$iocc';" );
+                        $rows = mysqli_query($db, "SELECT occupation_ID  FROM `ref_occupation` where occupation_Name = '$iocc';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $occ = $row['occupation_ID'];
             
@@ -219,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $citi= "";
-                        $rows = mysqli_query($connections, "SELECT country_ID  FROM `ref_country` where country_citizenship = '$iciti';" );
+                        $rows = mysqli_query($db, "SELECT country_ID  FROM `ref_country` where country_citizenship = '$iciti';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $citi= $row['country_ID'];
              $res_citizenship= $citi;
@@ -277,7 +243,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $purok= "";
              $region= "";
-                        $rows = mysqli_query($connections, "SELECT purok_ID,region_Code  FROM `ref_purok` where purok_Name = '$ipurok';" );
+                        $rows = mysqli_query($db, "SELECT purok_ID,region_Code  FROM `ref_purok` where purok_Name = '$ipurok';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $purok = $row['purok_ID'];
                                   $region = $row['region_Code'];
@@ -295,7 +261,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $address= "";
-                        $rows = mysqli_query($connections, "SELECT addressType_ID  FROM `ref_address` where addressType_Name = '$iadd';" );
+                        $rows = mysqli_query($db, "SELECT addressType_ID  FROM `ref_address` where addressType_Name = '$iadd';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $address= $row['addressType_ID'];
              $res_address= $address;
@@ -321,21 +287,21 @@ If($rid && $res_fname  && $res_lname  && $res_gender && $res_bdate && $res_civil
     
      if($res_trabaho){
          $res_occupation=$oid;
-          $query=mysqli_query($connections,"INSERT INTO ref_occupation(occupation_Name,occupation_ID) VALUES('$res_trabaho','$oid') ");
+          $query=mysqli_query($db,"INSERT INTO ref_occupation(occupation_Name,occupation_ID) VALUES('$res_trabaho','$oid') ");
      }
     
-        $query=mysqli_query($connections,"INSERT INTO resident_detail(res_ID,res_Img, 
+        $query=mysqli_query($db,"INSERT INTO resident_detail(res_ID,res_Img, 
 res_fName, res_mName,res_lName,suffix_ID, gender_ID, res_Bday, marital_ID,religion_ID,res_Height,res_Weight, occuStat_ID,occupation_ID,country_ID,Status) VALUES('$rid','$file','$res_fname','$res_mname','$res_lname','$res_suffix','$res_gender','$res_bdate','$res_civilstatus','$res_religion','$res_height', '$res_weight','$res_occupationstatus','$res_occupation','$res_citizenship','Active') ");
     echo "<script type='text/javascript'>alert('submitted successfully!')</script>";
     
     
         if ($rid  && $res_citizenship){
-             $query=mysqli_query($connections,"INSERT INTO resident_contact(contact_ID,contact_telnum,res_ID,contactType_ID,country_ID) VALUES('$cid','$res_contactnum','$rid','$res_contacttype','$res_citizenship') ");
+             $query=mysqli_query($db,"INSERT INTO resident_contact(contact_ID,contact_telnum,res_ID,contactType_ID,country_ID) VALUES('$cid','$res_contactnum','$rid','$res_contacttype','$res_citizenship') ");
             
         }
     
           if ( $rid && $res_houseno && $res_purokno && $res_address){
-             $query=mysqli_query($connections,"INSERT INTO resident_address(address_ID,address_Unit_Room_Floor_num,res_ID,address_BuildingName,address_Lot_No,address_Block_No,address_Phase_No,address_House_No,address_Street_Name,address_Subdivision,country_ID,purok_ID,region_ID,addressType_ID) VALUES('$aid','$res_unit','$rid','$res_building',' $res_lot',' $res_block','$res_phase','$res_houseno','$res_street','$res_subd','$res_citizenship','$res_purokno','$res_region','$res_address') ");
+             $query=mysqli_query($db,"INSERT INTO resident_address(address_ID,address_Unit_Room_Floor_num,res_ID,address_BuildingName,address_Lot_No,address_Block_No,address_Phase_No,address_House_No,address_Street_Name,address_Subdivision,country_ID,purok_ID,region_ID,addressType_ID) VALUES('$aid','$res_unit','$rid','$res_building',' $res_lot',' $res_block','$res_phase','$res_houseno','$res_street','$res_subd','$res_citizenship','$res_purokno','$res_region','$res_address') ");
             
         }
          
@@ -468,7 +434,7 @@ div.upload input {
   <select  class="form-control" id="res_suffix" name="res_suffix">
      
    <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_suffixname");
+          $res=mysqli_query($db,"SELECT * FROM ref_suffixname");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -487,7 +453,7 @@ div.upload input {
     <option value="" disabled selected>Sex</option>
  
         <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_gender");
+          $res=mysqli_query($db,"SELECT * FROM ref_gender");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -520,7 +486,7 @@ div.upload input {
   <select required class="form-control"  id="res_civilstatus" name="res_civilstatus">
      <option value="" disabled selected>Civil status</option>
  <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_marital_status");
+          $res=mysqli_query($db,"SELECT * FROM ref_marital_status");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -539,7 +505,7 @@ div.upload input {
   <select class="form-control" id="res_contacttype" name="res_contacttype" onchange="maxLengthFunction()">
     <option value="" disabled selected>Contact type</option>
    <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_contact");
+          $res=mysqli_query($db,"SELECT * FROM ref_contact");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -596,7 +562,7 @@ div.upload input {
   <select required class="form-control" id="res_citizenship" name="res_citizenship">
     <option value="" disabled selected>Citizenship</option>
    <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_country where country_ID=169");
+          $res=mysqli_query($db,"SELECT * FROM ref_country where country_ID=169");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -615,7 +581,7 @@ div.upload input {
     <select required class="form-control" id="res_religion" name="res_religion">
  <option value="" disabled selected>Religion</option>
         <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_religion");
+          $res=mysqli_query($db,"SELECT * FROM ref_religion");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -637,7 +603,7 @@ div.upload input {
   <select class="form-control" id="res_occupationstatus" name="res_occupationstatus">
  <option value="" disabled selected></option>
   <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_occupation_status");
+          $res=mysqli_query($db,"SELECT * FROM ref_occupation_status");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -668,7 +634,7 @@ div.upload input {
     <select  class="form-control" id="res_occupation" name="res_occupation" disabled>
  <option value="" disabled selected>Occupational </option>
         <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_occupation");
+          $res=mysqli_query($db,"SELECT * FROM ref_occupation");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -758,7 +724,7 @@ div.upload input {
   <select required class="form-control" id="res_purokno" name="res_purokno">
  <option value="" disabled selected>Purok no.</option>
  <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_purok");
+          $res=mysqli_query($db,"SELECT * FROM ref_purok");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -779,7 +745,7 @@ div.upload input {
   <select required class="form-control" id="res_address" name="res_address">
    <option value="" disabled selected>Address type</option>
   <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_address");
+          $res=mysqli_query($db,"SELECT * FROM ref_address");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -815,9 +781,9 @@ div.upload input {
 
 <br>
  <br> <?php  
-         $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+        
          $query ="SELECT rd.res_ID , rd.res_fName , rd.res_mName , rd.res_lName , sfx.suffix, rd.res_Bday , rms.marital_Name, rg.gender_Name, rr.religion_Name, rc.country_nationality, rc.country_citizenship, ro.occupation_Name, ros.occuStat_Name, rd.res_Date_Record FROM resident_detail rd LEFT JOIN ref_suffixname sfx ON rd.suffix_ID = sfx.suffix_ID LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID where rd.res_ID NOT IN (Select res_ID from resident_death) && rd.Status='Active'";  
-         $result = mysqli_query($connect, $query);  
+         $result = mysqli_query($db, $query);  
          ?>  
       <div class="container">
          <div class="table-responsive">

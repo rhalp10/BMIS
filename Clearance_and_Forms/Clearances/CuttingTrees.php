@@ -2,7 +2,7 @@
   include_once '../connection.php';
   $sql_Problema = "SELECT brgy_Name, citymun_Name, province_Name
                   FROM brgy_address_info";
-  $result_Problema = mysqli_query($conn, $sql_Problema);
+  $result_Problema = mysqli_query($db, $sql_Problema);
   $resultCheck_Problema = mysqli_num_rows($result_Problema);
 
     if($resultCheck_Problema >0){
@@ -30,7 +30,7 @@ $sqlget_info = "SELECT * FROM resident_detail
                   LEFT JOIN ref_province ON resident_address.province_ID = ref_province.province_ID
                   WHERE resident_detail.res_ID = '$res_ID'";
 
-                $result_info = mysqli_query($conn, $sqlget_info);
+                $result_info = mysqli_query($db, $sqlget_info);
                 $resultCheck_info = mysqli_num_rows($result_info);
 
                 if($resultCheck_info > 0){
@@ -55,13 +55,13 @@ include_once '../connection.php';
 
 $logoBarangay="Barangay Logo";
 $sqllogo = "SELECT * FROM ref_logo WHERE logo_Name='$logoBarangay';";
-$sth = mysqli_query($conn, $sqllogo);
+$sth = mysqli_query($db, $sqllogo);
 $resultlogo=mysqli_fetch_array($sth);
 ?>
 <?php
 $logoMunicipal="Municipal Logo";
 $sqllogo1 = "SELECT * FROM ref_logo WHERE logo_Name='$logoMunicipal';";
-$sth1 = mysqli_query($conn, $sqllogo1);
+$sth1 = mysqli_query($db, $sqllogo1);
 $resultlogo1=mysqli_fetch_array($sth1);
 ?>
 <!--end of logo-->
@@ -72,7 +72,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
   $sql1 = "SELECT res_lName, res_fName, res_mName FROM resident_detail
           WHERE position_ID='$capitan';";
 
-  $result1 = mysqli_query($conn, $sql1);
+  $result1 = mysqli_query($db, $sql1);
   $resultCheck1 = mysqli_num_rows($result1);
 
   if($resultCheck1 > 0){
@@ -93,7 +93,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
     LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID
     INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID WHERE bod.commitee_assignID='$pNc'";
 
-  $result2 = mysqli_query($conn, $sql2);
+  $result2 = mysqli_query($db, $sql2);
   $resultCheck2 = mysqli_num_rows($result2);
 
   if($resultCheck2 > 0){
@@ -114,7 +114,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
     LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID
     INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID WHERE bod.commitee_assignID='$wfy';";
 
-  $result3 = mysqli_query($conn, $sql3);
+  $result3 = mysqli_query($db, $sql3);
   $resultCheck3 = mysqli_num_rows($result3);
 
   if($resultCheck3 > 0){
@@ -135,7 +135,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
     LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID
     INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID WHERE bod.commitee_assignID='$hea';";
 
-  $result4 = mysqli_query($conn, $sql4);
+  $result4 = mysqli_query($db, $sql4);
   $resultCheck4 = mysqli_num_rows($result4);
 
   if($resultCheck4 > 0){
@@ -156,7 +156,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
     LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID
     INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID WHERE bod.commitee_assignID='$wam';";
 
-  $result5 = mysqli_query($conn, $sql5);
+  $result5 = mysqli_query($db, $sql5);
   $resultCheck5 = mysqli_num_rows($result5);
 
   if($resultCheck5 > 0){
@@ -178,7 +178,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
     LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID
     INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID WHERE bod.commitee_assignID='$agri';";
 
-  $result6 = mysqli_query($conn, $sql6);
+  $result6 = mysqli_query($db, $sql6);
   $resultCheck6 = mysqli_num_rows($result6);
 
   if($resultCheck6 > 0){
@@ -200,7 +200,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
     LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID
     INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID WHERE bod.commitee_assignID='$apro';";
 
-  $result7 = mysqli_query($conn, $sql7);
+  $result7 = mysqli_query($db, $sql7);
   $resultCheck7 = mysqli_num_rows($result7);
 
   if($resultCheck7 > 0){
@@ -221,7 +221,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
     LEFT JOIN ref_suffixname rs ON rd.suffix_ID = rs.suffix_ID
     INNER JOIN ref_position rp ON rd.position_ID = rp.position_ID WHERE bod.commitee_assignID='$infra';";
 
-  $result8 = mysqli_query($conn, $sql8);
+  $result8 = mysqli_query($db, $sql8);
   $resultCheck8 = mysqli_num_rows($result8);
 
   if($resultCheck8 > 0){
@@ -238,7 +238,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
   $sql9 = "SELECT res_lName, res_fName, res_mName FROM resident_detail
           WHERE position_ID='$sec';";
 
-  $result9 = mysqli_query($conn, $sql9);
+  $result9 = mysqli_query($db, $sql9);
   $resultCheck9 = mysqli_num_rows($result9);
 
   if($resultCheck9 > 0){
@@ -254,7 +254,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
   $sql10 = "SELECT res_lName, res_fName, res_mName FROM resident_detail
           WHERE position_ID='$tres'";
 
-  $result10 = mysqli_query($conn, $sql10);
+  $result10 = mysqli_query($db, $sql10);
   $resultCheck10 = mysqli_num_rows($result10);
 
   if($resultCheck10 > 0){
@@ -270,7 +270,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
 <!--end of header and display officials-->
 <?php
 $sqlgetNow = "SELECT res_ID FROM resident_detail WHERE res_fName LIKE '%$first%' AND res_lName LIKE '%$lastName%' AND res_mName LIKE '%$middleName%';";
-$resultgetNow = mysqli_query($conn, $sqlgetNow);
+$resultgetNow = mysqli_query($db, $sqlgetNow);
 $resultcheckNow = mysqli_num_rows($resultgetNow);
 
 if($resultcheckNow > 0){
@@ -288,7 +288,7 @@ $datedate = date('Y-m-d H:i:s');
 $sqlsli = "INSERT INTO form_release (res_ID, form_ID, purpose_ID, release_date)
          VALUES ('$res_IDnow', 1, 1,'$datedate');";
 
-         mysqli_query($conn, $sqlsli);
+         mysqli_query($db, $sqlsli);
 ?>
 <!DOCTYPE>
 <html>

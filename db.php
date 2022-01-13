@@ -1,7 +1,1 @@
-<html>
-<?php
-
- $db = mysqli_connect('localhost','root','','bmis_db')
- or die('Error connecting to MySQL server.');
-?>
-</html>
+<?php $db = mysqli_connect('localhost','root','','bmis1_db',3307) or die('Error connecting to MySQL server.'); ?>

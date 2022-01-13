@@ -1,7 +1,7 @@
-<?php  
- $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+<?php 
+include('connections.php'); 
  $query ="SELECT COUNT(res_ID) AS total FROM resident_detail";  
- $result = mysqli_query($connect, $query);  
+ $result = mysqli_query($db, $query);  
      $row = mysqli_fetch_assoc( $result );
 $num_rows=$row['total'];
 
@@ -12,7 +12,7 @@ $query1111 = 0;
 $query11111 = 0;
   
  $query1 ="SELECT res_Bday FROM resident_detail";  
- $result1 = mysqli_query($connect, $query1);  
+ $result1 = mysqli_query($db, $query1);  
   while ($row=mysqli_fetch_array($result1))
       {
       

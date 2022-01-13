@@ -169,7 +169,7 @@
             $picpic = addslashes(file_get_contents($_FILES['picpic']['tmp_name']));
             $picss = "transient";
             $sqlpicpic = "UPDATE `temp_pic_holder` SET pic_holder='$picpic' WHERE pic_Name='$picss';";
-            if (mysqli_query($conn, $sqlpicpic)) {
+            if (mysqli_query($db, $sqlpicpic)) {
             }
           }
           ?>

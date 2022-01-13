@@ -11,7 +11,7 @@ function fi_result()
 	$year=$_GET['year'];
 		
 
-						$res = mysqli_query($con, "SELECT * FROM finance_fundoperation_incomeset fs, finance_fundoperation_income fi WHERE fs.income_id=fi.income_id AND fs.income_year LIKE '%$year%'");
+						$res = mysqli_query($db, "SELECT * FROM finance_fundoperation_incomeset fs, finance_fundoperation_income fi WHERE fs.income_id=fi.income_id AND fs.income_year LIKE '%$year%'");
 
 						$tp = 0;				
 					while($row = mysqli_fetch_array($res)){
@@ -28,7 +28,7 @@ function PS_result()
 	include('dbcon.php');
 	$year=$_GET['year'];
 
-						$ress = mysqli_query($con, "SELECT * FROM finance_fundoperation_psset ps, finance_fundoperation_ps pp WHERE ps.service_id=pp.service_id AND ps.service_year LIKE '%$year%'");
+						$ress = mysqli_query($db, "SELECT * FROM finance_fundoperation_psset ps, finance_fundoperation_ps pp WHERE ps.service_id=pp.service_id AND ps.service_year LIKE '%$year%'");
 
 						$tp = 0;				
 					while($row = mysqli_fetch_array($ress)){
@@ -47,7 +47,7 @@ function fm_result()
 	$year=$_GET['year'];
 
 
-	$resss = mysqli_query($con, "SELECT * FROM finance_fundoperation_mooeset ms, finance_fundoperation_mooe mm WHERE ms.mooe_id=mm.mooe_id AND ms.mooe_year LIKE '%$year%'");
+	$resss = mysqli_query($db, "SELECT * FROM finance_fundoperation_mooeset ms, finance_fundoperation_mooe mm WHERE ms.mooe_id=mm.mooe_id AND ms.mooe_year LIKE '%$year%'");
 						$tp = 0;
 						while($row = mysqli_fetch_array($resss)){
 						$tp += $row["mooe_amount"];
@@ -64,7 +64,7 @@ function fn_result()
 	$year=$_GET['year'];
 
 
-	$ressss = mysqli_query($con, "SELECT * FROM finance_fundoperation_noeset ns, finance_fundoperation_noe nn WHERE ns.noe_id=nn.noe_id AND ns.noe_year LIKE '%$year%'");
+	$ressss = mysqli_query($db, "SELECT * FROM finance_fundoperation_noeset ns, finance_fundoperation_noe nn WHERE ns.noe_id=nn.noe_id AND ns.noe_year LIKE '%$year%'");
 						$tp = 0;
 						while($row = mysqli_fetch_array($ressss)){
 						$tp += $row["noe_amount"];
@@ -142,7 +142,7 @@ $pdf->SetFont('Times','',11);
 
     //QUERY
     $pdf->SetFont('Arial','',11);
-    $res = mysqli_query($con, "SELECT * FROM finance_fundoperation_incomeset fs, finance_fundoperation_income fi WHERE fs.income_id=fi.income_id AND fs.income_year LIKE '%$year%'");
+    $res = mysqli_query($db, "SELECT * FROM finance_fundoperation_incomeset fs, finance_fundoperation_income fi WHERE fs.income_id=fi.income_id AND fs.income_year LIKE '%$year%'");
     while($row = mysqli_fetch_array($res)){
     	$pdf->Cell(115,10,$row["income_type"] ,'LR',0,'C');
     	$pdf->Cell(40,10,$row["income_code"] ,'LR',0,'C');
@@ -164,7 +164,7 @@ $pdf->SetFont('Times','',11);
     $pdf->Cell(40,10,number_format(PS_result(),2) ,'LR',1,'R');
     //QUERY
     $pdf->SetFont('Arial','',11);
-    $ress = mysqli_query($con, "SELECT * FROM finance_fundoperation_psset ps, finance_fundoperation_ps pp WHERE ps.service_id=pp.service_id AND ps.service_year LIKE '%$year%'");
+    $ress = mysqli_query($db, "SELECT * FROM finance_fundoperation_psset ps, finance_fundoperation_ps pp WHERE ps.service_id=pp.service_id AND ps.service_year LIKE '%$year%'");
     while($row = mysqli_fetch_array($ress)){
     	$pdf->Cell(115,10,$row["service_position"] ,'LR',0,'C');
     $pdf->Cell(40,10,$row["service_code"] ,'LR',0,'C');
@@ -182,7 +182,7 @@ $pdf->SetFont('Times','',11);
     $pdf->Cell(40,10,number_format(fm_result(),2),'LR',1,'R');
     //QUERY
     $pdf->SetFont('Arial','',11);
-    $resss = mysqli_query($con, "SELECT * FROM finance_fundoperation_mooeset ms, finance_fundoperation_mooe mm WHERE ms.mooe_id=mm.mooe_id AND ms.mooe_year LIKE '%$year%'");
+    $resss = mysqli_query($db, "SELECT * FROM finance_fundoperation_mooeset ms, finance_fundoperation_mooe mm WHERE ms.mooe_id=mm.mooe_id AND ms.mooe_year LIKE '%$year%'");
 		while($row = mysqli_fetch_array($resss)){
 			$pdf->Cell(115,10,$row["mooe_type"] ,'LR',0,'C');
     		$pdf->Cell(40,10,$row["mooe_code"] ,'LR',0,'C');
@@ -199,7 +199,7 @@ $pdf->SetFont('Times','',11);
     $pdf->Cell(40,10,number_format(fn_result(),2),'LR',1,'R');
     //QUERY
     $pdf->SetFont('Arial','',11);
-    $ressss = mysqli_query($con, "SELECT * FROM finance_fundoperation_noeset ns, finance_fundoperation_noe nn WHERE ns.noe_id=nn.noe_id AND ns.noe_year LIKE '%$year%'");
+    $ressss = mysqli_query($db, "SELECT * FROM finance_fundoperation_noeset ns, finance_fundoperation_noe nn WHERE ns.noe_id=nn.noe_id AND ns.noe_year LIKE '%$year%'");
 			while($row = mysqli_fetch_array($ressss)){
 			$pdf->Cell(115,10,$row["noe_type"] ,'LR',0,'C');
     		$pdf->Cell(40,10,$row["noe_code"] ,'LR',0,'C');

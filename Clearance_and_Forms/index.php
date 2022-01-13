@@ -16,7 +16,7 @@ if (isset($_POST['verify_Res'])){
                   LEFT JOIN ms_incident_offender mso ON msi.incident_id = mso.incident_id
                   WHERE msi.status!=5 AND mso.res_ID='$var_id'";
 
-    $result1 = mysqli_query($conn, $sql_blot);
+    $result1 = mysqli_query($db, $sql_blot);
     $resultCheck1 = mysqli_num_rows($result1);
 
         if($resultCheck1 > 0){
@@ -65,7 +65,7 @@ else{
                   LEFT JOIN ms_incident_offender mso ON msi.incident_id = mso.incident_id
                   WHERE msi.status!=5 AND mso.res_ID='$var_id'";
 
-    $result1 = mysqli_query($conn, $sql_blot);
+    $result1 = mysqli_query($db, $sql_blot);
     $resultCheck1 = mysqli_num_rows($result1);
 
         if($resultCheck1 > 0){
@@ -184,7 +184,7 @@ else{
                                                   WHERE resident_detail.res_fName LIKE '%$searchq%' OR resident_detail.res_lName LIKE '%$searchq%'
                                                   ORDER BY res_lName ASC";
 
-                                                  $res_conf = mysqli_query($conn, $squery);
+                                                  $res_conf = mysqli_query($db, $squery);
                                                   $conf_check = mysqli_num_rows($res_conf);
 
 
@@ -224,7 +224,7 @@ else{
 
                                           $sql_ret = "SELECT clearance_form, purpose FROM finance_clearance_list
                                                        LEFT JOIN finance_clearance_set ON finance_clearance_list.clearance_id = finance_clearance_set.clearance_id";
-                                          $result_ret = mysqli_query($conn, $sql_ret);
+                                          $result_ret = mysqli_query($db, $sql_ret);
                                           $resultCheck_ret = mysqli_num_rows($result_ret);
 
                                           if($resultCheck_ret > 0){

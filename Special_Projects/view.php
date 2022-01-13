@@ -49,11 +49,11 @@ echo'
         </div>
         </div>
 
-        <form action = "view_tblprint5.php" method = "post">
+        <form action = "view_tblprint5.php" method = "post" target="_blank">
 <!-- <form class="filteroption" action="" method="post"> -->
           <select class="select" name="print" onchange="filterTable()">
             <option value="All"><li>All</li></option>
-            <?php $sql = mysqli_query($con, "SELECT year from annual_project GROUP BY year"); 
+            <?php $sql = mysqli_query($db, "SELECT year from annual_project GROUP BY year"); 
                   while($row = mysqli_fetch_assoc($sql))
                   {
                     ?><option><li><?php echo $row['year']; ?></li></option> <?php 
@@ -109,7 +109,7 @@ echo'
 
 $count=1;
 $sel_query="SELECT * FROM annual_project ORDER BY project_id desc";
-$view = mysqli_query($con,$sel_query);
+$view = mysqli_query($db,$sel_query);
 while ($row = mysqli_fetch_assoc($view)){
  ?> 
                 
@@ -149,7 +149,7 @@ while ($row = mysqli_fetch_assoc($view)){
 
 
   
-  $add=mysqli_query($con,'SELECT SUM(amount) from `annual_project`');
+  $add=mysqli_query($db,'SELECT SUM(amount) from `annual_project`');
   while($row1=mysqli_fetch_array($add))
   {
     $total=$row1['SUM(amount)'];
@@ -216,7 +216,7 @@ while ($row = mysqli_fetch_assoc($view)){
         </div>
 
                     <?php 
-                            $result = mysqli_query($con, "select f.noe_id,ffns.noe_type,noe_code, f.noe_amount,max(f.noe_year) as MaxDate
+                            $result = mysqli_query($db, "select f.noe_id,ffns.noe_type,noe_code, f.noe_amount,max(f.noe_year) as MaxDate
     from finance_fundoperation_noeset f
     inner join (SELECT max(noe_setid) mxID FROM finance_fundoperation_noeset WHERE noe_id = 7) x ON f.noe_setid = x.mxID
     INNER JOIN finance_fundoperation_noe ffns ON ffns.noe_id = f.noe_id

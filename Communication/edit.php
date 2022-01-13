@@ -29,7 +29,7 @@
       $_SESSION['id' ] = $announceId ;
       
       
-      $result = mysqli_query($connection, "SELECT * FROM announce WHERE announceId = '$announceId'");
+      $result = mysqli_query($db, "SELECT * FROM announce WHERE announceId = '$announceId'");
       
       while ($row = mysqli_fetch_assoc($result)) 
       {
@@ -50,7 +50,7 @@
                            <select name="editCategory" value= "" class="form-control">
                               <option disabled=""><?php echo $row['category']; ?></option>
                               <?php
-                                 $sql = mysqli_query($connection, "SELECT * FROM sms_category");
+                                 $sql = mysqli_query($db, "SELECT * FROM sms_category");
                                  while($row1 = mysqli_fetch_assoc($sql))
                                  {
                                  ?>
@@ -67,7 +67,7 @@
                            <select name="editReceiver" value= "" class="form-control">
                               <option disabled=""><?php echo $row['category']; ?></option>
                               <?php
-                                 $sql = mysqli_query($connection, "SELECT * FROM ref_position WHERE position_ID > 3");
+                                 $sql = mysqli_query($db, "SELECT * FROM ref_position WHERE position_ID > 3");
                                  while($row2 = mysqli_fetch_assoc($sql))
                                  {
                                  ?>

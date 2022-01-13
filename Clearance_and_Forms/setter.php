@@ -13,7 +13,7 @@ $s1="";
           $sql_sub = "UPDATE brgy_address_info SET brgy_Name='$brgy_Name',
                       citymun_Name='$citymun_Name', province_Name='$province_Name'
                       WHERE caller_Code='setter'";
-          if (mysqli_query($conn, $sql_sub)) {$s1="Update Success!!";}
+          if (mysqli_query($db, $sql_sub)) {$s1="Update Success!!";}
           else {echo $s1="Update Failed";}
         }
 
@@ -73,7 +73,7 @@ $s1="";
                                             LEFT JOIN ref_province rp ON rp.province_Code = rb.province_Code
                                             WHERE brgy_Name LIKE '%$searchq%' OR citymun_Name LIKE '%$searchq%' OR province_Name LIKE '%$searchq%'  ORDER BY brgy_Name ASC " ;
 
-                                            $res_conf = mysqli_query($conn, $squery);
+                                            $res_conf = mysqli_query($db, $squery);
                                             $conf_check = mysqli_num_rows($res_conf);
 
 

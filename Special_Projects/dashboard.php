@@ -13,7 +13,7 @@ require('db.php');
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/jquery.dropotron.min.js"></script>		
 		<script src="js/skel.min.js">
-		{
+		return {
 			prefix: 'css/style',
 			preloadStyleSheets: true,
 			resetCSS: true,

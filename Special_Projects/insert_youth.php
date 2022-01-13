@@ -14,7 +14,7 @@ $status = $_REQUEST['status'];
 
 $query = "INSERT INTO youth_investment (year, issues,programs,result,amount,start,end,status)
  values ('$year','$issues','$programs','$result','$amount','$start','$end','$status')";
-mysqli_query($con, $query) or die("ERROR");
+mysqli_query($db, $query) or die("ERROR");
 
   $status = "New Record Inserted Successfully.</br></br><a href='viewsk.php'>View Inserted Record</a>";
 

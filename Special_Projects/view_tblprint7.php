@@ -1,14 +1,14 @@
 <?php
 session_start();
-$con = mysqli_connect("localhost", "root", "", "bmis_db");
+include('db.php');
 
-$sql = mysqli_query($con, "SELECT * FROM accounts WHERE Position = 'Barangay Treasurer'");
+$sql = mysqli_query($db, "SELECT * FROM accounts WHERE Position = 'Barangay Treasurer'");
 while ($row = mysqli_fetch_assoc($sql))
 {
         $treasurer = $row['Fullname'];
 }
 
-$sql1 = mysqli_query($con, "SELECT * FROM accounts WHERE Position = 'Barangay Captain'");
+$sql1 = mysqli_query($db, "SELECT * FROM accounts WHERE Position = 'Barangay Captain'");
 while ($row = mysqli_fetch_assoc($sql1))
 {
         $captain = $row['Fullname'];
@@ -20,9 +20,10 @@ Orignal credits to Nicola Asuni for the tcpdf
 updated by: Mark Philip Sy [giving credit to the original creator by mentioning the name]
 support@syngkit.tk
 */
+
 require_once('tcpdf/config/lang/eng.php');
 require_once('tcpdf/tcpdf.php');
-require_once ('mysql_connect.php');
+require_once ('db.php');
 
 // create new PDF document
 $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -84,8 +85,8 @@ else
 }
 
 
-$result = mysql_query($query); // Run the query.
-$strings = mysql_num_rows($result); // How many users are there?
+$result = mysqli_query($db,$query); // Run the query.
+$strings = mysqli_num_rows($result); // How many users are there?
 
 $html2='';
 
@@ -166,7 +167,7 @@ if ($strings > 0) { // If it ran OK, display the records.
                                       
 </tr> ';
 			// Fetch and print all the records.
-			while ($row = mysql_fetch_array($result)) {
+			while ($row = mysqli_fetch_array($result)) {
 				$html2= $html2.'
 				<tr>
 				<td align=\"left\">' . stripslashes($row['item']) . '</td>
@@ -196,4 +197,4 @@ $pdf->writeHTML($html, true, false, true, false, '');
 $pdf->lastPage();
 
 //Close and output PDF document
-$pdf->Output('test_save - MPS-'.date('Y-M-d').'.pdf', 'I');
+$pdf->Output('test_save - MPS-'.date('Y-M-d').'.pdf', 'FI');

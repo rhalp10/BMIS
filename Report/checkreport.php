@@ -2,9 +2,9 @@
 					
           
 					if($pID>0){
-						$con =  mysqli_connect("localhost", "root", "","bmis_db");
+						include('dbcon.php');
 						$query = "SELECT ref_report.report_Name, ref_report.report_ID FROM `ref_report` INNER JOIN report_list WHERE ref_report.report_ID = report_list.report_ID AND report_list.position_ID = '$pID' ORDER BY `ref_report`.`report_name`";
-						$res = mysqli_query($con,$query);
+						$res = mysqli_query($db,$query);
 						$others="";
 						$others1="";
 						$others2="";

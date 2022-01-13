@@ -2,10 +2,10 @@
 session_start();
 $period = $_SESSION['covperiod'];
 $trial=0;
- 	$con = mysqli_connect("localhost","root","","bmis_db");
+ 	include('dbcon.php');
 
 
-	$chk = mysqli_query($con, "SELECT * FROM `report_cov` WHERE `period` = '$period'");
+	$chk = mysqli_query($db, "SELECT * FROM `report_cov` WHERE `period` = '$period'");
 		if(mysqli_num_rows($chk) > 0 ){
 			echo'<script>
 				var a = confirm("Record for '.$period.' already exist. Continue?")

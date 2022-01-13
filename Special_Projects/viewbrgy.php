@@ -94,7 +94,7 @@ echo'
 <?php
 $count=1;
 $sel_query= "Select * from annual_project ORDER BY project_id desc";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while ($row = mysqli_fetch_assoc($result)) { 
   ?>
   <tr>
@@ -131,7 +131,7 @@ while ($row = mysqli_fetch_assoc($result)) {
      <?php $count++; }
 
 
-  $add=mysqli_query($con,'SELECT SUM(amount) from `annual_project`;');
+  $add=mysqli_query($db,'SELECT SUM(amount) from `annual_project`;');
   while($row1=mysqli_fetch_array($add))
   {
     $total=$row1['SUM(amount)'];

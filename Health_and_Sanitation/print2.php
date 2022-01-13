@@ -1,13 +1,13 @@
 <?php 
-$connect = mysqli_connect("localhost", "root", "", "bmis_db");
+include('db.php');
 $output = '';
 
-function fetch_data8()  
+function fetch_data8($db)  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      
       $sql = "SELECT * From inventory_drugs_release INNER JOIN resident_detail ON inventory_drugs_release.res_ID= resident_detail.res_ID INNER JOIN inventory_drugs ON inventory_drugs_release.drug_ID= inventory_drugs.drug_ID order by inventory_drugs_release.drgrelease_ID";
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -63,7 +63,7 @@ function fetch_data8()
            </tr>  
 
       ';  
-      $content .= fetch_data8();  
+      $content .= fetch_data8($db);  
       $content .= '</table><br><br><br><br>
            Prepared By: <br>
    Signature: ___________________________<br>

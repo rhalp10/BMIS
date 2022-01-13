@@ -10,7 +10,7 @@
    $rece = $_POST['editReceiver'];
    
    $sql = "UPDATE announce SET category = '$cate', announcement = '$state', receiver = '$rece' WHERE announceId = $announceId;";
-   if ($connection->query($sql) === TRUE) 
+   if ($db->query($sql) === TRUE) 
    {
    						echo "<script>alert('You successfully updated an announcement');</script>";
    						echo "<script>window.location=\"index.php\";</script>";

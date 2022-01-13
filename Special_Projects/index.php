@@ -1,9 +1,6 @@
 <?php
 session_start();
-?>
-
-
-<?php
+ 
 require('db.php');
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1)
@@ -19,7 +16,7 @@ $amount = $_REQUEST['amount'];
 $status = $_REQUEST['status'];
 
 $ins_query="insert into annual_project (`aip`,`program`,`department`,`start`,`end`,`e_output`,`source`,`amount`,`status`) values ('$aip','$program','$department','$start','$end','$e_output','$source','$amount','$status')";
-mysqli_query($con, $ins_query) or die(mysql_error());
+mysqli_query($db, $ins_query) or die(mysqli_error($db));
 
 $status = "New Record Inserted Successfully.";
 }
@@ -115,7 +112,7 @@ echo'
   <?php
 $count=1;
 $sel_query="Select * from annual_project";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while ($row = mysqli_fetch_assoc($result)) { ?> 
                         <tr>
                             <td align="center" width="8%">
@@ -154,7 +151,7 @@ while ($row = mysqli_fetch_assoc($result)) { ?>
                             <?php $count++; }
 
 
-  $add=mysqli_query($con,'SELECT SUM(amount) from `annual_project`');
+  $add=mysqli_query($db,'SELECT SUM(amount) from `annual_project`');
   while($row1=mysqli_fetch_array($add))
   {
     $total=$row1['SUM(amount)'];

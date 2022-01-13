@@ -4,7 +4,7 @@
 include("connections.php");
     $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
 $largestNumber= $rid= "";
-                           $rowSQL = mysqli_query($connections, "SELECT MAX( res_id ) AS max FROM `resident_detail`;" );
+                           $rowSQL = mysqli_query($db, "SELECT MAX( res_id ) AS max FROM `resident_detail`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $largestNumber = $row['max'];
                                     $rid= $largestNumber+1;
@@ -48,7 +48,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID where gender_Name='Male'  && res_ID != $largestNumber   "  ;  
- $result = mysqli_query($connect, $query);  
+ $result = mysqli_query($db, $query);  
  ?>  
 
 <div class="container">

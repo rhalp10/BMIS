@@ -1,43 +1,48 @@
-
-
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>REPORT MODULE</title>
-        <link rel="stylesheet" href="css/firstview.css" type="text/css" />
-        <style>
-          .btn {
-            border-radius: 8px;
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 4px 10px;
-    text-align: center;
-    text-decoration: none;
-    display:    inline-block
-    font-size: 16px;
-    margin: 0px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-     
-}
+
+<head>
+    <meta charset="utf-8" />
+    <title>REPORT MODULE</title>
+    <link rel="stylesheet" href="css/firstview.css" type="text/css" />
+    <style>
+    .btn {
+        border-radius: 8px;
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 4px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 0px;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+
+    }
 
 
-.btn-success:hover {
-    background-color: #008CBA;
-    color: white;
-}
-            </style>
-    </head>
-    
-       
-    <body>
-        <a  href="viewreport.php"><button  class='btn btn-success'> back </button><center></a><h1>UPLOAD FILE</h1></center>
-        <br><br>
-        
-       
-<?php
+    .btn-success:hover {
+        background-color: #008CBA;
+        color: white;
+    }
+    </style>
+</head>
+
+
+<body>
+    <a href="viewreport.php"><button class='btn btn-success'> back </button>
+        <center>
+    </a>
+    <h1>UPLOAD FILE</h1>
+    </center>
+    <br><br>
+
+
+    <?php
         session_start();
         $id=$_GET['id'];
         $pID= $_SESSION['position_ID'];
@@ -55,19 +60,19 @@
             header("location: view.php?id=$id");
         }
 ?>
-<center>
-   <form method="post" enctype="multipart/form-data">
-	<input type="file" name="myfile"/>
-    <input type="text" name="title" placeholder="Input filename" required/>
-	<button name="btn"> IMPORT </button>
-</form>      
-        </center>
+    <center>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="myfile" />
+            <input type="text" name="title" placeholder="Input filename" required />
+            <button name="btn"> IMPORT </button>
+        </form>
+    </center>
 
-        
-        
-    
-    
-    
-    </body>
+
+
+
+
+
+</body>
 
 </html>

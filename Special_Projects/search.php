@@ -1,16 +1,4 @@
-<?php
-    mysql_connect("localhost", "root", "") or die("Error connecting to database: ".mysql_error());
-    /*
-        localhost - it's location of the mysql server, usually localhost
-        root - your username
-        third is your password
-         
-        if connection fails it will stop loading the page and display an error
-    */
-     
-    mysql_select_db("project1") or die(mysql_error());
-    /* tutorial_search is the name of database we've created */
-?>
+<?php include('db.php'); ?>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -32,11 +20,11 @@
         $query = htmlspecialchars($query); 
         // changes characters used in html to their equivalents, for example: < to &gt;
          
-        $query = mysql_real_escape_string($query);
+        $query = mysqli_real_escape_string($db,$query);
         // makes sure nobody uses SQL injection
          
-        $raw_results = mysql_query("SELECT * FROM annual_project
-            WHERE (program LIKE '%".$query."%') OR (status LIKE '%".$query."%') OR (aip LIKE '%".$query."%') OR (source LIKE '%".$query."%') OR (start LIKE '%".$query."%') OR (end LIKE '%".$query."%')") or die(mysql_error());
+        $raw_results = mysqli_query($db,"SELECT * FROM annual_project
+            WHERE (program LIKE '%".$query."%') OR (status LIKE '%".$query."%') OR (aip LIKE '%".$query."%') OR (source LIKE '%".$query."%') OR (start LIKE '%".$query."%') OR (end LIKE '%".$query."%')") or die(mysqli_error($db));
              
         // * means that it selects all fields, you can also write: id, title, text
         // articles is the name of our table
@@ -46,10 +34,10 @@
         // or if you want to match just full word so "gogohello" is out use '% $query%' ...OR ... '$query %' ... OR ... '% $query'
             echo "<h1 align='center' style='color:#33D0FD;'>Search Results</h1>";    
 
-        if(mysql_num_rows($raw_results) > 0){ // if one or more rows are returned do following
+        if(mysqli_num_rows($raw_results) > 0){ // if one or more rows are returned do following
         
-            while($results = mysql_fetch_array($raw_results)){
-            // $results = mysql_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
+            while($results = mysqli_fetch_array($raw_results)){
+            // $results = mysqli_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
 
              echo "<table border='1' width='100%' height='auto' align='center' text-align='center' style='border-collapse:collapse;    background: #FFF; color: #47433F; padding: 0.75em 0.5em; text-align: left;'>";
              echo "<thead>";

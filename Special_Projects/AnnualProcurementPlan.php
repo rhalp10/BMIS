@@ -1,4 +1,4 @@
-?php
+<?php
 
  
 require('db.php');
@@ -81,7 +81,7 @@ require('db.php');
 <?php
 $count=1;
 $sel_query="Select * from annual_procurement ORDER BY id desc";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <tr>
 	<td align="center"><?php echo $row["item"]; ?></td>
@@ -92,7 +92,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 
 
 <?php
-  $add=mysqli_query($con,'SELECT SUM(amount) from `youth_procurement`;');
+  $add=mysqli_query($db,'SELECT SUM(amount) from `youth_procurement`;');
   while($row1=mysqli_fetch_array($add))
   {
     $total=$row1['SUM(amount)'];

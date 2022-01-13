@@ -35,18 +35,18 @@ if ($_SESSION['position']=='Barangay Secretary' OR $_SESSION['position']=='Baran
     // search in all table columns
     // using concat mysql function
     $query         = "SELECT * From resident_detail INNER JOIN resident_vaccinated ON resident_detail.res_ID= resident_vaccinated.res_ID WHERE CONCAT(`vac_Name`,`res_fName`,`res_mName`,`res_lName`,`vac_Date`,`vac_Date_Recorded`,`vac_Name`) LIKE '%".$valueToSearch."%'";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
     
 } else {
     $query         = "SELECT * From resident_detail INNER JOIN resident_vaccinated ON resident_detail.res_ID= resident_vaccinated.res_ID ";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
 }
 
 // function to connect and execute the query
-function filterTable($query)
+function filterTable($query,$db)
 {
-    $connect       = mysqli_connect("localhost", "root", "", "bmis_db");
-    $filter_Result = mysqli_query($connect, $query);
+    
+    $filter_Result = mysqli_query($db, $query);
     return $filter_Result;
 }
 

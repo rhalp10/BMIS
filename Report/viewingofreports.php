@@ -1,6 +1,6 @@
 <?php
 
-$con =  mysqli_connect("localhost", "root", "","bmis_db");
+include('dbcon.php');
 						
 						
            if($_SESSION['reportID']==1){
@@ -8,7 +8,7 @@ $con =  mysqli_connect("localhost", "root", "","bmis_db");
 		   }
            else if($_SESSION['reportID']==2){
 			    $query = "SELECT * FROM report_accomplishsment ORDER BY date_save";
-						$res = mysqli_query($con,$query);
+						$res = mysqli_query($db,$query);
 					while($row = mysqli_fetch_array($res)){
 						
 							$id = $row["accom_ID"];
@@ -36,7 +36,7 @@ $con =  mysqli_connect("localhost", "root", "","bmis_db");
 			   
 		   } else if($_SESSION['reportID']==7){
 			    $query = "SELECT * FROM ref_manilabay ORDER BY date_save";
-						$res = mysqli_query($con,$query);
+						$res = mysqli_query($db,$query);
 					while($row = mysqli_fetch_array($res)){
 						
 							$id = $row["mb_ID"];
@@ -60,7 +60,7 @@ $con =  mysqli_connect("localhost", "root", "","bmis_db");
 		   }
 		    else if($_SESSION['reportID']==12){
 			    $query = "SELECT * FROM report_attendancemonitoring ORDER BY date";
-						$res = mysqli_query($con,$query);
+						$res = mysqli_query($db,$query);
 					while($row = mysqli_fetch_array($res)){
 						
 							$id = $row["attendancemonitoring_id"];
@@ -79,7 +79,7 @@ $con =  mysqli_connect("localhost", "root", "","bmis_db");
 		   }
 		    else if($_SESSION['reportID']==14){
 			   $query = "SELECT * FROM report_cov ORDER BY date_save";
-						$res = mysqli_query($con,$query);
+						$res = mysqli_query($db,$query);
 					while($row = mysqli_fetch_array($res)){
 						
 							$id = $row["cov_ID"];

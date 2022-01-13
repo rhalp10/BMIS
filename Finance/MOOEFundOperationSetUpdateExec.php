@@ -16,11 +16,11 @@ $dy=date('Y');
 $d=$dy+1;
 
 
-$date = mysqli_query($con, "SELECT mooe_year, mooe_setid FROM finance_fundoperation_mooeset WHERE `mooe_year` = $d AND `mooe_setid`='$id'");
+$date = mysqli_query($db, "SELECT mooe_year, mooe_setid FROM finance_fundoperation_mooeset WHERE `mooe_year` = $d AND `mooe_setid`='$id'");
 if(mysqli_num_rows($date) > 0 ){
 
         $sql = "UPDATE `finance_fundoperation_mooeset` SET `mooe_amount` = '$ma', `mooe_year` = '$my' WHERE `mooe_setid` = '$id'";
-		 		if ($con->query($sql) === TRUE) 
+		 		if ($db->query($sql) === TRUE) 
 		 		{
 					echo '<script> alert ("Data Updated")</script>';	
 					echo '<script> window.location = "MOOEFundOperationSetView.php"</script>';			

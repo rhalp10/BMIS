@@ -9,7 +9,7 @@ $pdate = $_REQUEST['pdate'];
 $ldate = $_REQUEST['ldate'];
 $trn_date = date("Y-m-d H:i:s");
 $ins_query="insert into resident_pregnant (`res_ID`,`preg_Date`,`preg_Labor`,`preg_Date_Record`) values ('$name','$pdate','$ldate','$trn_date')";
-mysqli_query($con, $ins_query) or die(mysqli_error());
+mysqli_query($db, $ins_query) or die(mysqli_error($db));
 
 $status = "New Record Inserted Successfully.</br></br><a href='viewpregnant.php'>View Inserted Record</a>";
 }
@@ -21,18 +21,18 @@ if (isset($_POST['search'])) {
     // search in all table columns
     // using concat mysql function
     $query         = "SELECT * From resident_detail INNER JOIN resident_pregnant ON resident_detail.res_ID= resident_pregnant.res_ID WHERE CONCAT(`res_fName`,`res_mName`,`res_lName`,`preg_Date`,`preg_Labor`,`preg_Date_Record`) LIKE '%".$valueToSearch."%'";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
     
 } else {
     $query = "SELECT * From resident_detail INNER JOIN resident_pregnant ON resident_detail.res_ID= resident_pregnant.res_ID";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
 }
 
 // function to connect and execute the query
-function filterTable($query)
+function filterTable($query,$db)
 {
-    $connect       = mysqli_connect("localhost", "root", "", "bmis_db");
-    $filter_Result = mysqli_query($connect, $query);
+    
+    $filter_Result = mysqli_query($db, $query);
     return $filter_Result;
 }
 
@@ -71,7 +71,7 @@ function filterTable($query)
 <?php 
 $count=1;
 $sel_query="Select * from resident_detail WHERE gender_ID='2' ORDER BY res_ID asc;";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <optgroup>
 <option>  <?php echo $row["res_ID"]; ?> <?php echo " " ?><?php echo $row["res_fName"]; ?><?php echo " "; ?><?php echo $row["res_mName"]; ?><?php echo " "; ?><?php echo $row["res_lName"]; ?></option></optgroup>
@@ -118,7 +118,7 @@ return del;
 	<?php 
 $count=1;
 
-$result = mysqli_query($con,$query);
+$result = mysqli_query($db,$query);
 while ($row = mysqli_fetch_assoc($result)) { 
   ?>
 <tr>

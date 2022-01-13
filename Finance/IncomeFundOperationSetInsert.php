@@ -11,7 +11,7 @@ $my = $_POST['income_year'];
  	include('dbcon.php');
 // Check connection
 if($ma != 0){
-$chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_incomeset` WHERE `income_id` = '$id' AND `income_year`='$my'");
+$chk = mysqli_query($db, "SELECT * FROM `finance_fundoperation_incomeset` WHERE `income_id` = '$id' AND `income_year`='$my'");
 		if(mysqli_num_rows($chk) > 0 ){
 			echo'<script>alert("Data Already Exists!")</script>';
 			require("IncomeFundOperationSet.php");
@@ -20,7 +20,7 @@ $chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_incomeset` WHERE
 		else{
 
 	$sql="INSERT INTO finance_fundoperation_incomeset (income_id,income_amount,income_year) VALUES ('$id','$ma','$my')";
-				if ($con->query($sql) === TRUE) 
+				if ($db->query($sql) === TRUE) 
 				{
 					echo '<script> alert ("Data Saved")</script>';	
 					echo '<script> window.location = "IncomeFundOperationSet.php"</script>';			

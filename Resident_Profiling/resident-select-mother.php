@@ -4,7 +4,7 @@
 include("connections.php");
     $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
 $largestNumber= $rid= "";
-                           $rowSQL = mysqli_query($connections, "SELECT MAX( res_id ) AS max FROM `resident_detail`;" );
+                           $rowSQL = mysqli_query($db, "SELECT MAX( res_id ) AS max FROM `resident_detail`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $largestNumber = $row['max'];
                                     $rid= $largestNumber+1;
@@ -30,7 +30,7 @@ $largestNumber= $rid= "";
 <br> <?php  
  $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
  $query ="SELECT rd.res_ID , rd.res_fName , rd.res_mName , rd.res_lName , sfx.suffix, rd.res_Bday , rms.marital_Name, rg.gender_Name, rr.religion_Name, rc.country_nationality, rc.country_citizenship, ro.occupation_Name, ros.occuStat_Name, rd.res_Date_Record FROM resident_detail rd LEFT JOIN ref_suffixname sfx ON rd.suffix_ID = sfx.suffix_ID LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID where gender_Name='Female' && res_ID != $largestNumber   " ;  
- $result = mysqli_query($connect, $query);  
+ $result = mysqli_query($db, $query);  
  ?>  
 
 <div class="container">

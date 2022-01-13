@@ -9,12 +9,12 @@ class PDF extends FPDF
 function Header()
 {
 	
-$con = mysqli_connect("localhost","root","","bmis_db");
+include('dbcon.php');
 
     session_start();
 	$id = $_GET['id'];
    $ins_query1="SELECT * FROM `report_attendancemonitoring` where attendancemonitoring_id = '$id'";
-					$result = mysqli_query($con, $ins_query1);  
+					$result = mysqli_query($db, $ins_query1);  
 					$row = mysqli_fetch_array($result);
 					
 
@@ -76,7 +76,7 @@ $con = mysqli_connect("localhost","root","","bmis_db");
     
    ////////////////////
     $ins_query11="SELECT * FROM `report_attendance` where attendance_id = '$id'";
-					$result1 = mysqli_query($con, $ins_query11); 
+					$result1 = mysqli_query($db, $ins_query11); 
 					$num_rows = mysqli_num_rows($result1);				
 					if( $num_rows > 0 ){
 						while($row1 = mysqli_fetch_array($result1)){

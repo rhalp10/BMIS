@@ -49,7 +49,7 @@
                   <select name="category" required>
                   <option></option>
                   <?php
-                     $sql = mysqli_query($connection, "SELECT * FROM sms_category");
+                     $sql = mysqli_query($db, "SELECT * FROM sms_category");
                      while($row = mysqli_fetch_assoc($sql))
                      {
                      ?>
@@ -70,7 +70,7 @@
                           
                   
                   <?php
-                     $sql = mysqli_query($connection, "SELECT * FROM ref_position WHERE position_ID != 1");
+                     $sql = mysqli_query($db, "SELECT * FROM ref_position WHERE position_ID != 1");
                      while($row = mysqli_fetch_assoc($sql))
                      {
                      ?>
@@ -100,7 +100,7 @@
                <select name="category" class="form-control" required>
                   <option></option>
                   <?php
-                     $sql = mysqli_query($connection, "SELECT * FROM sms_category");
+                     $sql = mysqli_query($db, "SELECT * FROM sms_category");
                      while($row = mysqli_fetch_assoc($sql))
                      {
                      ?>
@@ -117,7 +117,7 @@
                <select name="receiver" class="form-control" required>
                   <option></option>
                   <?php
-                     $sql = mysqli_query($connection, "SELECT * FROM ref_position");
+                     $sql = mysqli_query($db, "SELECT * FROM ref_position");
                      while($row = mysqli_fetch_assoc($sql))
                      {
                      ?>

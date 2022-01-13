@@ -141,13 +141,10 @@ echo
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 <a href="Report/viewreport.php" target="FraDisplay"><img src="Icon/clearances.png" style="float:left" width="29">&nbsp;Reports</a>
 
-
 <b><div class="holder"><b></b></div>
 <a href = "admin.php" target="FraDisplay"><image src="Icon/settings.png" style = "float:center ;filter: invert(0%)!important;" width="20" >Account Setting</a>
-
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: invert(0%)!important;">Logout</a>	
-
 ';
+// <a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: invert(0%)!important;">Logout</a>	
 }
 
 if($_SESSION['position']=='Barangay Captain'){
@@ -173,8 +170,8 @@ echo
 <a href="Communication/index.php" target="FraDisplay"><img src="Icon/announcement.png" style="float:left" width="30">&nbsp;Announcement</a>
 <a href="Special_Projects/index.php" target="FraDisplay"><img src="Icon/special.png" style="float:left" width="28">&nbsp;Special Projects</a>
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
+
 
 
 ';
@@ -204,8 +201,7 @@ echo
 <a href="Special_Projects/index.php" target="FraDisplay"><img src="Icon/special.png" style="float:left" width="28">&nbsp;Special Projects</a>
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
 
 ';
 }
@@ -230,8 +226,8 @@ echo
 <a href="Special_Projects/index.php" target="FraDisplay"><img src="Icon/special.png" style="float:left" width="28">&nbsp;Special Projects</a>
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
+
 
 ';
 }
@@ -257,8 +253,8 @@ echo
 <a href="Special_Projects/index.php" target="FraDisplay"><img src="Icon/special.png" style="float:left" width="28">&nbsp;Special Projects</a>
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
+
 
 ';
 }
@@ -284,8 +280,8 @@ echo
 <a href="Special_Projects/index.php" target="FraDisplay"><img src="Icon/special.png" style="float:left" width="28">&nbsp;Special Projects</a>
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
+
 
 ';
 }
@@ -312,8 +308,8 @@ echo
 <a href="Special_Projects/index.php" target="FraDisplay"><img src="Icon/special.png" style="float:left" width="28">&nbsp;Special Projects</a>
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
+
 
 ';
 }
@@ -338,8 +334,8 @@ echo
 <a href="Special_Projects/index.php" target="FraDisplay"><img src="Icon/special.png" style="float:left" width="28">&nbsp;Special Projects</a>
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
+
 
 ';
 }
@@ -364,9 +360,6 @@ echo
 <a href="Special_Projects/index.php" target="FraDisplay"><img src="Icon/special.png" style="float:left" width="28">&nbsp;Special Projects</a>
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
-
 ';
 }
 
@@ -390,8 +383,8 @@ echo
 <a href="Communication/index.php" target="FraDisplay"><img src="Icon/announcement.png" style="float:left" width="30">&nbsp;Announcement</a>
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
+
 
 ';
 }
@@ -413,8 +406,8 @@ echo
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 <a href="Report/viewreport.php" target="FraDisplay"><img src="Icon/clearances.png" style="float:left" width="29">&nbsp;Reports</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
+
 
 ';
 }
@@ -431,20 +424,21 @@ echo
 <a href="Barangay_Officials/index.php" target="FraDisplay"><img src="Icon/add.png" style="float:left" width="28">&nbsp;Barangay Officials</a>
 <a href="Special_Projects/index.php" target="FraDisplay"><img src="Icon/special.png" style="float:left" width="28">&nbsp;Special Projects</a>
 
-<b><div class="holder"><b></b></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
+
+
 
 ';
 }
 if($_SESSION['position']=="Barangay Councilor"){
 ?>
-<div class="holder"></div>
-<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>
+<!-- <div class="holder"></div> -->
+<!-- <a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a> -->
 <?php
 
 }
 ?>
-
+<div class="holder"></div>
+<a href = "accountLogout.php" target="_Parent"><img src="Icon/Logout.png" height= "20" style="filter: none!important;">Logout</a>	
 
 </body>
 

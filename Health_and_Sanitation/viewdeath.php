@@ -8,7 +8,7 @@ $cost = $_REQUEST['cost'];
 $date = $_REQUEST['date'];
 $daterec= date("Y-m-d H:i:s");
 $ins_query="insert into resident_death (`res_ID`,`death_Cost`,`death_Date`,`death_Date_Record`) values ('$death','$cost','$date','$daterec')";
-mysqli_query($con, $ins_query) or die(mysql_error());
+mysqli_query($db, $ins_query) or die(mysqli_error($db));
 }
 ?>
 
@@ -18,18 +18,18 @@ if (isset($_POST['search'])) {
     // search in all table columns
     // using concat mysql function
     $query         = "SELECT * From resident_death INNER JOIN resident_detail ON resident_death.res_ID= resident_detail.res_ID WHERE CONCAT(`res_fName`,`death_Cost`,`death_Date`) LIKE '%".$valueToSearch."%'";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
     
 } else {
     $query         ="SELECT * From resident_detail INNER JOIN resident_death ON resident_detail.res_ID= resident_death.res_ID";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
 }
 
 // function to connect and execute the query
-function filterTable($query)
+function filterTable($query,$db)
 {
-    $connect       = mysqli_connect("localhost", "root", "", "bmis_db");
-    $filter_Result = mysqli_query($connect, $query);
+    
+    $filter_Result = mysqli_query($db, $query);
     return $filter_Result;
 }
 

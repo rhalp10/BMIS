@@ -3,7 +3,7 @@
    session_start();
    
    $id = $_GET['id'];
-   $res = mysqli_query($connection, "Delete from announce where announceId = '$id'");
+   $res = mysqli_query($db, "Delete from announce where announceId = '$id'");
    
    ?>	
 <script type="text/javascript">

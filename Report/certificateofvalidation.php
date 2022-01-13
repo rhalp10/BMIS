@@ -1,9 +1,9 @@
 <?php
   session_start();
-$con =  mysqli_connect("localhost", "root", "","bmis_db");
+include('dbcon.php');
 $id=$_GET['id'];
  $query = "SELECT * FROM report_cov WHERE cov_ID = '$id'";
-						$res = mysqli_query($con,$query);
+						$res = mysqli_query($db,$query);
 					$row = mysqli_fetch_array($res);
 					$t = $row['num_of_complain'];
 					$l = $row['period'];

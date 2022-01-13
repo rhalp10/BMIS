@@ -44,12 +44,12 @@ $population = $_SESSION['totalpopulation'];
 $household = $_SESSION['totalhousehold'];
 $cap = $_SESSION['captain'];
 
-	$con = mysqli_connect("localhost","root","","bmis_db");
+	include('dbcon.php');
 $ins_query="INSERT into `ref_manilabay` (`quarter`, `year`, `population`, `household`, `tnc`, `ca`, `ch1`, `a1`, `a2`, `total`, `cch1`, `cc1`, `cc3`, `accomby`, `brgycaptain`,`date_save`,`name_barangay`) values ('$q','$f','$population','$household','$t','$ca','$ch','$a','$aa','$ta','$cch','$cc','$ccc','$c','$cap','$d','$brgy')";
 				if ($con->query($ins_query) === TRUE) 
 				{
 					$ins_query1="SELECT LAST_VALUE(mb_ID) as lastt FROM `ref_manilabay`";
-					$result = mysqli_query($con, $ins_query1);  
+					$result = mysqli_query($db, $ins_query1);  
 					while($row = mysqli_fetch_assoc( $result )){
 					$num_rows=$row['lastt'];	
 					}

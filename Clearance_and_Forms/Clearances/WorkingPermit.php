@@ -2,7 +2,7 @@
   include_once '../connection.php';
   $sql_Problema = "SELECT brgy_Name, citymun_Name, province_Name
                   FROM brgy_address_info";
-  $result_Problema = mysqli_query($conn, $sql_Problema);
+  $result_Problema = mysqli_query($db, $sql_Problema);
   $resultCheck_Problema = mysqli_num_rows($result_Problema);
 
     if($resultCheck_Problema >0){
@@ -42,7 +42,7 @@
     $picpic = addslashes(file_get_contents($_FILES['picpic']['tmp_name']));
     $picss = "transient";
     $sqlpicpic = "UPDATE `temp_pic_holder` SET pic_holder='$picpic' WHERE pic_Name='$picss';";
-    if (mysqli_query($conn, $sqlpicpic)) {
+    if (mysqli_query($db, $sqlpicpic)) {
     }
   }
 
@@ -51,19 +51,19 @@
 include_once '../connection.php';
 $logoBarangay="Barangay Logo";
 $sqllogo = "SELECT * FROM ref_logo WHERE logo_Name='$logoBarangay';";
-$sth = mysqli_query($conn, $sqllogo);
+$sth = mysqli_query($db, $sqllogo);
 $resultlogo=mysqli_fetch_array($sth);
 ?>
 <?php
 $trans="transient";
 $sqltrans= "SELECT * FROM temp_pic_holder WHERE pic_Name='$trans';";
-$transR = mysqli_query($conn, $sqltrans);
+$transR = mysqli_query($db, $sqltrans);
 $resultTrans=mysqli_fetch_array($transR);
 ?>
 <?php
 $logoMunicipal="Municipal Logo";
 $sqllogo1 = "SELECT * FROM ref_logo WHERE logo_Name='$logoMunicipal';";
-$sth1 = mysqli_query($conn, $sqllogo1);
+$sth1 = mysqli_query($db, $sqllogo1);
 $resultlogo1=mysqli_fetch_array($sth1);
 ?>
 <?php
@@ -72,7 +72,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
           WHERE position_ID
           ='$capitan';";
 
-  $result1 = mysqli_query($conn, $sql1);
+  $result1 = mysqli_query($db, $sql1);
   $resultCheck1 = mysqli_num_rows($result1);
 
   if($resultCheck1 > 0){
@@ -88,7 +88,7 @@ $resultlogo1=mysqli_fetch_array($sth1);
 <!--end of header and display officials-->
 <?php
 $sqlgetNow = "SELECT res_ID FROM resident_detail WHERE res_fName LIKE '%$first%' AND res_lName LIKE '%$lastName%' AND res_mName LIKE '%$middleName%';";
-$resultgetNow = mysqli_query($conn, $sqlgetNow);
+$resultgetNow = mysqli_query($db, $sqlgetNow);
 $resultcheckNow = mysqli_num_rows($resultgetNow);
 
 if($resultcheckNow > 0){
@@ -106,7 +106,7 @@ $datedate = date('Y-m-d H:i:s');
 $sqlsli = "INSERT INTO form_release (res_ID, form_ID, purpose_ID, release_date)
          VALUES ('$res_IDnow', 1, 1,'$datedate');";
 
-         mysqli_query($conn, $sqlsli);
+         mysqli_query($db, $sqlsli);
 ?>
 <!DOCTYPE>
 <html>

@@ -1,9 +1,9 @@
 <?php
  session_start();
 $id = $_GET['id']; 
- $con =  mysqli_connect("localhost", "root", "","bmis_db");
+ include('dbcon.php');
  $query = "SELECT * FROM report_accomplishsment WHERE accom_ID = '$id'";
-						$res = mysqli_query($con,$query);
+						$res = mysqli_query($db,$query);
 					$row = mysqli_fetch_array($res);
  
  

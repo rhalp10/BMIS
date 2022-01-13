@@ -11,11 +11,12 @@ class database{
     protected $_query;
 
     
-    public function __construct($host = 'localhost', $username = 'root', $password = '', $database = 'bmis_db', $port = null){
+    public function __construct($host = 'localhost', $username = 'root', $password = '', $database = 'bmis1_db', $port = null){
         $this->host = $host;
         $this->username = $username;
         $this->password = $password;
         $this->db = $database;
+        $this->port = 3307;
 
         $this->connection();
     }

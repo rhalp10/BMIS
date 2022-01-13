@@ -1,11 +1,10 @@
-
 <?php 
 session_start();
 require('fpdf/fpdf.php');
   include("dbcon.php");
   $year=$_GET['year'];
   $month=$_GET['month'];
-  $sql = mysqli_query($con , "SELECT * FROM accounts where Position = 'Barangay Captain'");
+  $sql = mysqli_query($db , "SELECT * FROM accounts where Position = 'Barangay Captain'");
   while($row = mysqli_fetch_assoc($sql))
   {
     $_SESSION['captain'] = $row['Fullname'];
@@ -17,7 +16,7 @@ require('fpdf/fpdf.php');
   $year=$_GET['year'];
   $month=$_GET['month'];
       $output = '';  
-      $res = mysqli_query($con, "SELECT * FROM finance_collection fc WHERE fc.collection_date  like '$year-$month-%'");
+      $res = mysqli_query($db, "SELECT * FROM finance_collection fc WHERE fc.collection_date  like '$year-$month-%'");
       
       while($row = mysqli_fetch_array($res))  
       {
@@ -41,7 +40,7 @@ require('fpdf/fpdf.php');
   $year=$_GET['year'];
   $month=$_GET['month'];
       $output = '';  
-      $res = mysqli_query($con, "SELECT * FROM finance_disbursement fc WHERE fc.disbursement_date  like '$year-$month-%'");
+      $res = mysqli_query($db, "SELECT * FROM finance_disbursement fc WHERE fc.disbursement_date  like '$year-$month-%'");
       
       while($row = mysqli_fetch_array($res))  
       {
@@ -64,7 +63,7 @@ require('fpdf/fpdf.php');
     $month=$_GET['month'];
     $out = '';
     $sql1 = "SELECT sum(collection_amount) as collection_sum from finance_collection fc WHERE fc.collection_date LIKE '$year-$month%'";
-    $result = mysqli_query($con, $sql1);
+    $result = mysqli_query($db, $sql1);
     $row = mysqli_fetch_array($result);
     $out=$row["collection_sum"];
     $out = '<tr>   
@@ -80,7 +79,7 @@ require('fpdf/fpdf.php');
     $month=$_GET['month'];
     $out = '';
     $sql1 = "SELECT sum(collection_amount) as collection_sum from finance_collection fc WHERE fc.collection_date LIKE '$year-$month%'";
-    $result = mysqli_query($con, $sql1);
+    $result = mysqli_query($db, $sql1);
     $row = mysqli_fetch_array($result);
     $out=$row["collection_sum"];
   
@@ -93,7 +92,7 @@ require('fpdf/fpdf.php');
     $month=$_GET['month'];
     $out = '';
     $sql2 = "SELECT sum(disbursement_amount) as disbursement_sum from finance_disbursement fd WHERE fd.disbursement_date LIKE '$year-$month%'";
-    $result1 = mysqli_query($con, $sql2);
+    $result1 = mysqli_query($db, $sql2);
     $row1 = mysqli_fetch_array($result1);
     $out = $row1["disbursement_sum"];
     $out = '<tr>   
@@ -107,7 +106,7 @@ require('fpdf/fpdf.php');
     $month=$_GET['month'];
     $out = '';
     $sql2 = "SELECT sum(disbursement_amount) as disbursement_sum from finance_disbursement fd WHERE fd.disbursement_date LIKE '$year-$month%'";
-    $result1 = mysqli_query($con, $sql2);
+    $result1 = mysqli_query($db, $sql2);
     $row1 = mysqli_fetch_array($result1);
     $out = $row1["disbursement_sum"];
     
@@ -121,8 +120,8 @@ require('fpdf/fpdf.php');
       $out = '';  
       $sql2 = "SELECT sum(disbursement_amount) as disbursement_sum from finance_disbursement fd WHERE fd.disbursement_date LIKE '$year-$month%'";
       $sql1 = "SELECT sum(collection_amount) as collection_sum from finance_collection fc WHERE fc.collection_date LIKE '$year-$month%'";  
-      $result = mysqli_query($con, $sql1);
-      $result1 = mysqli_query($con, $sql2);
+      $result = mysqli_query($db, $sql1);
+      $result1 = mysqli_query($db, $sql2);
       $row1 = mysqli_fetch_array($result1);
       $row = mysqli_fetch_array($result);
       $tp = $row["collection_sum"];
@@ -259,7 +258,7 @@ include("dbcon.php");
     $pdf->Cell(100,5,"PARTICULARS" ,1,0,'C');
     $pdf->Cell(50,5,"AMOUNT" ,1,1,'C');
     //query
-    $res = mysqli_query($con, "SELECT * FROM finance_collection  WHERE collection_date LIKE '$year-$month%'");
+    $res = mysqli_query($db, "SELECT * FROM finance_collection  WHERE collection_date LIKE '$year-$month%'");
        while($row = mysqli_fetch_array($res))
        {
 
@@ -282,7 +281,7 @@ include("dbcon.php");
     $pdf->Cell(50,5,"AMOUNT" ,1,1,'C');
     
     
-    $ress = mysqli_query($con, "SELECT * FROM finance_disbursement  WHERE disbursement_date LIKE '$year-$month%'");
+    $ress = mysqli_query($db, "SELECT * FROM finance_disbursement  WHERE disbursement_date LIKE '$year-$month%'");
        while($row1= mysqli_fetch_array($ress))
        {
     
@@ -314,57 +313,66 @@ include("dbcon.php");
 
 $pdf->Output();
 
- ?>  
- <!DOCTYPE html>  
- <html>
- 
-      <head> 
-      <link rel="stylesheet" type="text/css" href="../bootstrap.css"> 
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.css" / >
-                       
-      </head>  
-      <body>  <center>
-           <br /><br />  
-           <div class="container" style="width:800px;">  
-                <h3 align="center"></h3><br />  
-                <div class="table-responsive">  
-                     <table class="table table-bordered">
-                          <tr>
-                             <td colspan="3"><center><b>COLLECTION</b></center></td> 
-                        
-                          </tr>  
-                          <tr> <center> 
-                               <th width="13%">DATE</th>  
-                               <th width="26%">PARTICULARS</th>  
-                               <th width="11%">AMOUNT</th>  
-                           </center>
-                          </tr>
-                          
-                     <?php  
+ ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+</head>
+
+<body>
+    <center>
+        <br /><br />
+        <div class="container" style="width:800px;">
+            <h3 align="center"></h3><br />
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <td colspan="3">
+                            <center><b>COLLECTION</b></center>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <center>
+                            <th width="13%">DATE</th>
+                            <th width="26%">PARTICULARS</th>
+                            <th width="11%">AMOUNT</th>
+                        </center>
+                    </tr>
+
+                    <?php  
           echo fetch_data();
           
           echo fetch_1();
-          ?>  
+          ?>
                     <tr>
-                             <td colspan="3"><center><b>DISBURSEMENT</b></center></td> 
-                        
-                          </tr>  
-                          <tr> <center> 
-                               <th width="13%">DATE</th>  
-                               <th width="26%">PARTICULARS</th>  
-                               <th width="11%">AMOUNT</th>  
-                           </center>
-                          </tr>
-                          <?php  
+                        <td colspan="3">
+                            <center><b>DISBURSEMENT</b></center>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <center>
+                            <th width="13%">DATE</th>
+                            <th width="26%">PARTICULARS</th>
+                            <th width="11%">AMOUNT</th>
+                        </center>
+                    </tr>
+                    <?php  
           echo fetch_data2();
           
           echo fetch_2();
           ?>
-                     </table>  
-                     <br />  
-                     
-                </div>  
-           </div>  
-         </center>
-      </body>  
- </html>  >
+                </table>
+                <br />
+
+            </div>
+        </div>
+    </center>
+</body>
+
+</html> >

@@ -204,10 +204,10 @@ input[type=password]:focus {
 
 
 <?php
-require("accountdbconnect.php");
+require("db.php");
 $id =$_REQUEST['ID'];
 
-$result = mysqli_query($conn,"SELECT * FROM accounts WHERE ID  = '$id'");
+$result = mysqli_query($db,"SELECT * FROM accounts WHERE ID  = '$id'");
 $test = mysqli_fetch_array($result);
 if (!$result) 
 		{
@@ -224,13 +224,13 @@ if(isset($_POST['save']))
 	$position_save = $_POST['position'];
 	$committee_save = $_POST['committee'];
 
-	mysqli_query($conn,"UPDATE accounts SET Emailaddress='$emailaddress_save', Password ='$password_save',
+	mysqli_query($db,"UPDATE accounts SET Emailaddress='$emailaddress_save', Password ='$password_save',
 		 Position ='$position_save', Committee ='$committee_save'  WHERE ID = '$id'")
-				or die(mysqli_error()); 
+				or die(mysqli_error($db)); 
 	echo "<script>alert('Account Saved.');</script>";
 				echo '<script>window.location = "account.php";</script>';			
 }
-mysqli_close($conn);
+mysqli_close($db);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

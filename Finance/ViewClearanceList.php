@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,102 +10,113 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/css/mis.css" rel="stylesheet">
     <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
-      </head>
-  <body> 
-<br><br>
+</head>
 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'ClearanceType.php';"  >Back
-  <span class="glyphicon glyphicon" aria-hidden="true"></span>
-</button>
+<body>
+    <br><br>
 
-<?php session_start();
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'ClearanceType.php';">Back
+        <span class="glyphicon glyphicon" aria-hidden="true"></span>
+    </button>
+
+    <?php session_start();
 include("dbcon.php");
 ?>
 
-<link href="Style.css" style="text/css" rel="stylesheet">
+    <link href="Style.css" type="text/css" rel="stylesheet">
 
-<style>
-table{
-	border-collapse: collapse;
-	width:50%;
-}
-th,td{
-	text-align:left;
-	padding:5px;
-}
+    <style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
 
-tr:nth-child(even){ background-color:#f2f2f2;}
-</style>
+    th,
+    td {
+        text-align: left;
+        padding: 5px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    </style>
 
 
-<center>
+    <center>
 
-<?php
+        <?php
 		
 include('dbcon.php');
 
-$res = mysqli_query($con, "SELECT * FROM `finance_clearance_list`");?>
+$res = mysqli_query($db, "SELECT * FROM `finance_clearance_list`");?>
 
-<div class="container">
-  <div class="table-responsive">
-  <table class="table table table-hover" id="mytable">
-  <thead>
-     <tr>
-      <th scope="col">Clearance Type</th>
-      <th scope="col">Update</th>
-      <th scope="col">Delete</th>
-      </tr>
-  </thead>
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table table-hover" id="mytable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Clearance Type</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
 
 
-<?php
+                    <?php
 while($row = mysqli_fetch_array($res)){
 	$id = $row["clearance_id"];
 ?>
 
-    <tr>
-<td><?php echo $row["clearance_form"]?></td>    
-    <td><a href="ClearanceTypeUpdate.php?id=<?php echo $row['clearance_id']?>" class="btn btn-primary">Update</a></td>
-    <td><input type="button" onClick="deleteme(<?php echo $row['clearance_id']?>)" name="Delete" value="Delete" class="btn btn-primary"></td>
-    </tr>  
+                    <tr>
+                        <td><?php echo $row["clearance_form"]?></td>
+                        <td><a href="ClearanceTypeUpdate.php?id=<?php echo $row['clearance_id']?>"
+                                class="btn btn-primary">Update</a></td>
+                        <td><input type="button" onClick="deleteme(<?php echo $row['clearance_id']?>)" name="Delete"
+                                value="Delete" class="btn btn-primary"></td>
+                    </tr>
 
-<script language="javascript">
-  function deleteme(delid)
-  {
-    if(confirm("Are you sure you want to delete?")){
-      window.location.href='ClearanceTypeDelete.php?del_id=' +delid+'';
-      return true;
-    }
-  }
-</script>
-<?php
+                    <script language="javascript">
+                    function deleteme(delid) {
+                        if (confirm("Are you sure you want to delete?")) {
+                            window.location.href = 'ClearanceTypeDelete.php?del_id=' + delid + '';
+                            return true;
+                        }
+                    }
+                    </script>
+                    <?php
 }
 ?>
 
- 
-  </div>
-  </div>
-</table>
 
-<script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script> 
-    <script src="vendor/js/jquery.dataTables.min.js"></script>  
-     <script src="vendor/js/dataTables.bootstrap.min.js"></script>
-       <script>$(document).ready(function() {
-    var table = $('#mytable').removeAttr('width').DataTable( {
-        scrollY:        "500px",
-        scrollX:        true,
-        scrollCollapse: true,
-        paging:         false,
-        columnDefs: [
-            { width: 120, targets: 0 }
+            </div>
+        </div>
+        </table>
 
-        ],
-        fixedColumns: true
-    } );
-} );</script>
+        <script src="jquery/jquery-3.3.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="vendor/js/jquery.dataTables.min.js"></script>
+        <script src="vendor/js/dataTables.bootstrap.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            var table = $('#mytable').removeAttr('width').DataTable({
+                scrollY: "500px",
+                scrollX: true,
+                scrollCollapse: true,
+                paging: false,
+                columnDefs: [{
+                        width: 120,
+                        targets: 0
+                    }
 
-</center>
+                ],
+                fixedColumns: true
+            });
+        });
+        </script>
+
+    </center>
 </body>
-</html>	
+
+</html>

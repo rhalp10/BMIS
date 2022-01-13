@@ -95,8 +95,8 @@ input[type=password]:focus {
         $Start = $_POST['Start'];
         $end = $_POST['End'];
 
-        $sql = mysqli_query($con,"INSERT INTO `brgy_official_detail` (`res_ID`, `commitee_assignID`, `official_Start`, `official_End`) VALUES ('$resident', '$commitee', '$Start', '$end')");
-        mysqli_query($con, "UPDATE `resident_detail` SET  `position_ID` = '$commitee' WHERE res_ID = '$resident'");
+        $sql = mysqli_query($db,"INSERT INTO `brgy_official_detail` (`res_ID`, `commitee_assignID`, `official_Start`, `official_End`) VALUES ('$resident', '$commitee', '$Start', '$end')");
+        mysqli_query($db, "UPDATE `resident_detail` SET  `position_ID` = '$commitee' WHERE res_ID = '$resident'");
 
     }
 ?>
@@ -136,7 +136,7 @@ input[type=password]:focus {
       <p>Residents</p>
       <?php 
 
-      $sql = mysqli_query($con,"SELECT * FROM `resident_detail`");
+      $sql = mysqli_query($db,"SELECT * FROM `resident_detail`");
       while ($d = mysqli_fetch_array($sql)) {
         ?>
         <option value="<?php echo $d[0]?>"><?php echo $d[2]." ".$d[3]." ".$d[4];?></option>
@@ -148,7 +148,7 @@ input[type=password]:focus {
     <select name="commitee">
       <option disabled="">SELECT</option>
       <?php 
-      $sql = mysqli_query($con,"SELECT * FROM `ref_position` where position_ID != 1 and position_ID != 5");
+      $sql = mysqli_query($db,"SELECT * FROM `ref_position` where position_ID != 1 and position_ID != 5");
       while ($d = mysqli_fetch_array($sql)) {
         ?>
         <option value="<?php echo $d[0]?>"><?php echo $d[1];?></option>

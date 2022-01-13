@@ -1,7 +1,4 @@
-<?php
-$link=mysqli_connect("localhost", "root", "");
-mysqli_select_db($link,"bmis_db");
-?>
+<?php include('connections.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">

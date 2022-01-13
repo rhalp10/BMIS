@@ -55,7 +55,7 @@ echo'
         </div>
              
 <!-- <section class="container"> -->
-<form action="" method="post">
+<form action="" method="post" >
     <!-- <input type="text" id="valueToSearch" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> -->
    
       <section class="down">
@@ -92,7 +92,7 @@ echo'
                <?php
 $count=1;
 $sel_query="Select * from youth_investment ORDER BY youth_id desc";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) {   ?>
   
                         <tr>
@@ -127,7 +127,7 @@ while($row = mysqli_fetch_assoc($result)) {   ?>
                 </tbody>
                 </tr>
 <?php
-  $add=mysqli_query($con,'SELECT SUM(amount) from `youth_investment` ;');
+  $add=mysqli_query($db,'SELECT SUM(amount) from `youth_investment` ;');
   while($row1=mysqli_fetch_array($add))
   {
     $total=$row1['SUM(amount)'];

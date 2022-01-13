@@ -9,23 +9,23 @@ $quantity = $_REQUEST['quantity'];
 $res = $_REQUEST['resident_name'];
 
 $qq="SELECT * from inventory_drugs where drug_ID='".$name."'";
-$resu = mysqli_query($con, $qq) or die ( mysqli_error());
+$resu = mysqli_query($db, $qq) or die ( mysqli_error($db));
 $r = mysqli_fetch_assoc($resu);
 $numQ=$r['drug_Qnty'];
 
 if ($numQ>=$quantity)
 {
 $ins_query= "insert into inventory_drugs_release (`drug_ID`,`res_ID`,`drgrelease_Qnty`,`drgrelease_Date_Record`) values ('$name','$res','$quantity','$daterec')";
-mysqli_query($con, $ins_query) or die(mysql_error());
+mysqli_query($db, $ins_query) or die(mysqli_error($db));
 
 $dif= "select * from inventory_drugs where drug_ID = '".$name."' ";
-$results = mysqli_query($con, $dif) or die ( mysqli_error());
+$results = mysqli_query($db, $dif) or die ( mysqli_error($db));
 $r = mysqli_fetch_assoc($results);
 $drgQuan= $r['drug_Qnty'];
 
 $res=$drgQuan-$quantity;
 $update="update inventory_drugs set drug_Qnty='".$res."' where drug_ID='".$name."' ";
-mysqli_query($con, $update) or die(mysqli_error());
+mysqli_query($db, $update) or die(mysqli_error($db));
 }
 else
 {
@@ -42,17 +42,17 @@ if (isset($_POST['search'])) {
     // search in all table columns
     // using concat mysql function
     $query = "SELECT * From inventory_drugs_release INNER JOIN resident_detail ON inventory_drugs_release.res_ID= resident_detail.res_ID INNER JOIN inventory_drugs ON inventory_drugs_release.drug_ID= inventory_drugs.drug_ID WHERE CONCAT(`drug_Name`,`res_fName`,`res_mName`,`res_lName`,`drgrelease_Qnty`,`drgrelease_Date_Record`) LIKE '%".$valueToSearch."%' order by inventory_drugs_release.drgrelease_ID" ;
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
 } else {
     $query = "SELECT * From inventory_drugs_release INNER JOIN resident_detail ON inventory_drugs_release.res_ID= resident_detail.res_ID INNER JOIN inventory_drugs ON inventory_drugs_release.drug_ID= inventory_drugs.drug_ID order by inventory_drugs_release.drgrelease_ID";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
 }
 
 // function to connect and execute the query
-function filterTable($query)
+function filterTable($query,$db)
 {
-    $connect       = mysqli_connect("localhost", "root", "", "bmis_db");
-    $filter_Result = mysqli_query($connect, $query);
+    
+    $filter_Result = mysqli_query($db, $query);
     return $filter_Result;
 }
 ?>
@@ -89,7 +89,7 @@ function filterTable($query)
 <?php 
 $count=1;
 $sel_query="Select * from inventory_drugs ORDER BY drug_ID asc;";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <optgroup>
 <option><?php echo"<td align='center'><font color=white>".$row['drug_ID']."</font></td>"; ?><?php echo " "; ?> <?php echo $row["drug_Name"]; ?></option></optgroup>
@@ -105,7 +105,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <?php 
 $count=1;
 $sel_query= "SELECT * From resident_detail ORDER BY res_ID asc";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <optgroup>
 <option><?php echo $row["res_ID"]; ?><?php echo " ";?>  <?php echo $row["res_fName"]; ?><?php echo " "; ?><?php echo $row["res_mName"]; ?><?php echo " "; ?><?php echo $row["res_lName"]; ?></option></optgroup>

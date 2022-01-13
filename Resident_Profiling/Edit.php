@@ -1,7 +1,6 @@
 
 <?php
-$link=mysqli_connect("localhost", "root", "");
-mysqli_select_db($link,"bmis_db");
+include('connections.php');
 ?>
 
 <?php
@@ -13,7 +12,7 @@ $user_id;
 
 include("connections.php");
 
-$get_record = mysqli_query($connections, "SELECT * FROM resident_detail WHERE res_ID='$user_id'");
+$get_record = mysqli_query($db, "SELECT * FROM resident_detail WHERE res_ID='$user_id'");
 $db_res_suffixname =$db_res_occuStat= $db_res_occupation ="";
 
 ?>
@@ -22,7 +21,7 @@ $db_res_suffixname =$db_res_occuStat= $db_res_occupation ="";
 <?php
 include("connections.php");
 $largestocc= $oid= "";
-                           $rowSQL = mysqli_query($connections, "SELECT MAX( occupation_ID ) AS max FROM `ref_occupation`;" );
+                           $rowSQL = mysqli_query($db, "SELECT MAX( occupation_ID ) AS max FROM `ref_occupation`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $largestocc = $row['max'];
                                     $oid= $largestocc+1;
@@ -56,49 +55,49 @@ while ($row_edit = mysqli_fetch_assoc($get_record)){
 
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_suffixname where suffix_ID=' $db_suffix_ID '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_suffixname where suffix_ID=' $db_suffix_ID '");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_suffixname = $row["suffix"];
  }
 ?>
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_gender where gender_ID=' $db_gender_ID '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_gender where gender_ID=' $db_gender_ID '");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_gender = $row["gender_Name"];
  }
 ?>
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_marital_status where marital_ID=' $db_marital_ID '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_marital_status where marital_ID=' $db_marital_ID '");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_marital = $row["marital_Name"];
  }
 ?>
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_religion where religion_ID=' $db_religion_ID '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_religion where religion_ID=' $db_religion_ID '");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_religion = $row["religion_Name"];
  }
 ?>
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation_status where occuStat_ID=' $db_occuStat_ID'");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_occupation_status where occuStat_ID=' $db_occuStat_ID'");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_occuStat = $row["occuStat_Name"];
  }
 ?>
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation where occupation_ID='$db_occupation_ID'");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_occupation where occupation_ID='$db_occupation_ID'");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_occupation = $row["occupation_Name"];
  }
 ?>
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_country where country_ID=' $db_country_ID'");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_country where country_ID=' $db_country_ID'");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_citizenship = $row["country_citizenship"];
  }
@@ -112,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $suffix= "";
-                        $rows = mysqli_query($connections, "SELECT * FROM `ref_suffixname` where suffix = '$isuffix';" );
+                        $rows = mysqli_query($db, "SELECT * FROM `ref_suffixname` where suffix = '$isuffix';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $suffix = $row['suffix_ID'];
              $res_suffix=$suffix;
@@ -129,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $gender= "";
-                        $rows = mysqli_query($connections, "SELECT gender_ID  FROM `ref_gender` where gender_Name = '$igender';" );
+                        $rows = mysqli_query($db, "SELECT gender_ID  FROM `ref_gender` where gender_Name = '$igender';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $gender = $row['gender_ID'];
              $res_gender=$gender;
@@ -144,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $marital= "";
-                        $rows = mysqli_query($connections, "SELECT * FROM `ref_marital_status` where marital_Name = '$imarital';" );
+                        $rows = mysqli_query($db, "SELECT * FROM `ref_marital_status` where marital_Name = '$imarital';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $marital = $row['marital_ID'];
              $res_marital=$marital;
@@ -159,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $countryID= "";
-                        $rows = mysqli_query($connections, "SELECT * FROM `ref_country` where country_citizenship = '$icountry';" );
+                        $rows = mysqli_query($db, "SELECT * FROM `ref_country` where country_citizenship = '$icountry';" );
                                   $row = mysqli_fetch_array( $rows );
                                    $countryID = $row['country_ID'];
              $res_countryID= $countryID;
@@ -173,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $contacttype= "";
-                        $rows = mysqli_query($connections, "SELECT * FROM `ref_contact` where contactType_Name = '$ictype';" );
+                        $rows = mysqli_query($db, "SELECT * FROM `ref_contact` where contactType_Name = '$ictype';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $contacttype= $row['contactType_ID'];
              $res_ctype=$contacttype;
@@ -188,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $religion= "";
-                        $rows = mysqli_query($connections, "SELECT * FROM `ref_religion` where religion_Name = '$irel';" );
+                        $rows = mysqli_query($db, "SELECT * FROM `ref_religion` where religion_Name = '$irel';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $religion= $row['religion_ID'];
              $res_religion= $religion;
@@ -203,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $occStatus= "";
-                        $rows = mysqli_query($connections, "SELECT * FROM `ref_occupation_status` where occuStat_Name = '$ioccStat';" );
+                        $rows = mysqli_query($db, "SELECT * FROM `ref_occupation_status` where occuStat_Name = '$ioccStat';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $occStatus= $row['occuStat_ID'];
              $res_occuStat=  $occStatus;
@@ -217,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $occ= "";
-                        $rows = mysqli_query($connections, "SELECT * FROM `ref_occupation` where occupation_Name = '$iocc';" );
+                        $rows = mysqli_query($db, "SELECT * FROM `ref_occupation` where occupation_Name = '$iocc';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $occ= $row['occupation_ID'];
              $res_occu=  $occ;
@@ -232,7 +231,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $purokname= "";
-                        $rows = mysqli_query($connections, "SELECT * FROM `ref_purok` where purok_Name = '$ipurok';" );
+                        $rows = mysqli_query($db, "SELECT * FROM `ref_purok` where purok_Name = '$ipurok';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $purokname= $row['purok_ID'];
              $res_purokname=  $purokname;
@@ -250,7 +249,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
         if ($_SERVER["REQUEST_METHOD"]== "POST"){
              $raddressType= "";
-                        $rows = mysqli_query($connections, "SELECT * FROM `ref_address` where addressType_Name = '$iaddress';" );
+                        $rows = mysqli_query($db, "SELECT * FROM `ref_address` where addressType_Name = '$iaddress';" );
                                   $row = mysqli_fetch_array( $rows );
                                   $raddressType= $row['addressType_ID'];
              $res_addressname=  $raddressType;
@@ -273,7 +272,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM resident_address where res_ID=' $user_id'");
+  $view_query = mysqli_query($db, "SELECT * FROM resident_address where res_ID=' $user_id'");
 
   while($row = mysqli_fetch_assoc($view_query)){
     
@@ -296,21 +295,21 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_purok where purok_ID=' $db_res_purok'");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_purok where purok_ID=' $db_res_purok'");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_brgypurok = $row["purok_Name"];
  }
 ?>
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_brgy where brgy_ID='$db_res_brgy'");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_brgy where brgy_ID='$db_res_brgy'");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_barangay = $row["brgy_Name"];
  }
 ?>
 
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_address where addressType_ID=' $db_res_addtype'");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_address where addressType_ID=' $db_res_addtype'");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_addressType = $row["addressType_Name"];
  }
@@ -323,7 +322,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
 
     <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM resident_contact where res_ID=' $user_id'");
+  $view_query = mysqli_query($db, "SELECT * FROM resident_contact where res_ID=' $user_id'");
 
   while($row = mysqli_fetch_assoc($view_query)){
     
@@ -338,7 +337,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
 ?>
 <?php
 if (isset($db_res_contactType)) {
- $view_query = mysqli_query($connections, "SELECT * FROM ref_contact where contactType_ID='$db_res_contactType'");
+ $view_query = mysqli_query($db, "SELECT * FROM ref_contact where contactType_ID='$db_res_contactType'");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_contype = $row["contactType_Name"];
  }
@@ -439,7 +438,7 @@ div.upload input {
   <select  class="form-control" id="res_suffix" name="res_suffix">
      <option style="display:none;"><?php echo  $db_res_suffixname ;?></option>
    <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_suffixname");
+          $res=mysqli_query($db,"SELECT * FROM ref_suffixname");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -460,7 +459,7 @@ div.upload input {
     <option style="display:none;"><?php echo  $db_res_gender;?></option>
  
         <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_gender");
+          $res=mysqli_query($db,"SELECT * FROM ref_gender");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -486,7 +485,7 @@ div.upload input {
   <select class="form-control"  id="res_civilstatus" name="new_marital" value="<?php echo $db_marital_ID;?>">
      <option style="display:none;"><?php echo  $db_res_marital;?></option>
  <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_marital_status");
+          $res=mysqli_query($db,"SELECT * FROM ref_marital_status");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -506,7 +505,7 @@ div.upload input {
   <select class="form-control" id="res_contacttype" name="res_contacttype"  onchange="maxLengthFunction()">
     <option style="display:none;"><?php echo  $db_res_contype; ?></option>
    <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_contact");
+          $res=mysqli_query($db,"SELECT * FROM ref_contact");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -581,7 +580,7 @@ div.upload input {
   <select class="form-control" id="res_citizenship" name="res_citizenship">
     <option style="display:none;"><?php echo   $db_res_citizenship; ?></option>
    <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_country");
+          $res=mysqli_query($db,"SELECT * FROM ref_country");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -602,7 +601,7 @@ div.upload input {
     <select class="form-control" id="res_religion" name="res_religion">
  <option style="display:none;"><?php echo  $db_res_religion; ?></option>
         <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_religion");
+          $res=mysqli_query($db,"SELECT * FROM ref_religion");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -625,7 +624,7 @@ div.upload input {
   <select class="form-control" id="new_occuStat" name="new_occuStat">
  <option style="display:none;"><?php echo  $db_res_occuStat;?></option>
   <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_occupation_status");
+          $res=mysqli_query($db,"SELECT * FROM ref_occupation_status");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -670,7 +669,7 @@ div.upload input {
     <select class="form-control" id="res_occupation" name="res_occupation">
  <option style="display:none;"><?php echo  $db_res_occupation;?> </option>
         <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_occupation");
+          $res=mysqli_query($db,"SELECT * FROM ref_occupation");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -748,7 +747,7 @@ div.upload input {
   <select class="form-control" id="res_purokno" name="new_purok">
  <option style="display:none;"><?php echo  $db_res_brgypurok;?></option>
  <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_purok");
+          $res=mysqli_query($db,"SELECT * FROM ref_purok");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -771,7 +770,7 @@ div.upload input {
   <select class="form-control" id="new_address" name="new_address">
    <option style="display:none;"><?php echo  $db_res_addressType;?></option>
   <?php
-          $res=mysqli_query($link,"SELECT * FROM ref_address");
+          $res=mysqli_query($db,"SELECT * FROM ref_address");
         while ($row=mysqli_fetch_array($res))
         {
           ?>
@@ -828,7 +827,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
         else
         {
             $new_occupation=$oid;
-            $query=mysqli_query($connections,"INSERT INTO ref_occupation(occupation_Name,occupation_ID) VALUES('$res_trabaho','$oid') ");
+            $query=mysqli_query($db,"INSERT INTO ref_occupation(occupation_Name,occupation_ID) VALUES('$res_trabaho','$oid') ");
         }
    
     
@@ -880,11 +879,11 @@ If($new_gender){
     
     
     
-mysqli_query($connections, "UPDATE resident_detail SET res_fName='$new_fname', res_mName='$new_mname', res_lName='$new_lname', suffix_ID='$new_suffix', gender_ID='$new_gender', res_Bday='$new_bday' , marital_ID='$new_marital', country_ID='$new_country' , religion_ID='$new_religion', occuStat_ID='$new_occuStat', res_Height='$new_height', res_Weight='$new_weight', occupation_ID='$new_occupation' , status='$new_status'  where res_ID = '$user_id'");
+mysqli_query($db, "UPDATE resident_detail SET res_fName='$new_fname', res_mName='$new_mname', res_lName='$new_lname', suffix_ID='$new_suffix', gender_ID='$new_gender', res_Bday='$new_bday' , marital_ID='$new_marital', country_ID='$new_country' , religion_ID='$new_religion', occuStat_ID='$new_occuStat', res_Height='$new_height', res_Weight='$new_weight', occupation_ID='$new_occupation' , status='$new_status'  where res_ID = '$user_id'");
     
     
-mysqli_query($connections,"UPDATE resident_address SET address_Unit_Room_Floor_num='$new_addressUnit', address_BuildingName='$new_addressBuilding', address_Lot_No='$new_addressLot', address_Block_No='$new_addressBlock', address_Phase_No='$new_addressPhase', address_House_No='$new_addressHouse', address_Street_Name='$new_addressStreet', address_Subdivision='$new_addressSubdi', purok_ID='$new_purok', addressType_ID='$new_addresstype' WHERE res_ID = '$user_id' ");
-mysqli_query($connections, "UPDATE resident_contact SET contact_telnum='$new_contacttel', contactType_ID='$new_contacttype' WHERE res_ID='$user_id'");
+mysqli_query($db,"UPDATE resident_address SET address_Unit_Room_Floor_num='$new_addressUnit', address_BuildingName='$new_addressBuilding', address_Lot_No='$new_addressLot', address_Block_No='$new_addressBlock', address_Phase_No='$new_addressPhase', address_House_No='$new_addressHouse', address_Street_Name='$new_addressStreet', address_Subdivision='$new_addressSubdi', purok_ID='$new_purok', addressType_ID='$new_addresstype' WHERE res_ID = '$user_id' ");
+mysqli_query($db, "UPDATE resident_contact SET contact_telnum='$new_contacttel', contactType_ID='$new_contacttype' WHERE res_ID='$user_id'");
 
 
 
@@ -899,11 +898,11 @@ else{
       
       
     
-mysqli_query($connections, "UPDATE resident_detail SET res_Img='$file',res_fName='$new_fname', res_mName='$new_mname', res_lName='$new_lname', suffix_ID='$new_suffix', gender_ID='$new_gender', res_Bday='$new_bday' , marital_ID='$new_marital', country_ID='$new_country' , religion_ID='$new_religion', occuStat_ID='$new_occuStat', res_Height='$new_height', res_Weight='$new_weight', occupation_ID='$new_occupation' , status='$new_status'  where res_ID = '$user_id'");
+mysqli_query($db, "UPDATE resident_detail SET res_Img='$file',res_fName='$new_fname', res_mName='$new_mname', res_lName='$new_lname', suffix_ID='$new_suffix', gender_ID='$new_gender', res_Bday='$new_bday' , marital_ID='$new_marital', country_ID='$new_country' , religion_ID='$new_religion', occuStat_ID='$new_occuStat', res_Height='$new_height', res_Weight='$new_weight', occupation_ID='$new_occupation' , status='$new_status'  where res_ID = '$user_id'");
     
     
-mysqli_query($connections,"UPDATE resident_address SET address_Unit_Room_Floor_num='$new_addressUnit', address_BuildingName='$new_addressBuilding', address_Lot_No='$new_addressLot', address_Block_No='$new_addressBlock', address_Phase_No='$new_addressPhase', address_House_No='$new_addressHouse', address_Street_Name='$new_addressStreet', address_Subdivision='$new_addressSubdi', purok_ID='$new_purok', addressType_ID='$new_addresstype' WHERE res_ID = '$user_id' ");
-mysqli_query($connections, "UPDATE resident_contact SET contact_telnum='$new_contacttel', contactType_ID='$new_contacttype' WHERE res_ID='$user_id'");
+mysqli_query($db,"UPDATE resident_address SET address_Unit_Room_Floor_num='$new_addressUnit', address_BuildingName='$new_addressBuilding', address_Lot_No='$new_addressLot', address_Block_No='$new_addressBlock', address_Phase_No='$new_addressPhase', address_House_No='$new_addressHouse', address_Street_Name='$new_addressStreet', address_Subdivision='$new_addressSubdi', purok_ID='$new_purok', addressType_ID='$new_addresstype' WHERE res_ID = '$user_id' ");
+mysqli_query($db, "UPDATE resident_contact SET contact_telnum='$new_contacttel', contactType_ID='$new_contacttype' WHERE res_ID='$user_id'");
 
 
 

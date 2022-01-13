@@ -58,7 +58,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '0' AND '1' and concat(res_fName,res_mName,res_lName,res_Bday,gender_Name) LIKE '%".$valueToSearch."%'";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
     
 } else {
     $query         ="SELECT res_ID,
@@ -96,14 +96,13 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '0' AND '1'";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
 }
 
 // function to connect and execute the query
-function filterTable($query)
+function filterTable($query,$db)
 {
-    $connect       = mysqli_connect("localhost", "root", "", "bmis_db");
-    $filter_Result = mysqli_query($connect, $query);
+    $filter_Result = mysqli_query($db, $query);
     return $filter_Result;
 }
 
@@ -121,7 +120,7 @@ function filterTable($query)
 	<?php 
 
 $count=1;
-$result = mysqli_query($con,$query);
+$result = mysqli_query($db,$query);
 while ($row = mysqli_fetch_assoc($result)) { 
   ?>
 <tr>

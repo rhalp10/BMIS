@@ -5,7 +5,7 @@ require('db.php');
 $id=$_GET['id'];
 
 $query = "SELECT * From resident_detail INNER JOIN resident_pregnant ON resident_detail.res_ID= resident_pregnant.res_ID where preg_ID='".$id."'"; 
-$result = mysqli_query($con, $query) or die ( mysqli_error());
+$result = mysqli_query($db, $query) or die ( mysqli_error($db));
 $row = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ $name =$_REQUEST['resident_name'];
 $pdate =$_REQUEST['pdate'];
 $ldate =$_REQUEST['ldate'];
 $update="update resident_pregnant set res_ID='".$name."',preg_Date='".$pdate."', preg_Labor='".$ldate."' where preg_ID='".$id."' ";
-mysqli_query($con, $update) or die(mysqli_error());
+mysqli_query($db, $update) or die(mysqli_error($db));
 $status = "Record Updated Successfully. </br></br><a href='viewpregnant.php'>View Updated Record</a>";
 echo '<p style="color:blue;">'.$status.'</p>';
 }else {
@@ -59,7 +59,7 @@ Resident's Name:
 <?php 
 $count=1;
 $sel_query="Select * from resident_detail WHERE gender_ID='2' ORDER BY res_ID asc;";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <optgroup>
 <option><?php echo $row["res_ID"]; ?><?php echo " "; ?><?php echo $row["res_fName"]; ?><?php echo " "; ?><?php echo $row["res_mName"]; ?><?php echo " "; ?><?php echo $row["res_lName"]; ?></option></optgroup>
@@ -69,7 +69,7 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 <?php
 $id=$_GET['id'];
 $query = "SELECT * from resident_pregnant where preg_ID='".$id."'"; 
-$result = mysqli_query($con, $query) or die ( mysqli_error());
+$result = mysqli_query($db, $query) or die ( mysqli_error($db));
 $row = mysqli_fetch_assoc($result);
 ?>
 Date of Pregnant:

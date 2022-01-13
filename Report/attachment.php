@@ -5,9 +5,9 @@ $id = $_GET['id'];
 					
 
 					
-						$con =  mysqli_connect("localhost", "root", "","bmis_db");
+						include('dbcon.php');
 						$query = "SELECT * FROM `report_data` WHERE reportdata_id = '$id'";
-						$res = mysqli_query($con,$query);
+						$res = mysqli_query($db,$query);
 	
 					while($row = mysqli_fetch_array($res)){
 						

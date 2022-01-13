@@ -7,9 +7,9 @@ $fy = $_POST['fyear'];
   $first = $fy.'-'.$fm.'-01';
  $second = $fy.'-'.$fm.'-'.$d;
 
-$con =  mysqli_connect("localhost", "root", "","bmis_db");
+include('dbcon.php');
 						$query = "SELECT COUNT(incident_id) as total FROM `ms_incident` WHERE `date_reported` BETWEEN '$first' AND '$second'";
-						$res = mysqli_query($con,$query);
+						$res = mysqli_query($db,$query);
 						$row=mysqli_fetch_assoc($res);
 $total = $row['total'];
 

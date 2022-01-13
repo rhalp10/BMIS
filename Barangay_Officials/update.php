@@ -6,8 +6,8 @@
       $position = $_POST['position'];
       $Start = $_POST['Start'];
       $end = $_POST['End'];
-      mysqli_query($con, "UPDATE brgy_official_detail SET commitee_assignID = '$position', official_Start = '$Start', official_End = '$end' WHERE res_ID = '$id'") or die(mysqli_error($con));
-      mysqli_query($con, "UPDATE resident_detail SET position_ID = '$position' WHERE res_ID = '$id'");
+      mysqli_query($db, "UPDATE brgy_official_detail SET commitee_assignID = '$position', official_Start = '$Start', official_End = '$end' WHERE res_ID = '$id'") or die(mysqli_error($db));
+      mysqli_query($db, "UPDATE resident_detail SET position_ID = '$position' WHERE res_ID = '$id'");
       header('Location: index.php');
     }
 ?>
@@ -40,7 +40,7 @@
       <option disabled="">SELECT</option>
 
       <?php 
-      $sql = mysqli_query($con,"SELECT * FROM `resident_detail` where res_ID = '".$id."'");
+      $sql = mysqli_query($db,"SELECT * FROM `resident_detail` where res_ID = '".$id."'");
       while ($d = mysqli_fetch_array($sql)) {
         ?>
         <option value="<?php echo $d[0]?>"><?php echo $d[2]." ".$d[3]." ".$d[4];?></option>
@@ -52,7 +52,7 @@
  <select name="position" required">
       <option disabled="">SELECT</option>
       <?php 
-      $sql = mysqli_query($con,"SELECT * FROM `ref_position`");
+      $sql = mysqli_query($db,"SELECT * FROM `ref_position`");
       while ($d = mysqli_fetch_array($sql)) {
         ?>
         <option value="<?php echo $d[0]?>"><?php echo $d[1]; ?></option>

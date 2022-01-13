@@ -9,7 +9,7 @@ $date = $_REQUEST['date'];
 $vac = $_REQUEST['vacName'];
 $daterec= date("Y-m-d H:i:s");
 $ins_query="insert into resident_vaccinated (`res_ID`,`vac_Date`,`vac_Date_Recorded`,`vac_Name`) values ('$rname','$date','$daterec','$vac')";
-mysqli_query($con, $ins_query) or die(mysql_error());
+mysqli_query($db, $ins_query) or die(mysqli_error($db));
 $status = "New Record Inserted Successfully.</br></br><a href='viewvac.php'>View Inserted Record</a>";
 }
 ?>
@@ -20,18 +20,18 @@ $status = "New Record Inserted Successfully.</br></br><a href='viewvac.php'>View
     // search in all table columns
     // using concat mysql function
     $query         = "SELECT * From resident_detail INNER JOIN resident_vaccinated ON resident_detail.res_ID= resident_vaccinated.res_ID WHERE CONCAT(`vac_Name`,`res_fName`,`res_mName`,`res_lName`,`vac_Date`,`vac_Date_Recorded`,`vac_Name`) LIKE '%".$valueToSearch."%'";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
     
 } else {
     $query         = "SELECT * From resident_detail INNER JOIN resident_vaccinated ON resident_detail.res_ID= resident_vaccinated.res_ID ";
-    $search_result = filterTable($query);
+    $search_result = filterTable($query,$db);
 }
 
 // function to connect and execute the query
-function filterTable($query)
+function filterTable($query,$db)
 {
-    $connect       = mysqli_connect("localhost", "root", "", "bmis_db");
-    $filter_Result = mysqli_query($connect, $query);
+    
+    $filter_Result = mysqli_query($db, $query);
     return $filter_Result;
 }
 
@@ -71,7 +71,7 @@ function filterTable($query)
 <?php 
 $count=1;
 $sel_query= "SELECT * From resident_detail ORDER BY res_ID asc";
-$result = mysqli_query($con,$sel_query);
+$result = mysqli_query($db,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <optgroup>
 <option> <?php echo $row["res_ID"]; ?> <?php echo " "; ?> <?php echo $row["res_fName"]; ?><?php echo " "; ?><?php echo $row["res_mName"]; ?><?php echo " "; ?><?php echo $row["res_lName"]; ?></option></optgroup>

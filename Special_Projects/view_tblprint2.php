@@ -1,14 +1,14 @@
 <?php
 session_start();
-$con = mysqli_connect("localhost", "root", "", "bmis_db");
+include('db.php');
 
-$sql = mysqli_query($con, "SELECT * FROM accounts WHERE Position = 'Barangay Treasurer'");
+$sql = mysqli_query($db, "SELECT * FROM accounts WHERE Position = 'Barangay Treasurer'");
 while ($row = mysqli_fetch_assoc($sql))
 {
 	$treasurer = $row['Fullname'];
 }
 
-$sql1 = mysqli_query($con, "SELECT * FROM accounts WHERE Position = 'Barangay Captain'");
+$sql1 = mysqli_query($db, "SELECT * FROM accounts WHERE Position = 'Barangay Captain'");
 while ($row = mysqli_fetch_assoc($sql1))
 {
 	$captain = $row['Fullname'];
@@ -22,7 +22,7 @@ support@syngkit.tk
 */
 require_once('tcpdf/config/lang/eng.php');
 require_once('tcpdf/tcpdf.php');
-require_once ('mysql_connect.php');
+require_once ('db.php');
 
 // create new PDF document
 $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -75,7 +75,7 @@ else
 {
 	$query = "SELECT * from annual_project WHERE `source` ='Senior Citizen Persons with Disability Fund' and (start like '%$print%' or end like '%$print%')";	
 	$query1 = "SELECT SUM(amount) from annual_project where `source` ='Senior Citizen Persons with Disability Fund' and (start like '%$print%' or end like '%$print%')";
-		$result1 = mysqli_query($dbc, $query1);
+		$result1 = mysqli_query($db, $query1);
 		$total = mysqli_fetch_assoc($result1);
 		$total = $total["SUM(amount)"];
 		if ($total == 0)
@@ -187,4 +187,4 @@ $pdf->writeHTML($html, true, false, true, false, '');
 $pdf->lastPage();
 
 //Close and output PDF document
-$pdf->Output('test_save - MPS-'.date('Y-M-d').'.pdf', 'I');
+$pdf->Output('test_save - MPS-'.date('Y-M-d').'.pdf', 'FI');

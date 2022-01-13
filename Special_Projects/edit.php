@@ -4,7 +4,7 @@ require('db.php');
 
 $id=$_REQUEST['id'];
 $query = "SELECT * from youth_investment where youth_id='".$id."'"; 
-$result = mysqli_query($con, $query) or die ( mysqli_error());
+$result = mysqli_query($db, $query) or die ( mysqli_error($db));
 $row = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ $status =$_REQUEST['status'];
 
 
 $update="update youth_investment set issues='".$issues."', year='".$year."', programs='".$programs."', result='".$result."', amount='".$amount."', start='".$start."',end='".$end."',status='".$status."' where youth_id='".$id."' ";
-mysqli_query($con, $update) or die(mysqli_error());
+mysqli_query($db, $update) or die(mysqli_error($db));
 $status = "Record Updated Successfully. </br></br><a href='viewsk.php'>View Updated Record</a>";
 echo '<p style="color:blue;">'.$status.'</p>';
 }else {

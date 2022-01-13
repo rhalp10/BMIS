@@ -2,8 +2,7 @@
 <html>
     
     <?php
-$link=mysqli_connect("localhost", "root", "");
-mysqli_select_db($link,"bmis_db");
+include('connections.php');
     
    $user_id = $_REQUEST["id"];
 
@@ -12,9 +11,9 @@ mysqli_select_db($link,"bmis_db");
     
  <?php
 include("connections.php");
-    $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+ 
 $largestNumber= $rid= "";
-                           $rowSQL = mysqli_query($connections, "SELECT MAX( res_id ) AS max FROM `resident_detail`;" );
+                           $rowSQL = mysqli_query($db, "SELECT MAX( res_id ) AS max FROM `resident_detail`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $largestNumber = $row['max'];
                                     $rid= $largestNumber+1;
@@ -27,7 +26,7 @@ $largestNumber= $rid= "";
 <?php
 include("connections.php");
 $largest_death= $did= "";
-                           $rowSQL = mysqli_query($connections, "SELECT MAX( death_ID ) AS max FROM `resident_death`;" );
+                           $rowSQL = mysqli_query($db, "SELECT MAX( death_ID ) AS max FROM `resident_death`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $largest_death= $row['max'];
                                     $did= $largest_death+1;
@@ -51,7 +50,7 @@ $largest_death= $did= "";
     <?php
   
         
-      $view_query = mysqli_query($connections, "SELECT * FROM resident_detail where res_ID ='$res_idIN' ");
+      $view_query = mysqli_query($db, "SELECT * FROM resident_detail where res_ID ='$res_idIN' ");
   while($row = mysqli_fetch_assoc($view_query)){
    $db_res_resu= $row["res_fName"];
       $db_res_resu1= $row["res_mName"];
@@ -71,7 +70,7 @@ $largest_death= $did= "";
     
    
     
-      $view_query = mysqli_query($connections, "SELECT * FROM resident_detail where res_ID ='$res_idFa' ");
+      $view_query = mysqli_query($db, "SELECT * FROM resident_detail where res_ID ='$res_idFa' ");
   while($row = mysqli_fetch_assoc($view_query)){
    $db_res_resFa1= $row["res_fName"];
       $db_res_resFa2= $row["res_mName"];
@@ -84,7 +83,7 @@ $largest_death= $did= "";
     
     
        <?php
-      $view_query = mysqli_query($connections, "SELECT * FROM ref_gender where gender_ID ='$db_fam_gen' ");
+      $view_query = mysqli_query($db, "SELECT * FROM ref_gender where gender_ID ='$db_fam_gen' ");
   while($row = mysqli_fetch_assoc($view_query)){
    $db_fam_gender= $row["gender_Name"];
      
@@ -95,7 +94,7 @@ $largest_death= $did= "";
      
     
       <?php
-      $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation where occupation_ID ='$db_fam_occ' ");
+      $view_query = mysqli_query($db, "SELECT * FROM ref_occupation where occupation_ID ='$db_fam_occ' ");
   while($row = mysqli_fetch_assoc($view_query)){
    $db_fam_occu= $row["occupation_Name"];
      
@@ -109,7 +108,7 @@ $largest_death= $did= "";
     
     
     <?php
-      $view_query = mysqli_query($connections, "SELECT * FROM resident_contact where res_ID ='$res_idFa' ");
+      $view_query = mysqli_query($db, "SELECT * FROM resident_contact where res_ID ='$res_idFa' ");
   while($row = mysqli_fetch_assoc($view_query)){
    $db_fam_telFa= $row["contact_telnum"];
      
@@ -120,7 +119,7 @@ $largest_death= $did= "";
     
       
     <?php
-      $view_query = mysqli_query($connections, "SELECT * FROM resident_contact where res_ID ='$res_idIN' ");
+      $view_query = mysqli_query($db, "SELECT * FROM resident_contact where res_ID ='$res_idIN' ");
   while($row = mysqli_fetch_assoc($view_query)){
    $db_fam_tel= $row["contact_telnum"];
      
@@ -153,7 +152,7 @@ $ddate=$_POST["ddate"];
         
     
     
-        $query=mysqli_query($connections,"INSERT INTO resident_death(death_ID,res_ID,death_Cost, 
+        $query=mysqli_query($db,"INSERT INTO resident_death(death_ID,res_ID,death_Cost, 
 death_Date) VALUES('$did','$death_id','$cause','$ddate') ");
     echo "<script type='text/javascript'>alert('submitted successfully!')</script>";
     
@@ -201,7 +200,7 @@ death_Date) VALUES('$did','$death_id','$cause','$ddate') ");
        
 <?php
 $today = date('Y-m-d');
-  $view_query = mysqli_query($connections, "SELECT * FROM resident_detail where res_ID=' $user_id'");
+  $view_query = mysqli_query($db, "SELECT * FROM resident_detail where res_ID=' $user_id'");
 
   while($row = mysqli_fetch_assoc($view_query)){
     
@@ -233,7 +232,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
         
              
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM resident_family where res_ID=' $user_id' && relType_ID='4'");
+  $view_query = mysqli_query($db, "SELECT * FROM resident_family where res_ID=' $user_id' && relType_ID='4'");
 
   while($row = mysqli_fetch_assoc($view_query)){
     
@@ -248,7 +247,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
         
         <?php
        
-  $view_query = mysqli_query($connections, "SELECT * FROM resident_detail where res_ID='$db_mother_ID'");
+  $view_query = mysqli_query($db, "SELECT * FROM resident_detail where res_ID='$db_mother_ID'");
 
          $db_mother_fName ="No Data Recorded";
         $db_mother_mName =  $db_mother_lName = "";
@@ -266,7 +265,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
         
         
         <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM resident_family where res_ID=' $user_id' && relType_ID='3'");
+  $view_query = mysqli_query($db, "SELECT * FROM resident_family where res_ID=' $user_id' && relType_ID='3'");
 
   while($row = mysqli_fetch_assoc($view_query)){
     
@@ -281,7 +280,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
         
         <?php
        
-  $view_query = mysqli_query($connections, "SELECT * FROM resident_detail where res_ID='$db_father_ID'");
+  $view_query = mysqli_query($db, "SELECT * FROM resident_detail where res_ID='$db_father_ID'");
 
          $db_father_fName ="No Data Recorded";
          $db_father_mName =  $db_father_lName = "";
@@ -300,7 +299,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
         
          
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_marital_status where marital_ID='$db_res_civilstatus '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_marital_status where marital_ID='$db_res_civilstatus '");
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_mstat = $row["marital_Name"];
  }
@@ -308,7 +307,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
         
              
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_gender where gender_ID=' $db_res_gender '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_gender where gender_ID=' $db_res_gender '");
             while($row = mysqli_fetch_assoc($view_query)){
                     $db_res_gen = $row["gender_Name"];
     }
@@ -316,7 +315,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
          <!-- ##################QUERY FOR INITIALIATION & RETRIEVING RELIGION NAME ###################### -->
         
         <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_religion where religion_ID=' $db_res_religion '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_religion where religion_ID=' $db_res_religion '");
             while($row = mysqli_fetch_assoc($view_query)){
                     $db_res_rel = $row["religion_Name"];
     }
@@ -324,7 +323,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
          <!-- ##################QUERY FOR INITIALIATION & RETRIEVING CITIZENSHIP###################### -->
               
         <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_country where country_ID=' $db_res_country '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_country where country_ID=' $db_res_country '");
             while($row = mysqli_fetch_assoc($view_query)){
                     $db_res_citi = $row["country_citizenship"];
     }
@@ -332,7 +331,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
            <!-- ##################QUERY FOR INITIALIATION & RETRIEVING OCCUPATION STATUS###################### -->
         
       <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation_status where occuStat_ID='$db_res_occust '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_occupation_status where occuStat_ID='$db_res_occust '");
    $db_res_ocst="Not Available/Unemployed";
         while($row = mysqli_fetch_assoc($view_query)){
     $db_res_ocst = $row["occuStat_Name"];
@@ -341,7 +340,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
            <!-- ##################QUERY FOR INITIALIATION & RETRIEVING OCCUPATION NAME###################### -->
         
             <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_occupation where occupation_ID='$db_res_occu '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_occupation where occupation_ID='$db_res_occu '");
         $db_res_occ ="---";
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_occ = $row["occupation_Name"];
@@ -351,7 +350,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
            <!-- ##################QUERY FOR  RETRIEVING CONTACT NUMBER###################### -->
         
 <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM resident_contact where res_ID='$user_id '");
+  $view_query = mysqli_query($db, "SELECT * FROM resident_contact where res_ID='$user_id '");
 
   while($row = mysqli_fetch_assoc($view_query)){
     $db_res_cnum = $row["contact_telnum"];
@@ -361,7 +360,7 @@ $diff = date_diff(date_create($db_res_bdate), date_create($today));
            <!-- ##################QUERY FOR RETRIEVING RESIDENT ADDRESS###################### -->
         
         <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM resident_address where res_ID='$user_id '");
+  $view_query = mysqli_query($db, "SELECT * FROM resident_address where res_ID='$user_id '");
 
   while($row = mysqli_fetch_assoc($view_query)){
     
@@ -383,7 +382,7 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
            <!-- ##################QUERY FOR INITIALIATION & RETRIEVING PUROK NAME###################### -->
         
             <?php
-  $view_query = mysqli_query($connections, "SELECT * FROM ref_purok where purok_ID=' $db_res_purok '");
+  $view_query = mysqli_query($db, "SELECT * FROM ref_purok where purok_ID=' $db_res_purok '");
             while($row = mysqli_fetch_assoc($view_query)){
                     $db_res_pur = $row["purok_Name"];
     }
@@ -418,7 +417,7 @@ $db_res_unit = $row["address_Unit_Room_Floor_num"];
                      <div  align="center"> 
                 <?php  
                 $query = "SELECT * FROM resident_detail where res_ID=$user_id";  
-                $result = mysqli_query($connect, $query);  
+                $result = mysqli_query($db, $query);  
                 while($row = mysqli_fetch_array($result))  
                 {  
                      echo '  

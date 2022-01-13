@@ -18,7 +18,7 @@ if($_SESSION['reportID']==7){
 	$sql = "DELETE FROM ref_manilabay  WHERE mb_ID = '$id'";
 }
 
-if(mysqli_query($connect,$sql)){
+if(mysqli_query($db,$sql)){
 echo '<script>alert("Successfully deleted!");</script>';
     echo '<script>window.location = "view.php?id='.$iid.'";</script>';
 }

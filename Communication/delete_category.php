@@ -48,7 +48,7 @@
                   <?php
                      include("connection.php");
                      
-                        $res = mysqli_query($connection, "SELECT * FROM sms_category");
+                        $res = mysqli_query($db, "SELECT * FROM sms_category");
                         while($row = mysqli_fetch_assoc($res))
                         {
                             if ($row['category'] != null)

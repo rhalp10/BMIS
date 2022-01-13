@@ -57,7 +57,7 @@
                        session_start();
                        $position = $_SESSION['position'];
                        if ($position=="Barangay Secretary" OR $position=="Barangay Treasurer" OR $position=="Barangay Captain"){
-                           $res = mysqli_query($connection, "SELECT * FROM announce ORDER BY date DESC");
+                           $res = mysqli_query($db, "SELECT * FROM announce ORDER BY date DESC");
                            while ($row = mysqli_fetch_assoc($res))
                            {
                    ?>
@@ -92,7 +92,7 @@
                $position = $_SESSION['committee'];
                
                }
-               $result = mysqli_query($connection, "SELECT * FROM announce WHERE receiver = '$position' ORDER BY date DESC");
+               $result = mysqli_query($db, "SELECT * FROM announce WHERE receiver = '$position' ORDER BY date DESC");
                while ($row = mysqli_fetch_assoc($result)) {
                ?>
                  <div class="row">

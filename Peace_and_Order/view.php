@@ -100,7 +100,7 @@ body {
     	font-weight: bold;
     	background: #14aa6c;
     	border: #14aa6c solid 1px;
-    	font-family: calibri
+    	font-family: calibri;
 	padding-bottom: 2%;
 	
 }

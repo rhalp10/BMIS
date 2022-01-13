@@ -17,7 +17,7 @@ $status = $_REQUEST['status'];
 
 $ins_query="insert into annual_project (`year`,`aip`,`program`,`department`,`start`,`end`,`e_output`,`source`,`amount`,`status`) values ('$year','$aip','$program','$department','$start','$end','$e_output','$source','$amount','$status')";
 
-mysqli_query($con, $ins_query) or die(mysql_error());
+mysqli_query($db, $ins_query) or die(mysqli_error($db));
 
 $status = "New Record Inserted Successfully.</br></br><a href='view.php'>View Inserted Record</a>";
 }

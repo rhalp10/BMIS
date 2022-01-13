@@ -12,7 +12,7 @@ $my = $_POST['mooe_year'];
 // Check connection
 if($ma != 0){
 
-$chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_mooeset` WHERE `mooe_id` = '$id' AND `mooe_year`='$my'");
+$chk = mysqli_query($db, "SELECT * FROM `finance_fundoperation_mooeset` WHERE `mooe_id` = '$id' AND `mooe_year`='$my'");
 		if(mysqli_num_rows($chk) > 0 ){
 			echo'<script>alert("Data already exists!")</script>';
 			require("MOOEFundOperationSet.php");
@@ -21,7 +21,7 @@ $chk = mysqli_query($con, "SELECT * FROM `finance_fundoperation_mooeset` WHERE `
 		else{
 
 	$sql="INSERT INTO finance_fundoperation_mooeset (mooe_id,mooe_amount,mooe_year) VALUES ('$id','$ma','$my')";
-				if ($con->query($sql) === TRUE) 
+				if ($db->query($sql) === TRUE) 
 				{
 					echo '<script> alert ("Data Saved")</script>';	
 					echo '<script> window.location = "MOOEFundOperationSet.php"</script>';			

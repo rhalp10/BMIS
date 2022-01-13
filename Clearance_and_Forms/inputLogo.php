@@ -54,7 +54,7 @@ $s1="";?>
                                       $logo_type = $_POST['logo_type'];
                                       $sql = "UPDATE `ref_logo` SET logo_img='$logo' WHERE logo_Name='$logo_type';";
 
-                                    if (mysqli_query($conn, $sql)) {
+                                    if (mysqli_query($db, $sql)) {
                                         echo "upload success";}
                                     else {
                                         echo "upload failed";}

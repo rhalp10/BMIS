@@ -1,13 +1,13 @@
 <?php 
-$connect = mysqli_connect("localhost", "root", "", "bmis_db");
+include('db.php');
 $output = '';
 session_start();
-function fetch_data8()  
+function fetch_data8($db)  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      
       $sql = "SELECT * from inventory_drugs";
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -61,7 +61,7 @@ function fetch_data8()
            </tr>  
 
       ';  
-      $content .= fetch_data8();  
+      $content .= fetch_data8($db);  
       $content .= '</table><br><br><br><br>
 
            Prepared By: <br>

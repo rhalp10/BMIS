@@ -1,121 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    	<title>Collection and Disbursement Records</title>
+    <title>Collection and Disbursement Records</title>
 
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/css/mis.css" rel="stylesheet">
     <link href="vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
-      </head>
-  <body> 
+</head>
 
-<br><br>
+<body>
 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'Collection.php';"  >Back
-  <span class="glyphicon glyphicon" aria-hidden="true"></span>
-</button>
+    <br><br>
 
-<?php session_start();
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary col-lg-offset-0" onclick="location.href = 'Collection.php';">Back
+        <span class="glyphicon glyphicon" aria-hidden="true"></span>
+    </button>
+
+    <?php session_start();
 include("dbcon.php");
 ?>
 
-<link href="Style.css" style="text/css" rel="stylesheet">
+    <link href="Style.css" type="text/css" rel="stylesheet">
 
 
-</head>
+    </head>
 
-<style>
-table{
-	border-collapse: collapse;
-	width:50%;
-}
-th,td{
-	text-align:left;
-	padding:5px;
-}
+    <style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
 
-tr:nth-child(even){ background-color:#f2f2f2;}
+    th,
+    td {
+        text-align: left;
+        padding: 5px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
 
-td.amount{
-	text-align: right;
-}
-</style>
-<center>
-	<?php
+    td.amount {
+        text-align: right;
+    }
+    </style>
+    <center>
+        <?php
 		
 include('dbcon.php');
 
-$res = mysqli_query($con, "SELECT * FROM `finance_collection`");
+$res = mysqli_query($db, "SELECT * FROM `finance_collection`");
 $tp = 0;?>
 
-<div class="container">
-  <div class="table-responsive">
-  <table class="table table table-hover" id="mytable">
-  <thead>
-     <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Particulars</th>
-      <th scope="col">Amount</th> 
-      <th scope="col">Update</th> 
-      <th scope="col">Delete</th></tr>
-  </thead>
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table table-hover" id="mytable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Particulars</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
 
-<?php										
+                    <?php										
 while($row = mysqli_fetch_assoc($res)){
 $tp += $row["collection_amount"];
 $id = $row["collection_id"];?>
 
-<tr>
-	<td><?php echo $row["collection_date"]?></td>  
-	<td><?php echo $row["collection_particular"]?></td>  
-	<td class='amount'><?php echo number_format($row["collection_amount"],2)?></td> 
+                    <tr>
+                        <td><?php echo $row["collection_date"]?></td>
+                        <td><?php echo $row["collection_particular"]?></td>
+                        <td class='amount'><?php echo number_format($row["collection_amount"],2)?></td>
 
 
-<td><a href="CollectionUpdate.php?id=<?php echo $row['collection_id']?>" class="btn btn-primary">Update</a></td>
-    <td><input type="button" onClick="deleteme(<?php echo $row['collection_id']?>)" name="Delete" value="Delete" class="btn btn-primary"></td>
-    </tr>  
+                        <td><a href="CollectionUpdate.php?id=<?php echo $row['collection_id']?>"
+                                class="btn btn-primary">Update</a></td>
+                        <td><input type="button" onClick="deleteme(<?php echo $row['collection_id']?>)" name="Delete"
+                                value="Delete" class="btn btn-primary"></td>
+                    </tr>
 
-<script language="javascript">
-  function deleteme(delid)
-  {
-    if(confirm("Are you sure you want to delete?")){
-      window.location.href='CollectionDelete.php?del_id=' +delid+'';
-      return true;
-    }
-  }
-</script>
-<?php
+                    <script language="javascript">
+                    function deleteme(delid) {
+                        if (confirm("Are you sure you want to delete?")) {
+                            window.location.href = 'CollectionDelete.php?del_id=' + delid + '';
+                            return true;
+                        }
+                    }
+                    </script>
+                    <?php
 }
-?>  
-                        
-</div>
-  </div>
-</table>						
-<script src="jquery/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script> 
-    <script src="vendor/js/jquery.dataTables.min.js"></script>  
-     <script src="vendor/js/dataTables.bootstrap.min.js"></script>
-       <script>$(document).ready(function() {
-    var table = $('#mytable').removeAttr('width').DataTable( {
-        scrollY:        "500px",
-        scrollX:        true,
-        scrollCollapse: true,
-        paging:         false,
-        columnDefs: [
-            { width: 120, targets: 0 }
+?>
 
-        ],
-        fixedColumns: true
-    } );
-} );</script>
+            </div>
+        </div>
+        </table>
+        <script src="jquery/jquery-3.3.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="vendor/js/jquery.dataTables.min.js"></script>
+        <script src="vendor/js/dataTables.bootstrap.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            var table = $('#mytable').removeAttr('width').DataTable({
+                scrollY: "500px",
+                scrollX: true,
+                scrollCollapse: true,
+                paging: false,
+                columnDefs: [{
+                        width: 120,
+                        targets: 0
+                    }
 
-</center>
+                ],
+                fixedColumns: true
+            });
+        });
+        </script>
+
+    </center>
 
 </body>
+
 </html>

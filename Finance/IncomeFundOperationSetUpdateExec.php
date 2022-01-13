@@ -14,12 +14,12 @@ $dy=date('Y');
 $d=$dy+1;
 
 
-$date = mysqli_query($con, "SELECT income_year, income_setid FROM finance_fundoperation_incomeset WHERE `income_year` = $d AND `income_setid`='$id'");
+$date = mysqli_query($db, "SELECT income_year, income_setid FROM finance_fundoperation_incomeset WHERE `income_year` = $d AND `income_setid`='$id'");
 if(mysqli_num_rows($date) > 0 ){
 
 
         $sql = "UPDATE `finance_fundoperation_incomeset` SET `income_amount` = '$ma', `income_year` = '$my' WHERE `income_setid` = '$id'";
-		 		if ($con->query($sql) === TRUE) 
+		 		if ($db->query($sql) === TRUE) 
 		 		{
 					echo '<script> alert ("Data Updated")</script>';	
 					echo '<script> window.location = "IncomeFundOperationSetView.php"</script>';			

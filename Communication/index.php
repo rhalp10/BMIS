@@ -55,7 +55,7 @@
                        if ($_SESSION['position'] == 'Barangay Secretary' OR $_SESSION['position'] == 'Barangay Captain' OR $_SESSION['position'] == 'Barangay Treasurer') 
                        {
                           
-                            $res = mysqli_query($connection, "SELECT * FROM announce ORDER BY date DESC");
+                            $res = mysqli_query($db, "SELECT * FROM announce ORDER BY date DESC");
                            while ($row = mysqli_fetch_assoc($res))
                            {
                ?>
@@ -89,7 +89,7 @@
                else
                {
                
-               $result = mysqli_query($connection, "SELECT * FROM announce");
+               $result = mysqli_query($db, "SELECT * FROM announce");
                while($row = mysqli_fetch_assoc($result))
                {
                

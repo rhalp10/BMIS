@@ -1,6 +1,6 @@
 <?php
 session_start();
-$con = mysqli_connect("localhost","root","","bmis_db");
+include('dbcon.php');
 
 
 if(isset($_POST['insert_go']))
@@ -15,7 +15,7 @@ if(isset($_POST['insert_go']))
 				if ($con->query($ins_query) === TRUE) 
 				{
 					$ins_query1="SELECT LAST_VALUE(attendancemonitoring_id) as lastt FROM `report_attendancemonitoring`";
-					$result = mysqli_query($con, $ins_query1);  
+					$result = mysqli_query($db, $ins_query1);  
 					while($row = mysqli_fetch_assoc( $result )){
 					$num_rows=$row['lastt'];
 					}
@@ -40,7 +40,7 @@ if(isset($_POST['delete_row']))
  $sql = "delete from user_detail where id='$row_no'";
 
 
-if(mysqli_query($con,$sql)){
+if(mysqli_query($db,$sql)){
 echo  "success";
  
 }

@@ -1,9 +1,9 @@
 
 <?php
 include("connections.php");
- $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+ 
 $death="";
-                           $rowSQL = mysqli_query($connections, "SELECT COUNT( res_id ) AS death FROM `resident_death`;" );
+                           $rowSQL = mysqli_query($db, "SELECT COUNT( res_id ) AS death FROM `resident_death`;" );
                                   $row = mysqli_fetch_array( $rowSQL );
                                   $death = $row['death'];
                                     

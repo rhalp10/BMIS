@@ -5,7 +5,8 @@ include('checkposition.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,42 +15,52 @@ include('checkposition.php');
     <link href="nf/css/bootstrap.min.css" rel="stylesheet">
     <link href="nf/css/css/mis.css" rel="stylesheet">
     <link href="nf/vendor/css/dataTables.bootstrap.min.css" rel="stylesheet">
-      </head>
-  <body> 
-<br><br>
+</head>
 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  
+<body>
+    <br><br>
 
-<link href="Style.css" style="text/css" rel="stylesheet">
-
-<style>
-table{
-	border-collapse: collapse;
-	width:50%;
-}
-th,td{
-	text-align:left;
-	padding:5px;
-}
-
-tr:nth-child(even){ background-color:#f2f2f2;}
-</style>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
+    <link href="Style.css" type="text/css" rel="stylesheet">
 
-			
+    <style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
 
-<div class="container">
-<tr ><td><h1><a  href="viewreport.php"><button  class='btn btn-success'> Back </button></a> &emsp;&emsp;&emsp;Logo Settings</h1></td></tr>
-	<br>
-  <div class="table-responsive">
-  
- <table class="table table-bordered" id="mytable">
- 	<?php
-    $con =  mysqli_connect("localhost", "root", "","bmis_db");
+    th,
+    td {
+        text-align: left;
+        padding: 5px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    </style>
+
+
+
+
+
+    <div class="container">
+        <tr>
+            <td>
+                <h1><a href="viewreport.php"><button class='btn btn-success'> Back </button></a> &emsp;&emsp;&emsp;Logo
+                    Settings</h1>
+            </td>
+        </tr>
+        <br>
+        <div class="table-responsive">
+
+            <table class="table table-bordered" id="mytable">
+                <?php
+    include('dbcon.php');
 					$sqlngbmis = "SELECT * FROM ref_logo";  
-$resultngbmis = mysqli_query($con, $sqlngbmis); 
+$resultngbmis = mysqli_query($db, $sqlngbmis); 
 ;
  	
 	
@@ -78,29 +89,31 @@ $resultngbmis = mysqli_query($con, $sqlngbmis);
 						}
 					
 					?>
-				
-		
-  </div>
-  
-  </div>
 
 
-<script src="nf/jquery/jquery-3.3.1.min.js"></script>
-    <script src="nf/js/bootstrap.min.js"></script> 
-    <script src="nf/vendor/js/jquery.dataTables.min.js"></script>  
-     <script src="nf/vendor/js/dataTables.bootstrap.min.js"></script>
-       <script>$(document).ready(function() {
-    var table = $('#mytable').removeAttr('width').DataTable();
-} );</script>
+        </div>
 
-<script language="javascript">
-  function deleteme(delid)
-  {
-    if(confirm("Are you sure you want to delete?")){
-      window.location.href='delete.php?id=' +delid+'';
-      return true;
+    </div>
+
+
+    <script src="nf/jquery/jquery-3.3.1.min.js"></script>
+    <script src="nf/js/bootstrap.min.js"></script>
+    <script src="nf/vendor/js/jquery.dataTables.min.js"></script>
+    <script src="nf/vendor/js/dataTables.bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        var table = $('#mytable').removeAttr('width').DataTable();
+    });
+    </script>
+
+    <script language="javascript">
+    function deleteme(delid) {
+        if (confirm("Are you sure you want to delete?")) {
+            window.location.href = 'delete.php?id=' + delid + '';
+            return true;
+        }
     }
-  }
-</script>
+    </script>
 </body>
-</html>	
+
+</html>

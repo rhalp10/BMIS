@@ -50,18 +50,18 @@
                   <?php
                      include("connection.php");
                          
-                         // $sql = mysqli_query($connection, "SELECT rd.res_fName , rd.res_mName , rd.res_lName , resc.contact_telnum FROM `resident_detail` rd INNER JOIN resident_contact resc ON rd.res_ID = resc.res_ID");
-                         $sql = mysqli_query($connection, "SELECT * FROM sms ORDER by date DESC");
+                         // $sql = mysqli_query($db, "SELECT rd.res_fName , rd.res_mName , rd.res_lName , resc.contact_telnum FROM `resident_detail` rd INNER JOIN resident_contact resc ON rd.res_ID = resc.res_ID");
+                         $sql = mysqli_query($db, "SELECT * FROM sms ORDER by date DESC");
                      
                          while($row = mysqli_fetch_assoc($sql))
                          {
                      ?>
                   <tr>
-                     <td><?php echo $row['date']; ?></td>
-                     <td><?php echo $row['message']; ?></td>
-                     <td><?php echo $row['receiver']; ?></td>
-                     <td><?php echo $row['mobileNo']; ?></td>
-                     <td><?php echo $row['position']; ?></td>
+                     <td><?php echo isset($row['date']) ? $row['date'] : ''; ?></td>
+                     <td><?php echo isset($row['message']) ? $row['message'] : ''; ?></td>
+                     <td><?php echo isset($row['receiver']) ? $row['receiver'] : ''; ?></td>
+                     <td><?php echo isset($row['mobileNo']) ? $row['mobileNo'] : ''; ?></td>
+                     <td><?php echo isset($row['position']) ? $row['position'] : ''; ?></td>
                      <td><a href="delete_sms_log.php?id=<?php echo $row['id']; ?>"><button class="btn btn-danger">DELETE</button></a></td>
                   </tr>
                   <?php

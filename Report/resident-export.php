@@ -2,7 +2,7 @@
 session_start();
 //export.php  
 $brgy = strtoupper($_SESSION['barangay']);
-$connect = mysqli_connect("localhost", "root", "", "bmis_db");
+include('dbcon.php');
 $output = '';
 
  //-------------FOR  RESIDENT-------------------//
@@ -30,7 +30,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID";
- $result = mysqli_query($connect, $query);
+ $result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '<br>
@@ -117,7 +117,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'Male'";
- $result = mysqli_query($connect, $query);
+ $result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '<br>
@@ -202,7 +202,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'Female'";
- $result = mysqli_query($connect, $query);
+ $result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '
@@ -302,7 +302,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '0' AND '1'";
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '
@@ -404,7 +404,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '1' AND '17'";
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '
@@ -508,7 +508,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '13' AND '19'";
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '
@@ -609,7 +609,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '20' AND '59'";
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '
@@ -711,7 +711,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '60' AND '100'";
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '
@@ -799,7 +799,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 'Employed' OR occuStat_Name = 'Employed Government'OR occuStat_Name = 'Employed Private' OR occuStat_Name ='Overseas Filipino Worker (OFW)' OR occuStat_Name ='Self-Employed (SE)'";
- $result = mysqli_query($connect, $query);
+ $result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '<br>
@@ -879,7 +879,7 @@ LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID
 LEFT JOIN ref_occupation ro ON rd.occupation_ID = ro.occupation_ID 
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 'Unemployed'";
- $result = mysqli_query($connect, $query);
+ $result = mysqli_query($db, $query);
  if(mysqli_num_rows($result) > 0)
  {
   $output .= '
@@ -947,7 +947,7 @@ if (isset($_POST["death"]))
  $query = "SELECT res_fName,res_mName,res_lName,rg.gender_Name,res_Bday,death_Cost,death_Date From resident_death
 INNER JOIN resident_detail ON resident_death.res_ID= resident_detail.res_ID
 LEFT JOIN ref_gender rg ON resident_detail.gender_ID = rg.gender_ID";
- $result = mysqli_query($connect, $query);
+ $result = mysqli_query($db, $query);
 if(mysqli_num_rows($result) > 0)
  {
   $output .= '
@@ -1002,7 +1002,7 @@ if (isset($_POST["preg"]))
  $query = "SELECT res_fName,res_mName,res_lName,res_Bday,preg_Date,preg_Labor From resident_pregnant
 INNER JOIN resident_detail ON resident_pregnant.res_ID= resident_detail.res_ID
 ";
- $result = mysqli_query($connect, $query);
+ $result = mysqli_query($db, $query);
 if(mysqli_num_rows($result) > 0)
  {
   $output .= '
@@ -1052,7 +1052,7 @@ Municipality of Indang<br>
 function fetch_data1()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT rd.res_ID ,
 rd.res_fName ,
 rd.res_mName ,
@@ -1068,7 +1068,7 @@ LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID";  
     
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -1093,12 +1093,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID";
       require_once('vendor/tcpdf/tcpdf.php');  
      
         $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
      
@@ -1170,7 +1170,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID";
  function fetch_data2()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT rd.res_ID ,
 rd.res_fName ,
 rd.res_mName ,
@@ -1185,7 +1185,7 @@ LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID
 LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID 
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'Male'";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -1211,12 +1211,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'M
      
      
           $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
      
@@ -1284,7 +1284,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'M
  function fetch_data3()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT rd.res_ID ,
 rd.res_fName ,
 rd.res_mName ,
@@ -1299,7 +1299,7 @@ LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID
 LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID 
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'Female'";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -1323,12 +1323,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'F
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
          $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -1395,7 +1395,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE gender_Name = 'F
   function fetch_data4()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT res_ID,
 res_fName,
 res_mName,
@@ -1424,7 +1424,7 @@ LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
 LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '0' AND '1'";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -1449,12 +1449,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
           $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -1522,7 +1522,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  function fetch_data5()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT res_ID,
 res_fName,
 res_mName,
@@ -1551,7 +1551,7 @@ LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
 LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '1' AND '17'";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -1576,12 +1576,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  {  
       require_once('vendor/tcpdf/tcpdf.php'); 
           $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -1650,7 +1650,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
   function fetch_data6()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT res_ID,
 res_fName,
 res_mName,
@@ -1679,7 +1679,7 @@ LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
 LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '13' AND '19'";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -1704,12 +1704,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
          $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -1778,7 +1778,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  function fetch_data7()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT res_ID,
 res_fName,
 res_mName,
@@ -1807,7 +1807,7 @@ LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
 LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '20' AND '59'";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -1832,12 +1832,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
          $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -1907,7 +1907,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  function fetch_data8()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT res_ID,
 res_fName,
 res_mName,
@@ -1936,7 +1936,7 @@ LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
 LEFT JOIN ref_marital_status rms ON rd.marital_ID = rms.marital_ID
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YEAR,res_Bday,CURDATE())  BETWEEN '60' AND '100'";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -1961,12 +1961,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
          $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -2035,7 +2035,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE TIMESTAMPDIFF(YE
   function fetch_data9()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT rd.res_ID ,
 rd.res_fName ,
 rd.res_mName ,
@@ -2052,7 +2052,7 @@ LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID  
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 'Employed' OR occuStat_Name = 'Employed Government'OR occuStat_Name = 'Employed Private' OR occuStat_Name ='Overseas Filipino Worker (OFW)' OR occuStat_Name ='Self-Employed (SE)'";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -2078,12 +2078,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
       require_once('vendor/tcpdf/tcpdf.php');  
          
       $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -2152,7 +2152,7 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
  function fetch_data10()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT rd.res_ID ,
 rd.res_fName ,
 rd.res_mName ,
@@ -2169,7 +2169,7 @@ LEFT JOIN ref_gender rg ON rd.gender_ID = rg.gender_ID
 LEFT JOIN ref_religion rr ON rd.religion_ID = rr.religion_ID  
 LEFT JOIN ref_occupation_status ros ON rd.occuStat_ID = ros.occuStat_ID 
 LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 'Unemployed'";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -2194,12 +2194,12 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
          $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -2268,11 +2268,11 @@ LEFT JOIN ref_country rc ON rd.country_ID = rc.country_ID WHERE occuStat_Name = 
  function fetch_data11()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT res_fName,res_mName,res_lName,rg.gender_Name,res_Bday,death_Cost,death_Date From resident_death
 INNER JOIN resident_detail ON resident_death.res_ID= resident_detail.res_ID
 LEFT JOIN ref_gender rg ON resident_detail.gender_ID = rg.gender_ID";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -2293,12 +2293,12 @@ LEFT JOIN ref_gender rg ON resident_detail.gender_ID = rg.gender_ID";
  {  
       require_once('vendor/tcpdf/tcpdf.php');  
          $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
@@ -2363,10 +2363,10 @@ LEFT JOIN ref_gender rg ON resident_detail.gender_ID = rg.gender_ID";
   function fetch_data12()  
  {  
       $output = '';  
-      $connect = mysqli_connect("localhost", "root", "", "bmis_db");  
+      include('dbcon.php');  
       $sql = "SELECT res_fName,res_mName,res_lName,res_Bday,preg_Date,preg_Labor From resident_pregnant
 INNER JOIN resident_detail ON resident_pregnant.res_ID= resident_detail.res_ID";  
-      $result = mysqli_query($connect, $sql);  
+      $result = mysqli_query($db, $sql);  
       while($row = mysqli_fetch_array($result))  
       {       
       $output .= '<tr>  
@@ -2387,12 +2387,12 @@ INNER JOIN resident_detail ON resident_pregnant.res_ID= resident_detail.res_ID";
       require_once('vendor/tcpdf/tcpdf.php');  
         
       $sqll = "SELECT * FROM ref_logo WHERE logo_ID=1"; 
-        $resultt = mysqli_query($connect, $sqll); 
+        $resultt = mysqli_query($db, $sqll); 
         $roww = mysqli_fetch_array($resultt);
      
      
         $sqll2 = "SELECT * FROM ref_logo WHERE logo_ID=2"; 
-        $resultt2 = mysqli_query($connect, $sqll2); 
+        $resultt2 = mysqli_query($db, $sqll2); 
         $roww2 = mysqli_fetch_array($resultt2);
      
       $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  

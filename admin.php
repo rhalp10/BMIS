@@ -236,7 +236,7 @@ input[type=password]:focus {
 
 if (isset($_POST['submit']))
 	{	   
-	include 'accountdbconnect.php';
+	include 'db.php';
 
 			 		$fullname=$_POST['fullname'] ;
 			 		$username=$_POST['username'] ;
@@ -246,7 +246,7 @@ if (isset($_POST['submit']))
 					$position= $_POST['position'] ;
 					$committee= $_POST['committee'];
 												
-		 mysqli_query("INSERT INTO `accounts`(Fullname ,Username, Emailaddress,device_Id, Password, Position, Committee) 
+		 mysqli_query($db,"INSERT INTO `accounts`(Fullname ,Username, Emailaddress,device_Id, Password, Position, Committee) 
 		 VALUES ('$fullname','$username','$emailaddress','$device_Id','$password','$position', '$committee')"); 
 				
 				
@@ -278,10 +278,10 @@ if (isset($_POST['submit']))
 				}
 			</script>
 			<?php
-			include("accountdbconnect.php");
+			include("db.php");
 			
 				
-			$result=mysqli_query($conn,"SELECT * FROM accounts WHERE id=1");
+			$result=mysqli_query($db,"SELECT * FROM accounts WHERE id=1");
 	if($_SESSION['position']=='Barangay Secretary'){		
 			while($test = mysqli_fetch_array($result))
 			{
@@ -300,7 +300,7 @@ if (isset($_POST['submit']))
 			} //while
 		} //if
 		
-			mysqli_close($conn);
+			mysqli_close($db);
 			?>
 </section>
 </table>

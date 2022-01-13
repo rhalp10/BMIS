@@ -13,42 +13,42 @@
 
 
 </head>
-    <style> .form-control113 {
-    display:   block;
-    width: 50%%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    margin-bottom:3px;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        
-        }
-     .button {
-    background-color: #3380b9; /* blue */
-    border: none;
-    color: white;
-    padding: 16px 100px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 21px;
-    font-weight: bold;
-    font-family: Family;
-    margin: 4px 30px;
-    -webkit-transition-duration: 0.4s; /*blue */
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
+    <style> 
+    .form-control113 {
+        display:   block;
+        width: 50%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        margin-bottom:3px;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;   
+    }
+    .button {
+        background-color: #3380b9; /* blue */
+        border: none;
+        color: white;
+        padding: 16px 100px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 21px;
+        font-weight: bold;
+        font-family: Family;
+        margin: 4px 30px;
+        -webkit-transition-duration: 0.4s; /*blue */
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
 
  </style>
     
