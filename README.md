@@ -27,7 +27,14 @@ You can choose one from multiple ways for installation.
 git clone https://github.com/rhalp10/BMIS.git
 ```
  - Download the [repository](https://github.com/rhalp10/BMIS/archive/refs/heads/master.zip) 
-
+ 
+**Note**
+ - windows 11 will require you to indicate port on your db configuration. Change port number on these files.
+ ```DIR 
+ db.php
+ peace_and_order/lib/class.database.php
+ ```
+ - You can find your mysql port in `my.ini` file.
 ## Requirements 
 - Maria 10.4.10+ / MySQL 8.0.18+   
 - phpMyAdmin 4.9.2 
